@@ -1,0 +1,64 @@
+table.table, table {
+	width: 100%;
+	text-align: left;
+	background-color: transparent;
+}
+
+table.table thead tr {
+	border-right: 0;
+	background-color: #279fbb;
+	color: #fff;
+	text-align: left;
+	padding: 10px 15px;
+	vertical-align: top;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.table td, .table th {
+	padding: 8px;
+	border: 1px solid #D8D8D8;
+}
+
+.table tbody tr:hover {
+	background: #fafafa;
+}
+
+table.hover thead th {
+	background-color: #E6E6E6;
+	color: #666;
+	border: none;
+	vertical-align: middle;
+}
+
+table.hover thead tr th {
+	border-top: 2px solid #279FBB;
+}
+
+table.hover td, table.hover th {
+	border: none;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+table.hover th {
+	background-color: #F0F0F0;
+	text-align: center;
+}
+
+table.hover tbody tr:nth-child(odd) {
+	background-color: #FDFDFD;
+}
+
+.right-text {
+	text-align: right;
+	padding-right: 30;
+}
+
+.left-text {
+	text-align: left;
+}
+
+.center-text {
+	text-align: center;
+}
+p

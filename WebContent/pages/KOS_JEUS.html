@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head><meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<style>
+   /****************************
+   Tables
+   ****************************/
+   table.table, table {width: 100%;text-align: left;background-color: transparent;}
+   table.table thead tr {border-right: 0;background-color: #279fbb;color: #fff;text-align: left;padding: 10px 15px;vertical-align: top;font-size: 14px;font-weight: bold;}
+   .table td, .table th {padding: 8px;border: 1px solid #D8D8D8;}
+   .table tbody tr:hover {background: #fafafa;}
+   table.hover thead th {background-color: #E6E6E6;color: #666;border: none;vertical-align:middle;}
+   table.hover thead tr th {border-top:2px solid #279FBB;}
+   table.hover td, table.hover th {border: none;border-bottom: 1px solid #e8e8e8;}
+   table.hover th {background-color:#F0F0F0;text-align:center;}
+   table.hover tbody tr:nth-child(odd) {background-color: #FDFDFD;}
+   .right-text {text-align: right;padding-right:30;}
+   .left-text {text-align: left;}
+   .center-text {text-align: center;}
+   fieldset {font-size:18px;font-family:굴림;padding:5px;width:300px;line-height:15px;}
+</style>
+
+<title>JEUS Web Console</title>
+<script type="text/javascript">
+function urlgo(){
+	var count = document.all.url.length;
+	var temp;
+	for(var i=0;i<count;i++){
+		if(document.all.url[i].checked == true){
+			temp = document.all.url[i].value;
+		}
+	}
+	var url = temp.split(',');
+	var rand_no = Math.random();
+	rand_no = rand_no * 1000;
+	rand_no = Math.ceil(rand_no);
+	
+	var newWin = window.open("",rand_no,"");
+	document.loginForm.action=url[0];
+	document.loginForm.j_username.value=url[1];
+	document.loginForm.j_password.value=url[2];
+	document.loginForm.method='POST';
+	document.loginForm.target=rand_no;
+	document.loginForm.submit();
+}
+</script>
+</head>
+<body>
+<!-- <form id="loginForm" action="/webadmin/j_spring_security_check" method="post" name="loginForm"> -->
+<form id="loginForm" action="http://10.219.1.246:8180/webadmin/j_spring_security_check" method="post" name="loginForm">
+<table>
+<tbody><tr>
+  <td>
+<legend>Jeus Web console</legend>
+<fieldset style="width:600px;">
+	<legend>PRD</legend>
+	<div class="rds1">
+		<label><input type="radio" value="http://10.219.1.41:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">rdsap01</label>
+		<label><input type="radio" value="http://10.219.1.43:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">rdsap03</label>
+		<label><input type="radio" value="http://10.219.1.45:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">rdsap05</label>
+		<label><input type="radio" value="http://10.219.1.47:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">rdsap07</label>
+	</div>
+	<div class="ord1">
+		<label><input type="radio" value="http://10.219.3.21:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordap01</label>
+		<label><input type="radio" value="http://10.219.3.23:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordap03</label>
+		<label><input type="radio" value="http://10.219.3.25:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordap05</label>
+		<label><input type="radio" value="http://10.219.3.27:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordap07</label>
+	</div>
+        <div class="ordcorp">
+                <label><input type="radio" value="http://10.219.1.211:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordcorp01</label>
+                <label><input type="radio" value="http://10.219.1.213:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordcorp03</label>
+        </div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.219.3.41:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">billap01</label>
+		<label><input type="radio" value="http://10.219.3.43:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">billap03</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.219.3.51:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">billar01</label>
+		<label><input type="radio" value="http://10.219.3.53:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">billar03</label>
+	</div>
+	<div class="rdsfw">
+		<label><input type="radio" value="http://10.219.1.51:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">rdsfw01</label>
+	</div>
+	<div class="payload">
+		<label><input type="radio" value="http://10.219.1.226:9001/webadmin/j_spring_security_check,administrator,Prd@middle1" name="url">payloadap01</label>
+		<label><input type="radio" value="http://10.219.1.227:9001/webadmin/j_spring_security_check,administrator,Prd@middle1" name="url">payloadap02</label>
+	</div>
+ 	<div class="prd2dist1">
+		<label><input type="radio" value="http://10.219.6.131:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2distweb01</label>
+		<label><input type="radio" value="http://10.219.6.135:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2distweb05</label>
+	</div>
+	<div class="prd2auth1">
+		<label><input type="radio" value="http://10.219.6.151:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2authap01</label>
+		<label><input type="radio" value="http://10.219.6.153:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2authap03</label>
+	</div>
+	<div class="prd2auth2">
+		<label><input type="radio" value="http://10.219.6.155:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2authap05</label>
+		<label><input type="radio" value="http://10.219.6.157:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2authap07</label>
+	</div>
+	<div class="prd2cdm1">
+		<label><input type="radio" value="http://10.219.6.191:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmap01</label>
+		<label><input type="radio" value="http://10.219.6.193:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmap03</label>
+	</div>
+	<div class="prd2cdm2">
+		<label><input type="radio" value="http://10.219.6.195:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmap05</label>
+		<label><input type="radio" value="http://10.219.6.197:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmap07</label>
+	</div>
+        <div class="prd2cdmcorp">
+                <label><input type="radio" value="http://10.219.6.56:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmcorp01</label>
+                <label><input type="radio" value="http://10.219.6.58:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmcorp03</label>
+        </div>
+        <div class="prd2billon">
+                <label><input type="radio" value="http://10.219.6.171:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billon01</label>
+                <label><input type="radio" value="http://10.219.6.173:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billon03</label>
+                <label><input type="radio" value="http://10.219.6.175:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billon05</label>
+                <label><input type="radio" value="http://10.219.6.177:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billon07</label>
+        </div>
+        <div class="prd2billcorp">
+                <label><input type="radio" value="http://10.219.6.21:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billcorp01</label>
+                <label><input type="radio" value="http://10.219.6.23:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billcorp03</label>
+        </div>
+        <div class="batch">
+                <label><input type="radio" value="http://10.219.3.62:29001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">batap02</label>
+                <label><input type="radio" value="http://10.219.3.64:19001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">batap04</label>
+        </div>
+</fieldset>
+</td>
+<td>
+<fieldset>
+	<legend>SIT</legend>
+	<div class="ord">
+		<label><input type="radio" value="http://10.217.157.71:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitordap01</label>
+		<label><input type="radio" value="http://10.217.157.72:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitordap02</label>
+	</div>
+	<div class="billon">
+		<label><input type="radio" value="http://10.217.157.81:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillon01</label>
+		<label><input type="radio" value="http://10.217.157.82:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillon02</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.217.157.76:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillar01</label>
+		<label><input type="radio" value="http://10.217.157.77:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillar02</label>
+	</div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.217.157.73:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillap01</label>
+		<label><input type="radio" value="http://10.217.157.74:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillap02</label>
+	</div>
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.157.68:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitrdsap01</label>
+		<label><input type="radio" value="http://10.217.157.69:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitrdsap02</label>
+	</div>
+	<div class="billfw">
+		<label><input type="radio" value="http://10.217.157.158:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillfw01</label>
+		<label><input type="radio" value="http://10.217.157.159:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillfw02</label>
+	</div>
+	<div class="rdsfw">
+		<label><input type="radio" value="http://10.217.157.138:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitrdsfw01</label>
+		<label><input type="radio" value="http://10.217.157.141:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitrdsfw02</label>
+	</div>
+	<!-- div class="cdmcorp">
+		<label><input type="radio" value="http://10.217.157.53:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sitcdmcorp01</label>
+		<label><input type="radio" value="http://10.217.157.54:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sitcdmcorp02</label>
+	</div -->
+	<div class="ordcorp">
+		<label><input type="radio" value="http://10.217.157.133:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitordcorp01</label>
+		<label><input type="radio" value="http://10.217.157.149:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitordcorp02</label>
+	</div>
+	<div class="billcorp">
+		<label><input type="radio" value="http://10.217.157.161:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillcorp01</label>
+		<label><input type="radio" value="http://10.217.157.162:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbillcorp02</label>
+	</div>		
+        <div class="sitbatap02">
+                <label><input type="radio" value="http://10.217.158.99:29001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">sitbatap02</label>
+        </div>
+        <div class="sitbatap03">
+                <label><input type="radio" value="http://10.217.158.218:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sitbatap03</label>
+        </div>
+        <div class="sitordap03">
+                <label><input type="radio" value="http://10.217.158.223:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sitordap03</label>
+        </div>
+	</fieldset>
+  </td>
+
+<td>
+<fieldset>
+	<legend>SIT2</legend>
+        <div class="dist">
+        <label><input type="radio" value="http://10.217.155.106:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2distweb01</label>
+        <label><input type="radio" value="http://10.217.155.107:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2distweb02</label>
+    </div>
+	<div class="auth">
+		<label><input type="radio" value="http://10.217.155.108:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2authap01</label>
+		<label><input type="radio" value="http://10.217.155.109:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2authap02</label>
+	</div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.217.155.71:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2billap01</label>
+		<label><input type="radio" value="http://10.217.155.72:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2billap02</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.217.155.73:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2billar01</label>
+		<label><input type="radio" value="http://10.217.155.74:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2billar02</label>
+	</div>
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.155.83:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2rdsap01</label>
+		<label><input type="radio" value="http://10.217.155.84:9001/webadmin/j_spring_security_check,administrator,Sit2@middle1" name="url">sit2rdsap02</label>
+	</div>
+	<div class="cdm">
+		<label><input type="radio" value="http://10.217.155.81:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmap01</label>
+		<label><input type="radio" value="http://10.217.155.82:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmap02</label>
+	</div>
+    <div class="cdmfw">
+        <label><input type="radio" value="http://10.217.155.113:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmfw01</label>
+        <label><input type="radio" value="http://10.217.155.114:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmfw02</label>
+    </div>
+    <div class="authbat">
+        <label><input type="radio" value="http://10.217.155.179:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2batap01</label>
+    </div>
+	<div class="cdmcorp">
+		<label><input type="radio" value="http://10.217.155.157:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmcorp01</label>
+		<label><input type="radio" value="http://10.217.155.158:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2cdmcorp02</label>
+	</div>
+	<div class="ans">
+		<label><input type="radio" value="http://10.217.155.171:9001/webadmin/j_spring_security_check,administrator,Sit@middle1" name="url">sit2ansap01</label>
+	</div>
+</fieldset>
+</td>
+<td>
+<fieldset>
+        <legend>SIT3</legend>
+    <div class="dist">
+        <label><input type="radio" value="http://10.217.158.106:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3distweb01</label>
+        <label><input type="radio" value="http://10.217.158.107:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3distweb02</label>
+    </div>
+    <div class="auth">
+        <label><input type="radio" value="http://10.217.158.181:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3authap01</label>
+        <label><input type="radio" value="http://10.217.158.182:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3authap02</label>
+    </div>
+    <div class="cdm">
+        <label><input type="radio" value="http://10.217.158.184:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmap01</label>
+        <label><input type="radio" value="http://10.217.158.185:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmap02</label>
+    </div>
+    <div class="cdmcorp">
+        <label><input type="radio" value="http://10.217.158.187:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmcorp01</label>
+        <label><input type="radio" value="http://10.217.158.188:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmcorp02</label>                
+    </div>
+    <div class="cdmfw">
+        <label><input type="radio" value="http://10.217.158.191:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmfw01</label>
+        <label><input type="radio" value="http://10.217.158.192:9001/webadmin/j_spring_security_check,administrator,Sit3@middle1" name="url">sit3cdmfw02</label>
+    </div>
+    <div class="qabill">
+        <label><input type="radio" value="http://10.217.158.205:9001/webadmin/j_spring_security_check,jeusadm,Sit@middle1" name="url">qabillap01</label>
+    </div>
+</fieldset>
+</td>
+
+  <td>
+	<fieldset>
+	<legend>AT</legend>
+	<!--
+	<div class="dist">
+		<label><input type="radio" value="http://10.217.158.161:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitdistweb01</label>
+	</div>	
+	<div class="auth">
+		<label><input type="radio" value="http://10.217.158.157:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitauthap01</label>
+	</div>
+	<div class="cdm">
+		<label><input type="radio" value="http://10.217.158.111:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitcdmap01</label>
+	</div>
+	<div class="ord">
+		<label><input type="radio" value="http://10.217.158.112:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitordap01</label>
+	</div>
+	<div class="billon">
+		<label><input type="radio" value="http://10.217.158.113:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbillon01</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.217.158.114:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbillar01</label>
+	</div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.217.158.116:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbillap01</label>
+	</div>
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.158.117:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitrdsap01</label>
+	</div>
+	<div class="bsbl">
+		<label><input type="radio" value="http://10.217.158.137:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbsblpo01</label>
+	</div>
+	<div class="billfw">
+		<label><input type="radio" value="http://10.217.158.145:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbillfw01</label>
+	</div>
+	<div class="cdmfw">
+		<label><input type="radio" value="http://10.217.158.115:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitcdmfw01</label>
+	</div>
+	<div class="csblfw">
+		<label><input type="radio" value="http://10.217.158.125:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitcsblfw01</label>
+	</div>
+	<div class="bsvlfw">
+		<label><input type="radio" value="http://10.217.158.135:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitbsblfw01</label>
+	</div>
+	<div class="rdsfw">
+		<label><input type="radio" value="http://10.217.158.120:9001/webadmin/j_spring_security_check,administrator,Ait@middle1" name="url">aitrdsfw01</label>
+	</div>
+	-->		
+        <div class="atdistweb01">
+                <label><input type="radio" value="http://10.217.155.16:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atdistweb01</label>
+        </div>
+        <div class="atdistweb02">
+                <label><input type="radio" value="http://10.217.155.17:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atdistweb02</label>
+        </div>
+        <div class="atrdsap01">
+                <label><input type="radio" value="http://10.217.155.36:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atrdsap01</label>
+        </div>
+        <div class="atrdsap02">
+                <label><input type="radio" value="http://10.217.155.37:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atrdsap02</label>
+        </div>
+        <div class="atbillap01">
+                <label><input type="radio" value="http://10.217.155.21:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atbillap01</label>
+        </div>
+        <div class="atbillar01">
+                <label><input type="radio" value="http://10.217.155.23:9001/webadmin/j_spring_security_check,administrator,At@middle1" name="url">atbillar01</label>
+        </div>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+<fieldset>
+	<legend>TRN</legend>
+	<div class="dist">
+		<label><input type="radio" value="http://10.217.157.226:9001/webadmin/j_spring_security_check,administrator,Trn@middle1" name="url">trndistweb01</label>
+	</div>
+	<div class="auth">
+		<label><input type="radio" value="http://10.217.157.188:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnauthap01</label>
+	</div>
+	<div class="cdm">
+		<label><input type="radio" value="http://10.217.157.178:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trncdmap01</label>
+	</div>
+	<div class="ord">
+		<label><input type="radio" value="http://10.217.157.183:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnordap01</label>
+	</div>
+	<div class="billon">
+		<label><input type="radio" value="http://10.217.157.186:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnbillon01</label>
+	</div>
+	<div class="bsbl">
+		<label><input type="radio" value="http://10.217.158.18:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnbsblpo01</label>
+	</div>
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.157.181:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnrdsap01</label>
+	</div>
+	<div class="cdmfw">
+		<label><input type="radio" value="http://10.217.157.167:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trncdmfw01</label>
+	</div>
+	<div class="bsblfw">
+		<label><input type="radio" value="http://10.217.158.51:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnbsblfw01</label>
+	</div>
+	<div class="csblfw">
+		<label><input type="radio" value="http://10.217.158.53:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trncsblfw01</label>
+	</div>
+	<div class="billfw">
+		<label><input type="radio" value="http://10.217.157.153:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnbillfw01</label>
+	</div>
+	<div class="rdsfw">
+		<label><input type="radio" value="http://10.217.157.181:9001/webadmin/j_spring_security_check,jeusadm,Trn@middle1" name="url">trnrdsfw01</label>
+	</div>		
+</fieldset>
+</td>
+<td>
+<fieldset>
+	<legend>DEV</legend>
+	<div class="bsbl">
+		<label><input type="radio" value="http://10.217.136.142:9736/webadmin/j_spring_security_check,administrator,jeusadmin" name="url">devbsblpo01</label>
+	</div>
+	<div class="ord">
+		<label><input type="radio" value="http://10.217.136.136:9736/webadmin/j_spring_security_check,jeusadm,jeusadmin" name="url">devordap01</label>
+	</div>
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.136.135:9736/webadmin/j_spring_security_check,jeusadm,jeusadmin" name="url">devrdsap01</label>
+	</div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.217.136.134:9736/webadmin/j_spring_security_check,jeusadm,jeusadmin" name="url">devbillap01</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.217.136.133:9736/webadmin/j_spring_security_check,jeusadm,jeusadmin" name="url">devbillar01</label>
+	</div>
+	<div class="billon">
+		<label><input type="radio" value="http://10.217.136.132:9736/webadmin/j_spring_security_check,jeusadm,jeusadmin" name="url">devbillon01</label>
+	</div>
+	<div class="billonpo">
+		<label><input type="radio" value="http://10.217.136.31:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devbillpo01</label>
+	</div>
+	<div class="cdmappo">
+		<label><input type="radio" value="http://10.217.136.32:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devcdmpo01</label>
+	</div>
+	<div class="ordpo">
+		<label><input type="radio" value="http://10.217.136.33:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devordpo01</label>
+	</div>
+	<div class="billpo">
+		<label><input type="radio" value="http://10.217.136.31:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devbillpo01</label>
+		<label><input type="radio" value="http://10.217.136.34:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devbillpo02</label>
+	</div>
+	<div class="rdspo">
+		<label><input type="radio" value="http://10.217.136.35:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devrdspo01</label>
+	</div>
+	<div class="billpo">
+		<label><input type="radio" value="http://10.217.136.36:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devbillpo03</label>
+	</div>
+	<div class="authpo">
+		<label><input type="radio" value="http://10.217.136.37:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">devauthpo01</label>
+	</div>
+</fieldset>
+</td>
+
+<td>
+<fieldset>
+	<legend>DEV2</legend>
+	<div class="auth">
+		<label><input type="radio" value="http://10.217.136.198:9001/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2authap01</label>
+	</div>
+	<div class="cdm">
+		<label><input type="radio" value="http://10.217.136.202:9001/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2cdmap01</label>
+	</div>
+        <div class="dist">
+		<label><input type="radio" value="http://10.217.136.211:9001/webadmin/j_spring_security_check,administrator,Dev@middle1" name="url">dev2distweb01</label>
+	</div>
+	<div class="cdmfw">
+		<label><input type="radio" value="http://10.217.136.205:9001/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2filewas01</label>
+	</div>
+	<div class="ans">
+		<label><input type="radio" value="http://10.217.136.24:9001/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2ansap01</label>
+	</div>
+        <div class="ord">
+                <label><input type="radio" value="http://10.217.136.32:9736/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2ordap01</label>
+        </div>
+        <div class="billap">
+                <label><input type="radio" value="http://10.217.136.35:9736/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2billap01</label>
+        </div>
+        <div class="billar">
+                <label><input type="radio" value="http://10.217.136.34:9736/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2billar01</label>
+        </div>
+        <div class="rds">
+                <label><input type="radio" value="http://10.217.136.36:9736/webadmin/j_spring_security_check,administrator,Dev2@middle1" name="url">dev2rdsap01</label>
+        </div>
+</fieldset>
+</td>
+<td>
+<fieldset>
+        <legend>DEV3</legend>
+    <div class="dist">
+        <label><input type="radio" value="http://10.217.136.44:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3distweb01</label>
+    </div>
+    <div class="auth">
+        <label><input type="radio" value="http://10.217.136.17:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3authap01</label>
+    </div>
+    <div class="cdm">
+        <label><input type="radio" value="http://10.217.136.19:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3cdmap01</label>
+    </div>
+    <div class="cdmcorp">
+        <label><input type="radio" value="http://10.217.136.20:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3cdmcorp01</label>
+    </div>
+    <div class="cdmfw">
+        <label><input type="radio" value="http://10.217.136.26:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3cdmfw01</label>
+    </div>
+    <div class="billap">
+        <label><input type="radio" value="http://10.217.136.46:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3billap01</label>
+    </div>
+    <div class="billcorp">
+        <label><input type="radio" value="http://10.217.136.47:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3billcorpap01</label>
+    </div>
+    <div class="billfw">
+        <label><input type="radio" value="http://10.217.136.48:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3billfw01</label>
+    </div>
+    <div class="sbill">
+        <label><input type="radio" value="http://10.217.136.54:9001/webadmin/j_spring_security_check,administrator,Dev3@middle1" name="url">dev3sbillap01</label>
+    </div>
+</fieldset>
+</td>
+<!--
+<td>
+<fieldset>
+	<legend>UAT</legend>
+	<div class="dist">
+		<label><input type="radio" value="http://10.217.158.231:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatdistweb01</label>
+	</div>		
+	<div class="auth">
+		<label><input type="radio" value="http://10.217.158.227:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatauthap01</label>
+	</div>
+	<div class="cdm">
+		<label><input type="radio" value="http://10.217.158.181:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatcdmap01</label>
+	</div>
+	<div class="order">
+		<label><input type="radio" value="http://10.217.158.182:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatordap01</label>
+	</div>
+	<div class="bill">
+		<label><input type="radio" value="http://10.217.158.186:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbillap01</label>
+	</div>
+	<div class="billar">
+		<label><input type="radio" value="http://10.217.158.184:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbillar01</label>
+	</div>
+	<div class="billon">
+		<label><input type="radio" value="http://10.217.158.183:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbillon01</label>
+	</div>
+	<div class="bsbl">
+		<label><input type="radio" value="http://10.217.158.207:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbsblpo01</label>
+	</div>	
+	<div class="rds">
+		<label><input type="radio" value="http://10.217.158.187:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatrdsap01</label>
+	</div>
+	<div class="cdmfw">
+		<label><input type="radio" value="http://10.217.158.103:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatcdmfw01</label>
+	</div>
+	<div class="billfw">
+		<label><input type="radio" value="http://10.217.158.106:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbillfw01</label>
+	</div>
+	<div class="rdsfw">
+		<label><input type="radio" value="http://10.217.158.107:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatrdsfw01</label>
+	</div>
+	<div class="csblfw">
+		<label><input type="radio" value="http://10.217.158.105:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatcsblfw01</label>
+	</div>
+	<div class="bsblfw">
+		<label><input type="radio" value="http://10.217.158.104:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">uatbsblfw01</label>
+	</div>
+	<div class="rttbat">
+		<label><input type="radio" value="http://10.217.152.8:9001/webadmin/j_spring_security_check,administrator,Uat@middle1" name="url">sitrttc01</label>
+	</div>
+</fieldset>
+</td>
+-->
+</tr>
+<tr>
+<td>
+<fieldset>
+	<legend>무선통합 선오픈</legend>
+	<div class="dist">
+		<label><input type="radio" value="http://10.219.1.211:9001/webadmin/j_spring_security_check,administrator,Prd@middle1" name="url">distweb01</label>
+		<label><input type="radio" value="http://10.219.1.215:9001/webadmin/j_spring_security_check,administrator,Prd@middle1" name="url">distweb05</label>
+	</div>		
+</fieldset>
+</td>
+<td>
+<fieldset>
+	<legend>DIT</legend>
+	<div class="dist">
+		<label><input type="radio" value="http://10.217.157.126:19001/webadmin/j_spring_security_check,administrator,Dit@middle1" name="url">sitdistweb01</label>
+	</div>		
+</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+    <input type="button" value="Log-in" onclick="urlgo()">
+    <input type="hidden" value="" name="j_username">
+    <input type="hidden" value="" name="j_password">	
+	<!-- <input id="login" type="submit" value="Log in"> -->
+</td>
+</tr>
+</tbody></table>
+</form>
+
+
+</body></html>
