@@ -66,7 +66,7 @@
 
 	<div id="wrapper">
 
-		<jsp:include page='./navigation.html' flush='false' />
+		<jsp:include page='./navigation.jsp' flush='false' />
 		<!-- Page Content -->
 		<div id="page-wrapper">		
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->

@@ -123,7 +123,7 @@
 <body>
 	<div id="wrapper">
 		<!-- Navigation -->
-		<jsp:include page='./navigation.html' flush='false' />
+		<jsp:include page='./navigation.jsp' flush='false' />
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
 		<!-- Page Content -->
 		<div id="page-wrapper">

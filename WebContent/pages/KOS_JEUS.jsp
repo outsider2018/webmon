@@ -82,7 +82,7 @@ function urlgo(){
 
         <div id="wrapper">
 
-                <jsp:include page='./navigation.html' flush='false' />
+                <jsp:include page='./navigation.jsp' flush='false' />
                 <div id="page-wrapper">
                 <!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
 
