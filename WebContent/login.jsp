@@ -59,7 +59,7 @@
 	function login_proc() {
 		var data = $("form[name=LoginForm]").serialize();
 		$.ajax({
-			url: "/mon/AjaxMessageRequest.do?action=login",
+			url: "/webmon/AjaxMessageRequest.do?action=login",
 		    type: 'POST', dataType: 'json',  data: data,
 		    success: function(obj){
 		    	
