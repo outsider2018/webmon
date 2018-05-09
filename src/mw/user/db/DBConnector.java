@@ -8,11 +8,11 @@ import org.apache.derby.jdbc.*;
 public class DBConnector {
 	static Logger logger = Logger.getLogger(DBConnector.class.getName());
 	
-	static String driver = "org.apache.derby.jdbc.EmbeddedDriver";	
+//	static String driver = "org.apache.derby.jdbc.EmbeddedDriver";	
 	
 	static String dbName="MonDB";
-	static String connectionURL = "jdbc:derby:D:/workspace-oxygen/mon/WebContent/derby/datafile/" + dbName;
-	//static String connectionURL = "jdbc:derby://localhost:1527/" + dbName+";create=false";
+	static String connectionURL = "jdbc:derby:D:/workspace-oxygen/webmon/WebContent/derby/datafile/" + dbName;
+//	static String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=false";
 	
 	public static Connection getConnection(){
 		

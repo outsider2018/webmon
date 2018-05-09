@@ -10,7 +10,7 @@ function getURLList(env) {
 	//var data = JSON.parse(obj);
 	alert(data);
 	$.ajax({
-		url: "/mon/AjaxMessageRequest.do?action=getURLList",
+		url: "/webmon/AjaxMessageRequest.do?action=login",
 	    type: 'POST', dataType: 'json',  data: data,
 	    success: function(obj){	    
 	    	alert("PRD URL Check start!!");
