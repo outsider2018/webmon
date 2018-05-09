@@ -70,19 +70,22 @@ function getURLList(env) {
 							<ul class="nav nav-third-level">
 								<li><a href="#">SIT(SM)</a></li>
 								<li><a href="#">SIT(HotFix)</a></li>
-								<li><a href="#">SIT(SI 예정)</a></li>
+								<li><a href="#">SIT(SI ìì )</a></li>
 								<li><a href="#">TRN</a></li>
 								<li><a href="#">CAT</a></li>
 								<li><a href="#">BAT</a></li>								
 							</ul> <!-- /.nav-third-level --></li>
 						<li><a href="#">DEV Zone</a> <!-- /.nav-third-level --></li>
 					</ul> <!-- /.nav-second-level --></li>
+					
+				<!-- WAS Admin 링크 페이지 (group_name이 root, admin, monitor에 따라 메뉴 활성화 여부가 달라짐) -->
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> WAS
 						Admin page link<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="./KOS_OSB.jsp">WebLogic Admin</a></li>
 						<li><a href="./KOS_JEUS.jsp">JEUS Admin</a></li>
 					</ul> <!-- /.nav-second-level --></li>
+				<!-- SSL 인증서 만료일 체크 페이지 -->
 				<li><a href="#"><i class="fa fa-files-o fa-fw"></i> SSL
 						Certification Expire Check<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
