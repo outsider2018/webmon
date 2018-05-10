@@ -65,27 +65,14 @@
 		    	
 		    	// �α��� ���� ����
 		    	var loginSuccess = obj.LOGIN_SUCCESS;
-		    	
-		    	// ���� ���� ����
-		    	var acceptYN = obj.ACCEPT_YN;
-		    	
-		    	// ������ ����
-		    	var adminYN = obj.ADMIN_YN;
-					    		    	
+		    						    		    	
 		    	document.LoginForm.user_name.value = obj.USER_NAME;
 		    	document.LoginForm.group_name.value = obj.GROUP_NAME;
 		    	document.LoginForm.admin_YN.value = obj.ADMIN_YN
 		    	
-		    	if(loginSuccess !="N"){
-		    		if(acceptYN == "Y"){
-			    		// �α��� ���� �� ������ �̵�
-			    		//location.href="./jsp/02_managerSSLCert.jsp?USER_ID="+obj.USER_ID;
-			    		console.log("login Success : " + loginSuccess);
-			    		document.LoginForm.submit();
-		    		}else{
-		    			alert("관리자 승인이 필요합니다.");
-		    		}
-		    			    		
+		    	if(loginSuccess !="N"){		    	
+		    		console.log("login Success : " + loginSuccess);
+		    		document.LoginForm.submit();
 		    	}else{
 		    		alert("ID, Password가 틀렸습니다.");
 		    		document.getElementById("password").value='';
