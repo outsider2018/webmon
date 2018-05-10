@@ -2,22 +2,7 @@
 <html lang="ko">
 
 <script>
-function getURLList(env) {	
-	//var data = {"env_name":"PRD"};
-	var data = {"env_name":env};
-	//console.log("data : " + data);
-	//var data = JSON.stringify(obj);
-	//var data = JSON.parse(obj);
-	alert(data);
-	$.ajax({
-		url: "/webmon/AjaxMessageRequest.do?action=login",
-	    type: 'POST', dataType: 'json',  data: data,
-	    success: function(obj){	    
-	    	alert("PRD URL Check start!!");
-	    }	    
-	});	// ajax end
 
-}
 
 </script>
 
