@@ -13,11 +13,10 @@
 		out.println("alert('정상적인 접근이 아니거나 세션이 만료되었습니다. 재로그인 해주세요.')");
 		out.println("</script>");
 		session.invalidate();
-		System.out.println("=== 세션에 user_id가 없습니다.");
+		System.out.println("=== 세션 ID가 없습니다.");
 		response.sendRedirect("../login.jsp");	
 	}else{
-		System.out.println("session enable!");
-
+		System.out.println("session enable : " + session.getAttribute("user_id"));
 	}
 %>
 </head>

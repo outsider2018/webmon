@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="kr">
 
@@ -47,7 +47,7 @@
     <script language="javascript">
 	function login() {
 		if(document.getElementById("user_id").value=="" || document.getElementById("password").value==""){
-			alert("ID ¶Ç´Â Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+			alert("ID ë˜ëŠ” Passwordë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			document.getElementById("user_id").focus();
 			return false;
 		}else{
@@ -63,13 +63,13 @@
 		    type: 'POST', dataType: 'json',  data: data,
 		    success: function(obj){
 		    	
-		    	// ·Î±×ÀÎ ¼º°ø ¿©ºÎ
+		    	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		    	var loginSuccess = obj.LOGIN_SUCCESS;
 		    	
-		    	// °¡ÀÔ ½ÂÀÎ ¿©ºÎ
+		    	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		    	var acceptYN = obj.ACCEPT_YN;
 		    	
-		    	// °ü¸®ÀÚ ¿©ºÎ
+		    	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		    	var adminYN = obj.ADMIN_YN;
 					    		    	
 		    	document.LoginForm.user_name.value = obj.USER_NAME;
@@ -78,16 +78,16 @@
 		    	
 		    	if(loginSuccess !="N"){
 		    		if(acceptYN == "Y"){
-			    		// ·Î±×ÀÎ ¼º°ø ÈÄ ÆäÀÌÁö ÀÌµ¿
+			    		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 			    		//location.href="./jsp/02_managerSSLCert.jsp?USER_ID="+obj.USER_ID;
 			    		console.log("login Success : " + loginSuccess);
 			    		document.LoginForm.submit();
 		    		}else{
-		    			alert("°ü¸®ÀÚ ½ÂÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+		    			alert("ê´€ë¦¬ì ìŠ¹ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.");
 		    		}
 		    			    		
 		    	}else{
-		    		alert("¾ÆÀÌµğ ¶Ç´Â ÆĞ½º¿öµå°¡ Æ²·È½À´Ï´Ù.");
+		    		alert("ID, Passwordê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.");
 		    		document.getElementById("password").value='';
 		    		document.LoginForm.password.focus();
 		    	}    	

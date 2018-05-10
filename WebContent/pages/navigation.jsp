@@ -44,7 +44,7 @@ function getURLList(env) {
                  <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                  </li>
                  <li class="divider"></li>
-                 <li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                 <li><a href="/webmon/logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                  </li>
              </ul>
              <!-- /.dropdown-user -->
