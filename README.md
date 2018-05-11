@@ -1,4 +1,4 @@
 # webmon
 
-±âµ¿ ½ºÅ©¸³Æ®¿¡ ¾Æ·¡¿Í °°ÀÌ ¼³Á¤À» Ãß°¡ÇÏÀÚ. ¾Æ·¡ ¿É¼ÇÀº derby dbÀÇ DB ÆÄÀÏÀ» Ã£±â ½ÃÀÛÇÏ´Â home directory ÀÌ´Ù.
+# WAS ê¸°ë™ ìŠ¤í¬ë¦½íŠ¸ì— ì•„ë˜ ì˜µì…˜ì„ ê¼­ ì¶”ê°€í•´ ì£¼ì„¸ìš”. Derby DBì˜ home ìœ„ì¹˜ ì§€ì • ì˜µì…˜ì…ë‹ˆë‹¤.
 -Dderby.system.home="D:\workspace-oxygen\webmon\WebContent\derby\datafile"
