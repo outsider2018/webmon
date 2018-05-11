@@ -84,10 +84,13 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			 */
 			if("login".equals(action)){				
 				ret = UserDataDAO.login(conn, request_value);
+			}else if("getUserList".equals(action)){
+				ret = UserDataDAO.UserList(conn);				
+			}else if("newJoinProc".equals(action)){
+				ret = UserDataDAO.newJoin(conn, request_value);				
 			}else if("getURLList".equals(action)){
 				ret = URLDataDAO.getURLList(conn, request_value);
-			}else if("newJoinProc".equals(action)){
-				ret = UserDataDAO.newJoin(conn, request_value);
+
 			}
 			
 			else  throw new Exception("Invalid action request ["+action+"]");
@@ -96,7 +99,6 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			String response_value_str = ret.toString();
 			System.out.println(" Response:"+response_value_str);
 
-			//			CommonUtil.logFileOut("("+Crypto.decrypt(mobile_no)+","+Crypto.decrypt(device_id)+")[StoM:"+action+"]"+request_value_str+"###"+request_value_str);
 			return response_value_str;
 		}catch (Exception e) {
 			e.printStackTrace();

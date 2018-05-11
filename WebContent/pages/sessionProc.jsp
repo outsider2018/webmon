@@ -17,9 +17,11 @@
 		session.setAttribute("user_name", user_name);
 		session.setAttribute("group_name", group_name);
 		
+		System.out.println("=========== 세션 초기화 시작============");
 		System.out.println("user_id : " + session.getAttribute("user_id"));
 		System.out.println("user_name : " + session.getAttribute("user_name"));
 		System.out.println("group_name : " + session.getAttribute("group_name"));
+		System.out.println("=========== 세션 초기화 끝 ============ \n");		
 		
 		response.sendRedirect("./index.jsp");
 	}else{

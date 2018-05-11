@@ -1,17 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="mw.resource.ResourceInit"%>
-<%@ page import="mw.user.dao.URLDataDAO"%>
+<%@ page import="mw.user.dao.UserDataDAO"%>
 <%@ page import="mw.user.db.DBConnector"%>
-<%@ page import="mw.url.CheckURL"%>
 <%@ page import="mw.util.ConvertJson"%>
 <%@ page import="org.json.JSONArray"%>
 <%@ page import="org.json.JSONException"%>
 <%@ page import="org.json.JSONObject"%>
 <%@ page import="org.json.JSONTokener"%>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="kr">
@@ -56,14 +57,8 @@
 		Connection conn = DBConnector.getConnection();
 		Object ret = null;
 		
-		ret = URLDataDAO.getURLList(conn, "PRD");
-		System.out.println(ret.toString());
+		ret = UserDataDAO.UserList(conn);
 		//JSONArray joa = new JSONArray(ret);
-		
-		
-		ArrayList <String> test = null;
-		
-		
 		//System.out.println("Size : " + joa.length());
 		
 		//for(i=1,ret.toString().length())
@@ -71,19 +66,11 @@
 		//jsonArr = conJson.daoObjectToJSONArray(ret);
 		//System.out.println(jsonArr);
 		
-        String imageFileName="";
-		int count = 1;
-		ArrayList<HashMap> resultList = new ArrayList<HashMap>();
-		CheckURL chk = new CheckURL();
-		
-		resultList = chk.checkUrl(ResourceInit.urlListPRD_PA3_ALL);
-		//resultList = chk.checkUrl(jsonArr);
-		
 %>
 
 	<div id="wrapper">
 
-		<jsp:include page='/pages/navigation.jsp' flush='false' />
+		<jsp:include page='./userNavigation.jsp' flush='false' />
 		<!-- Page Content -->
 		<div id="page-wrapper">		
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
@@ -99,18 +86,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            DataTables Advanced Tables
-                        </div>
+                        <!--  <div class="panel-heading">사용자 관리</div>  -->	
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="user-list">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
+                                        <th>USER ID</th>
+                                        <th>USER NAME</th>
+                                        <th>GROUP NAME</th>
+                                        <th>PASSWORD</th>
                                         <th>CSS grade</th>
                                     </tr>
                                 </thead>

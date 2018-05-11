@@ -28,14 +28,12 @@ public class UserDataDAO {
 			String password = request_value.getString("password");
 			String user_name = "";
 			String group_name = "";			
-			String admin_YN = "";
-			String accept_YN = "";
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("SELECT USER_ID, USER_NAME, GROUP_NAME, LOGIN_PASSWORD, ADMIN_YN, ACCEPT_YN 	\n");
+			sql_str.append("SELECT USER_ID, USER_NAME, GROUP_NAME, PASSWORD \n");
 			sql_str.append("	FROM USER_INFO													\n");								
 			sql_str.append(" WHERE USER_ID=?													\n");
-			sql_str.append(" AND LOGIN_PASSWORD=?												\n");				
+			sql_str.append(" AND PASSWORD=?												\n");				
 			
 			pstmt = conn.prepareStatement(sql_str.toString());
 			pstmt.setString(1,user_id);
@@ -49,16 +47,12 @@ public class UserDataDAO {
             	user_id = rs.getString("USER_ID");
             	user_name = rs.getString("USER_NAME");
             	group_name = rs.getString("GROUP_NAME");
-            	admin_YN = rs.getString("ADMIN_YN");
-            	accept_YN = rs.getString("ACCEPT_YN");
      	    }
             if(count != 0){            	
-            	response_value.put("LOGIN_SUCCESS", "Y");            	
+            	response_value.put("LOGIN_SUCCESS", "Y");	
             	response_value.put("USER_ID", user_id);
             	response_value.put("USER_NAME", user_name);
             	response_value.put("GROUP_NAME", group_name);
-            	response_value.put("ADMIN_YN", admin_YN);
-            	response_value.put("ACCEPT_YN", accept_YN);
             }else{
             	response_value.put("LOGIN_SUCCESS", "N");
             }           
@@ -78,15 +72,18 @@ public class UserDataDAO {
 		return response_value;
 	}
 
-	public static JSONObject newJoinForm(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+	public static JSONObject UserList(Connection conn)throws SQLException, NamingException, JSONException {
 		
 		JSONObject response_value = new JSONObject(); 
 
 		try{			
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("SELECT GROUP_ID, GROUP_NAME, DESCRIPTION		\n");
-			sql_str.append("	FROM GROP_INFO								\n");								
+			sql_str.append("SELECT USER_NUMBER,		\n");
+			sql_str.append("		USER_ID,		\n");
+			sql_str.append("		GROUP_NAME,		\n");
+			sql_str.append("		DESCRIPTION		\n");
+			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
 			response_value = DBQueryExcutor.selectSingleRow(conn, sql_str.toString(), param);            
@@ -107,25 +104,16 @@ public class UserDataDAO {
 			sql_str.append("INSERT INTO user_info			\n");
 			sql_str.append("	VALUES(:USER_ID,			\n"); // 유저 ID
 			sql_str.append("		   :USER_NAME,			\n"); // 유저 이름
-			sql_str.append("		   :USER_PASSWORD,		\n"); // 유저 패스워드
-			sql_str.append("		   :GROUP_ID,			\n"); // 그룹 이름
-			sql_str.append("		   :MOBILE_NUMBER,		\n"); // 전화번호
-			sql_str.append("		   :EMAIL_ADDRESS,		\n"); // 이메일
-			sql_str.append("		   CURRENT_DATE(),		\n"); // 생성 일자
-			//sql_str.append("		   ':ADMIN_YN',			\n");			
-			sql_str.append("		   'N',					\n"); // 관리자 여부
-			//sql_str.append("		   ':ACCEPT_YN',			\n");
-			sql_str.append("		   'N',					\n"); // 접속 승인			
+			sql_str.append("		   :PASSWORD,		\n"); // 유저 패스워드
+			sql_str.append("		   :GROUP_NAME,			\n"); // 그룹 이름
+			sql_str.append("		   CURRENT_DATE,		\n"); // 생성 일자
 			sql_str.append("		   :DESCRIPTION)		\n"); // 설명
 			
 			Hashtable param = new Hashtable();
 			param.put("USER_ID", request_value.getString("USER_ID"));
 			param.put("USER_NAME", request_value.getString("USER_NAME"));
-			param.put("USER_PASSWORD", request_value.getString("USER_PASSWORD1"));
-			param.put("GROUP_ID", request_value.getString("GROUP_ID"));
-			param.put("MOBILE_NUMBER", request_value.getString("MOBILE_NUMBER"));
-			param.put("EMAIL_ADDRESS", request_value.getString("EMAIL_ADDRESS"));			
-			//param.put("ACCEPT_YN", "N");
+			param.put("PASSWORD", request_value.getString("PASSWORD"));
+			param.put("GROUP_NAME", request_value.getString("GROUP_NAME"));
 			param.put("DESCRIPTION", request_value.getString("DESCRIPTION"));
 			
 			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
