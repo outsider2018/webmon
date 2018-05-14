@@ -86,8 +86,8 @@ public class UserDataDAO {
 			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
-			response_value = DBQueryExcutor.selectMultiRow_web(conn, sql_str.toString(), param);
-			System.out.println("UserList : " + response_value.toString());
+			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(), param);
+			System.out.println("$$$$$$$$$$$$$$$$ UserList : " + response_value.toString());
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}
