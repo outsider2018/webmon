@@ -134,23 +134,35 @@
 	    
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
+	    
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=UserList",
 		    type: 'POST', dataType: 'json',
-		    success: function(obj){
-		    	
+		    success: function(obj){		    	
 		    	// UserList 요청 성공		    	
-		    	var data = obj.USER_NUMBER;
-				alert("리턴 데이터 : " + data);		    
-		    }			
+		    	var userData = obj.USER_NUMBER;
+		    	
+				alert("리턴 데이터 : " + userData);
+				
+			    $(document).ready(function() {
+			        $('#user-list').DataTable({
+			            responsive: true,
+			            data: userData
+			        });
+			    }); //Datatable end
+		    }, // ajax success end
+		    error:function(){
+		    	document.write("사용자 정보 로딩에 실패하였습니다.");
+		    }
 		});	// ajax end	    
 	    
-	    var data1 = ["82022599","이환호","root","New1234!","관리자"];
+/* 	    var data1 = ["82022599","이환호","root","New1234!","관리자"];
 	    $(document).ready(function() {
 	        $('#user-list').DataTable({
 	            responsive: true,
+	            data: userData
 	        });
-	    });
+	    }); */
 	    </script>
 
 		<!-- Custom Theme JavaScript -->
