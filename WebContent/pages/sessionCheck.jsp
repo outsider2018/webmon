@@ -9,12 +9,13 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	if((String)session.getAttribute("user_id") == null){
+		session.invalidate();
 		out.println("<script language='javascript'>");
 		out.println("alert('정상적인 접근이 아니거나 세션이 만료되었습니다. 재로그인 해주세요.')");
+		out.println("location.href='../../../login.jsp';");
 		out.println("</script>");
-		session.invalidate();
 		System.out.println("=== 세션 ID가 없습니다.");
-		response.sendRedirect("../login.jsp");	
+		//response.sendRedirect("../login.jsp");
 	}else{
 		System.out.println("user_id : " + session.getAttribute("user_id"));
 		System.out.println("user_name : " + session.getAttribute("user_name"));

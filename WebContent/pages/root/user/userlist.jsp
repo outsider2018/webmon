@@ -54,10 +54,10 @@
 
 <%
 		
-		Connection conn = DBConnector.getConnection();
-		Object ret = null;
+		//Connection conn = DBConnector.getConnection();
+		//Object ret = null;
 		
-		ret = UserDataDAO.UserList(conn);
+		//ret = UserDataDAO.UserList(conn);
 		//JSONArray joa = new JSONArray(ret);
 		//System.out.println("Size : " + joa.length());
 		
@@ -96,67 +96,10 @@
                                         <th>USER NAME</th>
                                         <th>GROUP NAME</th>
                                         <th>PASSWORD</th>
-                                        <th>CSS grade</th>
+                                        <th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 2.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 3.0</td>
-                                        <td>Win 2k+ / OSX.3+</td>
-                                        <td class="center">1.9</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Camino 1.0</td>
-                                        <td>OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Camino 1.5</td>
-                                        <td>OSX.3+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Netscape 7.2</td>
-                                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Netscape Browser 8</td>
-                                        <td>Win 98SE+</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -191,9 +134,21 @@
 	    
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
+		$.ajax({
+			url: "/webmon/AjaxMessageRequest.do?action=UserList",
+		    type: 'POST', dataType: 'json',
+		    success: function(obj){
+		    	
+		    	// UserList 요청 성공		    	
+		    	var data = obj.USER_NUMBER;
+				alert("리턴 데이터 : " + data);		    
+		    }			
+		});	// ajax end	    
+	    
+	    var data1 = ["82022599","이환호","root","New1234!","관리자"];
 	    $(document).ready(function() {
 	        $('#user-list').DataTable({
-	            responsive: true
+	            responsive: true,
 	        });
 	    });
 	    </script>

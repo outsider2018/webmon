@@ -14,7 +14,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.jsp">KOS System - Middle Ware Administrator v1.0</a>
+		<a class="navbar-brand" href="../../index.jsp">KOS System - Middle Ware Administrator v1.0</a>
 	</div>
 	<!-- /.navbar-header -->
 

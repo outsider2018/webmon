@@ -84,13 +84,10 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			 */
 			if("login".equals(action)){				
 				ret = UserDataDAO.login(conn, request_value);
-			}else if("getUserList".equals(action)){
+			}else if("UserList".equals(action)){
 				ret = UserDataDAO.UserList(conn);				
 			}else if("newJoinProc".equals(action)){
 				ret = UserDataDAO.newJoin(conn, request_value);				
-			}else if("getURLList".equals(action)){
-				ret = URLDataDAO.getURLList(conn, request_value);
-
 			}
 			
 			else  throw new Exception("Invalid action request ["+action+"]");

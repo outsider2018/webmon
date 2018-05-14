@@ -63,27 +63,24 @@
 		    type: 'POST', dataType: 'json',  data: data,
 		    success: function(obj){
 		    	
-		    	// �α��� ���� ����
+		    	// 로그인 성공 여부
 		    	var loginSuccess = obj.LOGIN_SUCCESS;
 		    						    		    	
 		    	document.LoginForm.user_name.value = obj.USER_NAME;
 		    	document.LoginForm.group_name.value = obj.GROUP_NAME;
-		    	document.LoginForm.admin_YN.value = obj.ADMIN_YN
 		    	
-		    	if(loginSuccess !="N"){		    	
+		    	//alert("로그인 정상 여부 : "+ loginSuccess +" , " + document.getElementById("user_name").value + " , " + obj.GROUP_NAME);
+ 		    	if(loginSuccess == "Y"){		    	
 		    		console.log("login Success : " + loginSuccess);
 		    		document.LoginForm.submit();
 		    	}else{
 		    		alert("ID, Password가 틀렸습니다.");
 		    		document.getElementById("password").value='';
 		    		document.LoginForm.password.focus();
-		    	}    	
+		    	}
 		    }	    
 		});	// ajax end
-
 	}
-
-	
 
 	</script>
 </head>
@@ -106,8 +103,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
                                     <input type="hidden" name="user_name" id="user_name" value="">
-                                    <input type="hidden" name="group_name" id="group_name" value="">
-                                    <input type="hidden" name="admin_YN" id="admin_YN" value="">                                    
+                                    <input type="hidden" name="group_name" id="group_name" value="">                                    
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -116,8 +112,10 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <!-- <a href="#" class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" >Login</a>  -->
-                                <button class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" >Login</button>
-                                <!-- <input type='button' class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="Login">  -->
+                                
+                                <!-- button 태크를 사용 시 class에서 기본적으로 submit() 옵션을 제거해야 함 -->
+                                <!-- <button class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" >Login</button>  -->                                
+                                <input type='button' class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="Login"> 
                             </fieldset>
                         </form>
                     </div>

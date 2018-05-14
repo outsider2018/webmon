@@ -86,7 +86,8 @@ public class UserDataDAO {
 			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
-			response_value = DBQueryExcutor.selectSingleRow(conn, sql_str.toString(), param);            
+			response_value = DBQueryExcutor.selectMultiRow_web(conn, sql_str.toString(), param);
+			System.out.println("UserList : " + response_value.toString());
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}
@@ -109,7 +110,7 @@ public class UserDataDAO {
 			sql_str.append("		   CURRENT_DATE,		\n"); // 생성 일자
 			sql_str.append("		   :DESCRIPTION)		\n"); // 설명
 			
-			Hashtable param = new Hashtable();
+			Hashtable<String, String> param = new Hashtable<String, String>();
 			param.put("USER_ID", request_value.getString("USER_ID"));
 			param.put("USER_NAME", request_value.getString("USER_NAME"));
 			param.put("PASSWORD", request_value.getString("PASSWORD"));
