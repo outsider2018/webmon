@@ -8,6 +8,7 @@ import java.util.Hashtable;
 
 import javax.naming.NamingException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import mw.user.db.*;
@@ -72,22 +73,22 @@ public class UserDataDAO {
 		return response_value;
 	}
 
-	public static JSONObject UserList(Connection conn)throws SQLException, NamingException, JSONException {
+	public static JSONArray UserList(Connection conn)throws SQLException, NamingException, JSONException {
 		
-		JSONObject response_value = new JSONObject(); 
+		JSONArray response_value = new JSONArray(); 
 
 		try{			
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("SELECT USER_NUMBER,		\n");
+			sql_str.append("\n SELECT USER_NUMBER,		\n");
 			sql_str.append("		USER_ID,		\n");
 			sql_str.append("		GROUP_NAME,		\n");
 			sql_str.append("		DESCRIPTION		\n");
 			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
-			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(), param);
-			System.out.println("$$$$$$$$$$$$$$$$ UserList : " + response_value.toString());
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param);
+			System.out.println("UserList : " + response_value.toString());
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}

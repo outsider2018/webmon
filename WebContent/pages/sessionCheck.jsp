@@ -18,9 +18,6 @@
 		System.out.println("=== 세션 ID가 없습니다.");
 		//response.sendRedirect("../login.jsp");
 	}else{
-		System.out.println("user_id : " + session.getAttribute("user_id"));
-		System.out.println("user_name : " + session.getAttribute("user_name"));
-		System.out.println("group_name : " + session.getAttribute("group_name"));
 		System.out.println("session enable : " + session.getAttribute("user_id") + "\n");
 	}
 %>

@@ -387,6 +387,109 @@ public class DBQueryExcutor{
 		}
 		return response_value;
 	}
+
+	/**
+	 * 
+	 * @param conn
+	 * @param query_raw
+	 * @param request_params
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONArray selectMultiRowArray(Connection conn, String query_raw, Hashtable request_params)  throws Exception{
+		return selectMultiRowArray(conn, query_raw, request_params, true);
+	}	
+	
+	/**
+	 * 
+	 * @param conn
+	 * @param query_raw
+	 * @param request_params
+	 * @param logable
+	 * @return
+	 * @throws Exception
+	 */	
+	public static JSONArray selectMultiRowArray(Connection conn, String query_raw, Hashtable request_params, boolean logable)  throws Exception{
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		JSONArray response_value = new JSONArray();
+		IQuerySyntaxParser query_parser = new NamedQuerySyntaxParser();
+		
+		try{
+			String prepared_query = query_parser.parsePreparedStateQuery(query_raw, request_params);
+			pstmt = conn.prepareStatement(prepared_query);
+
+			if(logable){
+				logger.info("\t============= Execute Update Query Information =============");
+				logger.info("\t---------- <reqeust parameter list> -------------" );
+			}
+
+			ArrayList<String> params = query_parser.getPreparedStateParameters(query_raw, request_params);
+			for(int i=0 ; i < params.size() ; i++){
+				String key = params.get(i)+"";
+				String value = request_params.get(key)+"";
+				pstmt.setString(i+1, value);
+				if(logable){
+					logger.info( "\t"+key+"\t\t"+value );
+				}  
+			}
+			if(logable){
+				logger.info("\t---------- <Query String> -------------" );
+				logger.info("\t" + query_parser.getLoggableQueryString(query_raw, request_params) );
+				logger.info("");
+			}
+
+			rs = pstmt.executeQuery();
+
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int resultCount = 0;
+
+			JSONArray[] result_arr = new JSONArray[rsmd.getColumnCount()];
+
+			for(int i=0 ; i < rsmd.getColumnCount() ; i++){
+				result_arr[i] = new JSONArray();
+			}
+			
+			if(logable){
+				logger.info("\t------------------<result set>-------------------------");
+			}
+
+			
+			while(rs.next()){
+				resultCount ++;
+				String result_line = "";
+				result_line = resultCount + ". \t";
+				for(int i=1 ; i <= rsmd.getColumnCount() ; i++){
+					String value = rs.getString(i);
+					if(value == null ){
+						value = "";
+					}
+					result_arr[i-1].put( value);
+					result_line += "\t" + rs.getString(i);
+				}
+				if(logable){
+					logger.info("\t"+result_line);
+				}
+			}
+
+			//response_value.put("RESULT_COUNT", String.valueOf( resultCount ));
+			
+			for(int i=1 ; i <= rsmd.getColumnCount() ; i++){
+				response_value.put(result_arr[i-1]);
+			}
+			if(logable){
+				logger.info( "\t Execute Query Result Count : " + String.valueOf( resultCount ));
+				logger.info("\n");
+			}
+
+		}catch (Exception e) {
+			throw e;
+		}finally{
+			DBConnector.releaseConnection(pstmt, rs);
+		}
+		return response_value;
+	}	
 	
 	/**
 	 * 

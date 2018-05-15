@@ -144,10 +144,16 @@
 		    	
 				alert("리턴 데이터 : " + userData);
 				
+				// Array 형태 샘플 데이터
+				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
+
+				// Object 형태 샘플 데이터
+				var sample2 = [{"userid":"82022599","user_name":"이환호", "user_group":"root","password":"New1234!", "description":"관리자"}, {"userid":"82022600","user_name":"안휘진", "user_group":"mw","password":"New1234!", "description":"MW담당자"}];
+				
 			    $(document).ready(function() {
 			        $('#user-list').DataTable({
 			            responsive: true,
-			            data: userData
+			            data: sample1
 			        });
 			    }); //Datatable end
 		    }, // ajax success end
