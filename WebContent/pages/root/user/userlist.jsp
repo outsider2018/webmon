@@ -92,11 +92,11 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="user-list">
                                 <thead>
                                     <tr>
-                                        <th>USER ID</th>
-                                        <th>USER NAME</th>
-                                        <th>GROUP NAME</th>
-                                        <th>PASSWORD</th>
-                                        <th>Description</th>
+                                        <th>USER_NUMBER</th>
+                                        <th>USER_ID</th>
+                                        <th>USER_NAME</th>
+                                        <th>GROUP_NAME</th>
+                                        <th>DESCRIPTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,21 +139,35 @@
 			url: "/webmon/AjaxMessageRequest.do?action=UserList",
 		    type: 'POST', dataType: 'json',
 		    success: function(obj){		    	
-		    	// UserList 요청 성공		    	
-		    	var userData = obj.USER_NUMBER;
+		    	// UserList 요청 성공		    			    	
+		    	var userData = obj; 
+		    	// JSON 객체 -> String 변환 처리
+		    	//var userData = JSON.stringify(obj);
 		    	
-				alert("리턴 데이터 : " + userData);
+				console.log("리턴 데이터 : " + userData + " \n");
 				
 				// Array 형태 샘플 데이터
 				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
 
 				// Object 형태 샘플 데이터
-				var sample2 = [{"userid":"82022599","user_name":"이환호", "user_group":"root","password":"New1234!", "description":"관리자"}, {"userid":"82022600","user_name":"안휘진", "user_group":"mw","password":"New1234!", "description":"MW담당자"}];
+				var sample2 = [{"USER_ID":["82022599"],"USER_NAME":["이환호"], "GROUP_NAME":["root"], "DESCRIPTION":["관리자"],"password":["New1234!"]}, {"USER_ID":"82022600","USER_NAME":"안휘진", "GROUP_NAME":"mw", "DESCRIPTION":"MW담당자"}];
+			
 				
 			    $(document).ready(function() {
 			        $('#user-list').DataTable({
 			            responsive: true,
-			            data: sample1
+			            pageLength:2,
+			            searching: true,
+			            ordering:  true,
+			            select: true,
+			            data: userData,
+			            columns: [
+			                { data: 'USER_NUMBER' },
+			                { data: 'USER_ID' },
+			                { data: 'USER_NAME' },
+			                { data: 'GROUP_NAME' },
+			                { data: 'DESCRIPTION' }
+			            ]
 			        });
 			    }); //Datatable end
 		    }, // ajax success end
