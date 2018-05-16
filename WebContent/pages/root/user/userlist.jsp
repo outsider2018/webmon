@@ -97,6 +97,7 @@
                                         <th>USER_NAME</th>
                                         <th>GROUP_NAME</th>
                                         <th>DESCRIPTION</th>
+                                        <th>OPERATION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
