@@ -47,7 +47,7 @@
 				<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
 						URL Check<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="./PRD_URLCheck.jsp">Production Zone</a></li>
+						<li><a href="./PRD_URLCheck_db.jsp">Production Zone</a></li>
 						<!-- 
 						<li><a href="./PRD_URLCheck.jsp" onclick="javascript:getURLList('PRD');">Production Zone</a></li>
 						 -->
@@ -65,7 +65,7 @@
 					
 				<!-- WAS Admin 링크 페이지 (group_name이 root, admin, monitor에 따라 메뉴 활성화 여부가 달라짐) -->
 <%
-				if( session.getAttribute("group_name").equals("root") || session.getAttribute("group_name").equals("mw")){
+				if( session.getAttribute("group_name").equals("admin")){
 %>
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> WAS
 						Admin page link<span class="fa arrow"></span></a>
