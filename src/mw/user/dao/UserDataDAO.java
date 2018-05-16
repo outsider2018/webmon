@@ -80,7 +80,7 @@ public class UserDataDAO {
 		try{			
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("\n SELECT USER_NUMBER,		\n");
+			sql_str.append("SELECT USER_NUMBER,		\n");
 			sql_str.append("		USER_ID,		\n");
 			sql_str.append("		GROUP_NAME,		\n");
 			sql_str.append("		DESCRIPTION		\n");
