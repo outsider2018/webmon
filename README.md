@@ -5,9 +5,3 @@
 
 2. log4j properties 위치 설정 옵션입니다.
 -Dlog4j.configuration="file:/D:\workspace-oxygen\webmon\WebContent\WEB-INF\properties\log4j.properties"
-
-dddd
-<<<<<<< HEAD
-dddd
-=======
->>>>>>> branch 'master' of https://github.com/outsider2018/webmon.git
