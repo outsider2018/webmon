@@ -1,8 +1,7 @@
 # webmon
 
-1. WAS 湲곕룞 �뒪�겕由쏀듃�뿉 �븘�옒 �샃�뀡�쓣 瑗� 異붽��빐 二쇱꽭�슂. Derby DB�쓽 home �쐞移� 吏��젙 �샃�뀡�엯�땲�떎.
+1. WAS 기동 스크립트에 아래 옵션을 꼭 추가해 주세요. Derby DB의 home 위치 지정 옵션입니다.
 -Dderby.system.home="D:\workspace-oxygen\webmon\WebContent\derby\datafile"
 
-2. log4j properties �쐞移� �꽕�젙 �샃�뀡�엯�땲�떎.
+2. log4j properties 위치 설정 옵션입니다.
 -Dlog4j.configuration="file:/D:\workspace-oxygen\webmon\WebContent\WEB-INF\properties\log4j.properties"
-dd
