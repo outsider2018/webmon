@@ -27,7 +27,7 @@ public class ResourceInit implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		
 		// Apache Derby Network DB start
-		try {
+/*		try {
 			NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),1527);
 			server.start(null);
 			System.out.println("Apache Derby DB start");
@@ -37,7 +37,7 @@ public class ResourceInit implements ServletContextListener {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 
 		// TODO Auto-generated method stub	
 				
