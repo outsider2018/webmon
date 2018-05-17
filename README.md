@@ -11,17 +11,18 @@
 	  Unix, Linux)
 		export DERBY_HOME=/app/mw/webmon/derby
 	
-	2.2 DERBY_HOME/bin 폴더의 기동 스크립트에 다음 설정 추가
+	2.2 DERBY_HOME/bin 폴더의 startNetworkServer.bat(기동 스크립트)에 다음 설정 추가
 	  Windows)
 		"%CLASSPATH%;%LOCALCLASSPATH%" -Dderby.system.home=D:\workspace-oxygen\webmon\WebContent\derby
 
 	  Unix, Linux)
 		"%CLASSPATH%;%LOCALCLASSPATH%" -Dderby.system.home=/app/mw/webmon/derby
 
-3. derby ij 툴 이용 시 접속 URL
+3. derby ij 툴 이용하여 DB 정상  접속 여부 확인
    cd %DERBY_HOME%\bin
    >ij   
-   ij>connect 'jdbc:derby://localhost:1527/MonDB;create=false';	
+   ij> connect 'jdbc:derby://localhost:1527/MonDB;create=false';
+   ----------- 정상적으로 데이터 출력 시 DB 기동 정상 -----------------	
 
 4. log4j properties 위치 설정 옵션입니다.
 -Dlog4j.configuration="file:/D:\workspace-oxygen\webmon\WebContent\WEB-INF\properties\log4j.properties"
