@@ -27,7 +27,10 @@ public class ResourceInit implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		
 		// Apache Derby Network DB start
-/*		try {
+/*
+ *  2018. 05. 15 WAS Embedded Derby DB disable
+ * 
+		try {
 			NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),1527);
 			server.start(null);
 			System.out.println("Apache Derby DB start");
