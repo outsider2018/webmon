@@ -41,6 +41,9 @@
 <!-- Custom Fonts -->
 <link href="/webmon/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+<!-- Datatables CSS -->
+<link href="/webmon/vendor/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -89,7 +92,7 @@
                         <!--  <div class="panel-heading">사용자 관리</div>  -->	
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="user-list">
+                            <table width="100%" class="table table-striped table-bordered table-hover display" id="user-list">
                                 <thead>
                                     <tr>
                                         <th>USER_NUMBER</th>
@@ -97,7 +100,6 @@
                                         <th>USER_NAME</th>
                                         <th>GROUP_NAME</th>
                                         <th>DESCRIPTION</th>
-                                        <th>OPERATION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -128,11 +130,15 @@
 		<!-- Metis Menu Plugin JavaScript -->
 		<script src="/webmon/vendor/metisMenu/metisMenu.min.js"></script>
 
-	    <!-- DataTables JavaScript -->
+	    <!-- DataTables JavaScript (SB Admin 2 Default)-->
+	    <!-- 
 	    <script src="/webmon/vendor/datatables/js/jquery.dataTables.min.js"></script>
 	    <script src="/webmon/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	    <script src="/webmon/vendor/datatables-responsive/dataTables.responsive.js"></script>
-	    
+	     -->
+	     <!-- DataTables JavaScript (Add Buttons-1.5.1, Scroller-1.4.4, Select-1.2.5)-->
+	    <script type="text/javascript" src="/webmon/vendor/datatables/datatables.min.js"></script>
+	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
 	    
@@ -144,8 +150,6 @@
 		    	var userData = obj; 
 		    	// JSON 객체 -> String 변환 처리
 		    	//var userData = JSON.stringify(obj);
-		    	
-				console.log("리턴 데이터 : " + userData + " \n");
 				
 				// Array 형태 샘플 데이터
 				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
@@ -157,10 +161,19 @@
 			    $(document).ready(function() {
 			        $('#user-list').DataTable({
 			            responsive: true,
-			            pageLength:2,
+			            serverSide: false,
+			            pageLength: 10,
 			            searching: true,
-			            ordering:  true,
+			            ordering: false,
 			            select: true,
+			            buttons: [
+			            	{
+			                	text: '생성',
+			                	action: function(){
+			                		alert("생성 버튼 테스트");
+			                	}
+			            	}
+			            ],
 			            data: userData,
 			            columns: [
 			                { data: 'USER_NUMBER' },
@@ -169,21 +182,16 @@
 			                { data: 'GROUP_NAME' },
 			                { data: 'DESCRIPTION' }
 			            ]
+
 			        });
 			    }); //Datatable end
 		    }, // ajax success end
+		    
 		    error:function(){
-		    	document.write("사용자 정보 로딩에 실패하였습니다.");
+		    	document.write("<H3>사용자 정보 로딩에 실패하였습니다.</H3>");
 		    }
 		});	// ajax end	    
 	    
-/* 	    var data1 = ["82022599","이환호","root","New1234!","관리자"];
-	    $(document).ready(function() {
-	        $('#user-list').DataTable({
-	            responsive: true,
-	            data: userData
-	        });
-	    }); */
 	    </script>
 
 		<!-- Custom Theme JavaScript -->
