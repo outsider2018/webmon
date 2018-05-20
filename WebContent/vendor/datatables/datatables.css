@@ -4,10 +4,10 @@
  *
  * To rebuild or modify this file with the latest versions of the included
  * software please visit:
- *   https://datatables.net/download/#bs/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/b-print-1.5.1/sc-1.4.4/sl-1.2.5
+ *   https://datatables.net/download/#bs/jszip-2.5.0/pdfmake-0.1.32/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/sc-1.4.4/sl-1.2.5
  *
  * Included libraries:
- *   DataTables 1.10.16, Buttons 1.5.1, Column visibility 1.5.1, HTML5 export 1.5.1, Print view 1.5.1, Scroller 1.4.4, Select 1.2.5
+ *   JSZip 2.5.0, pdfmake 0.1.32, DataTables 1.10.16, Buttons 1.5.1, HTML5 export 1.5.1, Print view 1.5.1, Scroller 1.4.4, Select 1.2.5
  */
 
 table.dataTable {
