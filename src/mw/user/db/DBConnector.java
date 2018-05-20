@@ -10,14 +10,16 @@ public class DBConnector {
 	
 	static String dbName="MonDB";
 	
-	static String connectionURL = "jdbc:derby:../../derby/datafile/" + dbName;
+//	static String connectionURL = "jdbc:derby:../../derby/datafile/" + dbName;
 //	static String connectionURL = "jdbc:derby:D:/workspace-oxygen/webmon/WebContent/derby/datafile/" + dbName;
-//	static String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=false";
+	static String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=true";
 	
 	public static Connection getConnection(){
 		
 		Connection conn = null;
 		
+/*
+ * 	   2018.05.16 WAS embedded derby DB 접속 시
 	    try {
 	        conn = DriverManager.getConnection(connectionURL);
 	        System.out.println("Connected to database : " + dbName);
@@ -25,6 +27,25 @@ public class DBConnector {
 	    	System.out.println("DB connection fail!!");
 	    	System.out.println(e.getMessage());	    	
 	    }
+*/
+		
+/*
+ * 		2018.05.16 Derby DB Server 접속 시 		
+ */
+		org.apache.derby.jdbc.ClientDataSource ds = new org.apache.derby.jdbc.ClientDataSource();
+		try {						
+			ds.setDatabaseName("MonDB");
+			ds.setCreateDatabase("false");
+			// The host on which Network Server is running
+			ds.setServerName("localhost");
+			// The port on which Network Server is listening
+			ds.setPortNumber(1527);
+			conn = ds.getConnection();
+		}catch (Exception e) {
+	    	System.out.println("DB connection fail!!");
+	    	System.out.println(e.getMessage());	   			
+		}
+		
 	    return conn;
 	}
 	

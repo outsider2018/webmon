@@ -414,6 +414,7 @@ public class DBQueryExcutor{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		JSONArray response_value = new JSONArray();
+		
 		IQuerySyntaxParser query_parser = new NamedQuerySyntaxParser();
 		
 		try{
@@ -445,11 +446,7 @@ public class DBQueryExcutor{
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int resultCount = 0;
 
-			JSONArray[] result_arr = new JSONArray[rsmd.getColumnCount()];
 
-			for(int i=0 ; i < rsmd.getColumnCount() ; i++){
-				result_arr[i] = new JSONArray();
-			}
 			
 			if(logable){
 				logger.info("\t------------------<result set>-------------------------");
@@ -457,27 +454,31 @@ public class DBQueryExcutor{
 
 			
 			while(rs.next()){
-				resultCount ++;
+//				resultCount ++;
 				String result_line = "";
 				result_line = resultCount + ". \t";
+				JSONObject result_obj = new JSONObject();
 				for(int i=1 ; i <= rsmd.getColumnCount() ; i++){
+					String columName = rsmd.getColumnLabel(i);
 					String value = rs.getString(i);
 					if(value == null ){
 						value = "";
 					}
-					result_arr[i-1].put( value);
-					result_line += "\t" + rs.getString(i);
+					result_obj.append(columName, value);
+					result_line += "\t" + rs.getObject(i);
+					System.out.println("뭐지 : " + result_obj.toString());
 				}
 				if(logable){
 					logger.info("\t"+result_line);
 				}
+//				response_value.put(result_obj);
+				response_value.put(resultCount,result_obj);
+				resultCount ++;
+				
 			}
 
 			//response_value.put("RESULT_COUNT", String.valueOf( resultCount ));
-			
-			for(int i=1 ; i <= rsmd.getColumnCount() ; i++){
-				response_value.put(result_arr[i-1]);
-			}
+
 			if(logable){
 				logger.info( "\t Execute Query Result Count : " + String.valueOf( resultCount ));
 				logger.info("\n");

@@ -1,20 +1,10 @@
 package mw.resource;
-import javax.servlet.ServletContext;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
-import org.apache.derby.drda.*;
+//import org.apache.derby.drda.*;
 
 public class ResourceInit implements ServletContextListener {
 	public static ArrayList<String> urlListTRN = new ArrayList<String>();
@@ -40,7 +30,8 @@ public class ResourceInit implements ServletContextListener {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}*/
+		}
+*/
 
 		// TODO Auto-generated method stub	
 				
