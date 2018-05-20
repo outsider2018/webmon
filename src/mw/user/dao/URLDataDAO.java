@@ -49,41 +49,6 @@ public class URLDataDAO {
 		return response_value;
 	}
 	
-	public static JSONObject getURLList2(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
-		JSONObject response_value = new JSONObject();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try{
-
-			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("SELECT 	ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL 	\n");
-			sql_str.append("	FROM URL_LIST											\n");								
-			sql_str.append(" WHERE ENV_NAME=:env_name									\n");				
-			
-			Hashtable param = new Hashtable();
-			param.put("env_name", env_name);
-			
-			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);			
-			response_value = DBQueryExcutor.selectMultiRow_web(conn, sql_str.toString(),param, false);			
-			System.out.println("getURLList : " + response_value);
-			
-		}catch (SQLException e1) {
-			e1.printStackTrace();
-		}catch(Exception e2){			
-			e2.printStackTrace();		
-		}finally{
-			if(rs != null){
-				rs.close();
-			}
-			if(pstmt != null){
-				pstmt.close();
-			}
-
-		}
-		return response_value;
-	}
-	
 	
 	public static JSONObject getURLList(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
 
