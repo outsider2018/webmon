@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="java.io.*"%>
-<%@ page import="java.util.*"%>
-<%@ page import="java.net.*"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="mw.resource.ResourceInit"%>
-<%@ page import="mw.user.dao.UserDataDAO"%>
-<%@ page import="mw.user.db.DBConnector"%>
-<%@ page import="mw.util.ConvertJson"%>
+
 <%@ page import="org.json.JSONArray"%>
 <%@ page import="org.json.JSONException"%>
 <%@ page import="org.json.JSONObject"%>
@@ -44,6 +37,8 @@
 <!-- Datatables CSS -->
 <link href="/webmon/vendor/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -72,48 +67,31 @@
 %>
 
 	<div id="wrapper">
-
-		<jsp:include page='./userNavigation.jsp' flush='false' />
-		<!-- Page Content -->
 		<div id="page-wrapper">		
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">User management</h1>
-					</div>
-					<!-- /.col-lg-12 -->
-				</div>
-				<!-- /.row -->
-			</div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <!--  <div class="panel-heading">사용자 관리</div>  -->	
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover display" id="user-list">
-                                <thead>
-                                    <tr>
-                                        <th>USER_NUMBER</th>
-                                        <th>USER_ID</th>
-                                        <th>USER_NAME</th>
-                                        <th>GROUP_NAME</th>
-                                        <th>DESCRIPTION</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+<table id="user-list" class="table table-striped table-bordered table-hover display" style="width:100%">
+        <thead>
+            <tr>
+                <th>USER_NUMBER</th>
+                <th>USER_ID</th>
+                <th>USER_NAME</th>
+                <th>GROUP_NAME</th>
+                <th>DESCRIPTION</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>USER_NUMBER</th>
+                <th>USER_ID</th>
+                <th>USER_NAME</th>
+                <th>GROUP_NAME</th>
+                <th>DESCRIPTION</th>
+            </tr>
+        </tfoot>
+    </table>
 
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
@@ -137,7 +115,8 @@
 	    <script src="/webmon/vendor/datatables-responsive/dataTables.responsive.js"></script>
 	     -->
 	     <!-- DataTables JavaScript (Add Buttons-1.5.1, Scroller-1.4.4, Select-1.2.5)-->
-	    <script type="text/javascript" src="/webmon/vendor/datatables/datatables.min.js"></script>
+	    <script src="/webmon/vendor/datatables/datatables.min.js" type="text/javascript"></script>
+	    <script src="/webmon/vendor/datatables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
@@ -162,7 +141,7 @@
 			        $('#user-list').DataTable({
 			            responsive: true,
 			            serverSide: false,
-			            pageLength: 10,
+			            //pageLength: 10,
 			            searching: true,
 			            ordering: false,
 			            select: true,
@@ -174,6 +153,7 @@
 			                	}
 			            	}
 			            ],
+			            dom: 'Bfrtip',
 			            data: userData,
 			            columns: [
 			                { data: 'USER_NUMBER' },
