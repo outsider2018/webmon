@@ -1,6 +1,5 @@
 package mw.user.dao;
 
-// 주석 테스트
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
