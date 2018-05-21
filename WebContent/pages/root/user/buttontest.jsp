@@ -82,15 +82,6 @@
         <tbody>
 
         </tbody>
-        <tfoot>
-            <tr>
-                <th>USER_NUMBER</th>
-                <th>USER_ID</th>
-                <th>USER_NAME</th>
-                <th>GROUP_NAME</th>
-                <th>DESCRIPTION</th>
-            </tr>
-        </tfoot>
     </table>
 
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
@@ -114,6 +105,7 @@
 	    <script src="/webmon/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	    <script src="/webmon/vendor/datatables-responsive/dataTables.responsive.js"></script>
 	     -->
+
 	     <!-- DataTables JavaScript (Add Buttons-1.5.1, Scroller-1.4.4, Select-1.2.5)-->
 	    <script src="/webmon/vendor/datatables/datatables.min.js" type="text/javascript"></script>
 	    <script src="/webmon/vendor/datatables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
@@ -145,14 +137,7 @@
 			            searching: true,
 			            ordering: false,
 			            select: true,
-			            buttons: [
-			            	{
-			                	text: '생성',
-			                	action: function(){
-			                		alert("생성 버튼 테스트");
-			                	}
-			            	}
-			            ],
+			            lengthChange: false,
 			            dom: 'Bfrtip',
 			            data: userData,
 			            columns: [
@@ -161,10 +146,13 @@
 			                { data: 'USER_NAME' },
 			                { data: 'GROUP_NAME' },
 			                { data: 'DESCRIPTION' }
+			            ],
+			            buttons:[
+			            	'copy','csv','pdf','print'
 			            ]
+			        }); //DataTable end
 
-			        });
-			    }); //Datatable end
+			    }); // ready end
 		    }, // ajax success end
 		    
 		    error:function(){

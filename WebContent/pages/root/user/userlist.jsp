@@ -55,22 +55,6 @@
 
 <body>
 
-<%
-		
-		//Connection conn = DBConnector.getConnection();
-		//Object ret = null;
-		
-		//ret = UserDataDAO.UserList(conn);
-		//JSONArray joa = new JSONArray(ret);
-		//System.out.println("Size : " + joa.length());
-		
-		//for(i=1,ret.toString().length())
-		//ConvertJson conJson = new ConvertJson();
-		//jsonArr = conJson.daoObjectToJSONArray(ret);
-		//System.out.println(jsonArr);
-		
-%>
-
 	<div id="wrapper">
 
 		<jsp:include page='./userNavigation.jsp' flush='false' />
@@ -153,25 +137,35 @@
 				
 				// Array 형태 샘플 데이터
 				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
-
-				// Object 형태 샘플 데이터
-				var sample2 = [{"USER_ID":["82022599"],"USER_NAME":["이환호"], "GROUP_NAME":["root"], "DESCRIPTION":["관리자"],"password":["New1234!"]}, {"USER_ID":"82022600","USER_NAME":"안휘진", "GROUP_NAME":"mw", "DESCRIPTION":"MW담당자"}];
-			
 				
 			    $(document).ready(function() {
 			        $('#user-list').DataTable({
 			            responsive: true,
 			            serverSide: false,
 			            pageLength: 10,
-			            searching: true,
 			            ordering: false,
 			            select: true,
+			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
 			            buttons: [
 			            	{
-			                	text: '생성',
-			                	action: function(){
-			                		alert("생성 버튼 테스트");
-			                	}
+			                	text: '신규',
+			                	action: function(e, dt, node, config){
+			                		alert("신규 생성");
+			                	},
+			            	},
+			            	{
+			                	text: '수정',
+			                	action: function(e, dt, node, config){
+			                		alert("수정 : "+JSON.stringify(dt.row({selected:true}).data()));
+			                	},
+			                	enabled: false
+			            	},
+			            	{
+			                	text: '삭제',
+			                	action: function(e, dt, node, config){
+			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
+			                	},
+			                	enabled: false
 			            	}
 			            ],
 			            data: userData,
@@ -185,6 +179,13 @@
 
 			        });
 			    }); //Datatable end
+			    
+			    $('#user-list').on( 'select deselect', function () {
+			        var selectedRows = table.rows( { selected: true } ).count();			
+			        table.button( 1 ).enable( selectedRows === 1 );
+			        table.button( 2 ).enable( selectedRows > 0 );
+			    } );
+			    
 		    }, // ajax success end
 		    
 		    error:function(){

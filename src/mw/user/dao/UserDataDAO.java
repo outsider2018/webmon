@@ -104,7 +104,7 @@ public class UserDataDAO {
 		try{					
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("INSERT INTO user_info			\n");
+			sql_str.append("INSERT INTO USER_INFO			\n");
 			sql_str.append("	VALUES(:USER_ID,			\n"); // 유저 ID
 			sql_str.append("		   :USER_NAME,			\n"); // 유저 이름
 			sql_str.append("		   :PASSWORD,		\n"); // 유저 패스워드
