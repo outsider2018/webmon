@@ -41,9 +41,6 @@
 <!-- Custom Fonts -->
 <link href="/webmon/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<!-- Datatables CSS -->
-<link href="/webmon/vendor/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -54,7 +51,6 @@
 </head>
 
 <body>
-
 	<div id="wrapper">
 
 		<jsp:include page='./userNavigation.jsp' flush='false' />
@@ -73,22 +69,57 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <!--  <div class="panel-heading">사용자 관리</div>  -->	
+                        <div class="panel-heading">
+                            사용자 입력
+                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover display" id="user-list">
-                                <thead>
-                                    <tr>
-                                        <th>USER_NUMBER</th>
-                                        <th>USER_ID</th>
-                                        <th>USER_NAME</th>
-                                        <th>GROUP_NAME</th>
-                                        <th>DESCRIPTION</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="user_info">
+                                    <thead>
+                                        <tr>
+                                            <th>항목</th>
+                                            <th>입력</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td><input class="form-control" placeholder="Enter ID"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PASSWORD</td>
+                                            <td><input class="form-control" placeholder="Enter PASSWORD"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NAME</td>
+                                            <td><input class="form-control" placeholder="Enter PASSWORD"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GROUP</td>
+                                            <td>
+                                            	<select class="form-control">
+	                                                <option>root</option>
+	                                                <option>admin</option>
+	                                                <option>monitor</option>
+	                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>설명</td>
+                                            <td><textarea class="form-control" rows="3"></textarea></td>
+                                        </tr>                                                                   
+                                    </tbody>
+                                    <tfoot>
+                                    	<tr>
+                                    		<td colspan="2">
+                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="입력"></input>
+                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="취소"></input>
+                                    		</td>                                    		
+                                    	</tr>
+                                    </tfoot>                                    
+                                </table>
+                            </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -113,15 +144,6 @@
 
 		<!-- Metis Menu Plugin JavaScript -->
 		<script src="/webmon/vendor/metisMenu/metisMenu.min.js"></script>
-
-	    <!-- DataTables JavaScript (SB Admin 2 Default)-->
-	    <!-- 
-	    <script src="/webmon/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	    <script src="/webmon/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	    <script src="/webmon/vendor/datatables-responsive/dataTables.responsive.js"></script>
-	     -->
-	     <!-- DataTables JavaScript (Add Buttons-1.5.1, Scroller-1.4.4, Select-1.2.5)-->
-	    <script type="text/javascript" src="/webmon/vendor/datatables/datatables.min.js"></script>
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
@@ -136,57 +158,7 @@
 		    	//var userData = JSON.stringify(obj);
 				
 				// Array 형태 샘플 데이터
-				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
-				
-			    $(document).ready(function() {
-			        $('#user-list').DataTable({
-			            responsive: true,
-			            serverSide: false,
-			            pageLength: 10,
-			            ordering: false,
-			            select: true,
-			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
-			            buttons: [
-			            	{
-			                	text: '신규',
-			                	action: function(e, dt, node, config){
-			                		alert("신규 생성");
-			                	},
-			            	},
-			            	{
-			                	text: '수정',
-			                	action: function(e, dt, node, config){
-			                		alert("수정 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                	},
-			                	enabled: false
-			            	},
-			            	{
-			                	text: '삭제',
-			                	action: function(e, dt, node, config){
-			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                	},
-			                	enabled: false
-			            	}
-			            ],
-			            data: userData,
-			            columns: [
-			                { data: 'USER_NUMBER' },
-			                { data: 'USER_ID' },
-			                { data: 'USER_NAME' },
-			                { data: 'GROUP_NAME' },
-			                { data: 'DESCRIPTION' }
-			            ]
-
-			        });
-			    }); //Datatable end
-			    
-			    $('#user-list').on( 'select deselect', function () {
-			        var selectedRows = table.rows( { selected: true } ).count();			
-			        table.button( 1 ).enable( selectedRows === 1 );
-			        table.button( 2 ).enable( selectedRows > 0 );
-			    } );
-			    
-		    }, // ajax success end
+				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];				
 		    
 		    error:function(){
 		    	document.write("<H3>사용자 정보 로딩에 실패하였습니다.</H3>");
