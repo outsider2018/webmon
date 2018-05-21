@@ -163,15 +163,29 @@
 			            responsive: true,
 			            serverSide: false,
 			            pageLength: 10,
-			            searching: true,
 			            ordering: false,
 			            select: true,
+			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
 			            buttons: [
 			            	{
-			                	text: '생성',
-			                	action: function(){
-			                		alert("생성 버튼 테스트");
-			                	}
+			                	text: '신규',
+			                	action: function(e, dt, node, config){
+			                		alert("신규 생성");
+			                	},
+			            	},
+			            	{
+			                	text: '수정',
+			                	action: function(e, dt, node, config){
+			                		alert("수정 : "+JSON.stringfify(dt.row({selected:true}).data()));
+			                	},
+			                	enabled: false
+			            	},
+			            	{
+			                	text: '삭제',
+			                	action: function(e, dt, node, config){
+			                		alert("삭제 : "+JSON.stringfify(dt.row({selected:true}).data()));
+			                	},
+			                	enabled: false
 			            	}
 			            ],
 			            data: userData,
@@ -185,6 +199,13 @@
 
 			        });
 			    }); //Datatable end
+			    
+			    $('#user-list').table.on( 'select deselect', function () {
+			        var selectedRows = table.rows( { selected: true } ).count();			
+			        table.button( 1 ).enable( selectedRows === 1 );
+			        table.button( 2 ).enable( selectedRows > 0 );
+			    } );
+			    
 		    }, // ajax success end
 		    
 		    error:function(){
