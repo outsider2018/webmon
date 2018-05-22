@@ -8,6 +8,7 @@ import java.util.Hashtable;
 
 import javax.naming.NamingException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import mw.user.db.*;
@@ -49,6 +50,40 @@ public class URLDataDAO {
 		return response_value;
 	}
 	
+	public static JSONArray getURLListArray(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
+		JSONArray response_value = new JSONArray();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("SELECT 	ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, MW_TYPE, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL 	\n");
+			sql_str.append("	FROM URL_LIST											\n");								
+			sql_str.append(" WHERE ENV_NAME=:env_name									\n");				
+			
+			Hashtable param = new Hashtable();
+			param.put("env_name", env_name);
+			
+			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
+			System.out.println("getURLList : " + response_value);
+			
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}catch(Exception e2){			
+			e2.printStackTrace();		
+		}finally{
+			if(rs != null){
+				rs.close();
+			}
+			if(pstmt != null){
+				pstmt.close();
+			}
+
+		}
+		return response_value;
+	}
 	
 	public static JSONObject getURLList(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
 

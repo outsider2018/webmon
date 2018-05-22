@@ -47,7 +47,7 @@
 				<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
 						URL Check<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="./PRD_URLCheck_db.jsp">Production Zone</a></li>
+						<li><a href="./PRD_URLCheck.jsp">Production Zone</a></li>
 						<!-- 
 						<li><a href="./PRD_URLCheck.jsp" onclick="javascript:getURLList('PRD');">Production Zone</a></li>
 						 -->

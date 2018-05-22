@@ -55,24 +55,21 @@
 <%
 		
 		Connection conn = DBConnector.getConnection();
-		Object ret = null;
+		JSONArray ret = new JSONArray();
 		
-		
-		//ret = URLDataDAO.getURLList(conn, "PRD");
-		ret = URLDataDAO.getURLList(conn, "PRD");
+		ret = URLDataDAO.getURLListArray(conn, "PRD");
 		System.out.println(ret.toString());
-		//JSONArray joa = new JSONArray(ret);
-		
+		for(int lll=0; lll<10; lll++){
+		 JSONObject jjj=ret.getJSONObject(lll);
+		 System.out.println(jjj);
+		}
 		
 		ArrayList <String> test = null;
 		
 		
-		//System.out.println("Size : " + joa.length());
+		//System.out.println("Size : " + ret.length());
 		
-		//for(i=1,ret.toString().length())
-		//ConvertJson conJson = new ConvertJson();
-		//jsonArr = conJson.daoObjectToJSONArray(ret);
-		//System.out.println(jsonArr);
+
 		
         String imageFileName="";
 		int count = 1;
@@ -80,6 +77,11 @@
 		CheckURL chk = new CheckURL();
 		
 		resultList = chk.checkUrl(ResourceInit.urlListPRD_PA3_ALL);
+		System.out.println("resource========================");
+		System.out.println(resultList.toString());
+		resultList = chk.checkUrl(ret);
+		System.out.println("db========================");
+		System.out.println(resultList.toString());
 		//resultList = chk.checkUrl(jsonArr);
 		
 		HashMap<String,String> resultMap = new HashMap<String,String>();
@@ -134,7 +136,7 @@
 										<%
 										while(it_DOM01_Apache.hasNext()){
 										        resultMap = (HashMap)it_DOM01_Apache.next();
-										        if(resultMap.get("Group").equals("DOM01") && resultMap.get("Type").equals("APACHE")){
+										        if(resultMap.get("Group").equals("DOM01") && resultMap.get("Soluction").equals("APACHE")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -189,7 +191,7 @@
 										<%;
 										while(it_DOM02_Apache.hasNext()){
 										        resultMap = (HashMap)it_DOM02_Apache.next();
-										        if(resultMap.get("Group").equals("DOM02") && resultMap.get("Type").equals("APACHE")){
+										        if(resultMap.get("Group").equals("DOM02") && resultMap.get("Soluction").equals("APACHE")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -243,7 +245,7 @@
 										<%;
 										while(it_DOM03_Apache.hasNext()){
 										        resultMap = (HashMap)it_DOM03_Apache.next();
-										        if(resultMap.get("Group").equals("DOM03") && resultMap.get("Type").equals("APACHE")){
+										        if(resultMap.get("Group").equals("DOM03") && resultMap.get("Soluction").equals("APACHE")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -298,7 +300,7 @@
 										<%;
 										while(it_DOM04_Apache.hasNext()){
 										        resultMap = (HashMap)it_DOM04_Apache.next();
-										        if(resultMap.get("Group").equals("DOM04") && resultMap.get("Type").equals("APACHE")){
+										        if(resultMap.get("Group").equals("DOM04") && resultMap.get("Soluction").equals("APACHE")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -361,7 +363,7 @@
 										<%
 										while(it_DOM01_WAS.hasNext()){
 										        resultMap = (HashMap)it_DOM01_WAS.next();
-										        if(resultMap.get("Group").equals("DOM01") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM01") && resultMap.get("Type").equals("WEBTOB")){
+										        if(resultMap.get("Group").equals("DOM01") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM01") && resultMap.get("Soluction").equals("WEBTOB")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -415,7 +417,7 @@
 										<%
 										while(it_DOM02_WAS.hasNext()){
 										        resultMap = (HashMap)it_DOM02_WAS.next();
-										        if(resultMap.get("Group").equals("DOM02") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM02") && resultMap.get("Type").equals("WEBTOB")){
+										        if(resultMap.get("Group").equals("DOM02") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM02") && resultMap.get("Soluction").equals("WEBTOB")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -469,7 +471,7 @@
 										<%
 										while(it_DOM03_WAS.hasNext()){
 										        resultMap = (HashMap)it_DOM03_WAS.next();
-										        if(resultMap.get("Group").equals("DOM03") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM03") && resultMap.get("Type").equals("WEBTOB")){
+										        if(resultMap.get("Group").equals("DOM03") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM03") && resultMap.get("Soluction").equals("WEBTOB")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -523,7 +525,7 @@
 										<%
 										while(it_DOM04_WAS.hasNext()){
 										        resultMap = (HashMap)it_DOM04_WAS.next();
-										        if(resultMap.get("Group").equals("DOM04") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM04") && resultMap.get("Type").equals("WEBTOB")){
+										        if(resultMap.get("Group").equals("DOM04") && resultMap.get("Type").equals("WAS") || resultMap.get("Group").equals("DOM04") && resultMap.get("Soluction").equals("WEBTOB")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -583,7 +585,7 @@
 										<%
 										while(it_NEXA01.hasNext()){
 										        resultMap = (HashMap)it_NEXA01.next();
-										        if(resultMap.get("Group").equals("NEXA01")){
+										        if(resultMap.get("Business").equals("NEXA01")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -636,7 +638,7 @@
 										<%
 										while(it_NEXA02.hasNext()){
 										        resultMap = (HashMap)it_NEXA02.next();
-										        if(resultMap.get("Group").equals("NEXA02")){
+										        if(resultMap.get("Business").equals("NEXA02")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -692,7 +694,7 @@
 										<%
 										while(it_FMT.hasNext()){
 										        resultMap = (HashMap)it_FMT.next();
-										        if(resultMap.get("Group").equals("FMT")){
+										        if(resultMap.get("Business").equals("FMT")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -745,7 +747,7 @@
 										<%
 										while(it_FILE.hasNext()){
 										        resultMap = (HashMap)it_FILE.next();
-										        if(resultMap.get("Group").equals("FILE")){
+										        if(resultMap.get("Business").equals("FILE")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
@@ -801,7 +803,7 @@
 										<%
 										while(it_ODA.hasNext()){
 										        resultMap = (HashMap)it_ODA.next();
-										        if(resultMap.get("Group").equals("ODA")){
+										        if(resultMap.get("Business").equals("ESBODA")){
 											        if(resultMap.get("StatusCode").equals("200")){
 											        	imageFileName="../images/green.png";
 											        }else if(resultMap.get("StatusCode").equals("R")){
