@@ -96,7 +96,7 @@ public class UserDataDAO {
 		return response_value;
 	}
 	
-	public static JSONObject newJoin(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+	public static JSONObject insertuser(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
 
 		
 		JSONObject response_value = new JSONObject();

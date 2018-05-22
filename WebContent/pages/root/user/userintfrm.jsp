@@ -75,6 +75,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
+                               	<form name="insertform" role="form" id="insertform" method="post" action="#">
                                 <table class="table table-striped table-bordered table-hover" id="user_info">
                                     <thead>
                                         <tr>
@@ -85,15 +86,15 @@
                                     <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td><input class="form-control" placeholder="Enter ID"></td>
+                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID"></td>
                                         </tr>
                                         <tr>
                                             <td>PASSWORD</td>
-                                            <td><input class="form-control" placeholder="Enter PASSWORD"></td>
+                                            <td><input class="form-control"  name="password" id="password" type="password" placeholder="Enter PASSWORD"></td>
                                         </tr>
                                         <tr>
                                             <td>NAME</td>
-                                            <td><input class="form-control" placeholder="Enter PASSWORD"></td>
+                                            <td><input class="form-control" name="user_name" id="user_name" placeholder="Enter PASSWORD"></td>
                                         </tr>
                                         <tr>
                                             <td>GROUP</td>
@@ -107,18 +108,19 @@
                                         </tr>
                                         <tr>
                                             <td>설명</td>
-                                            <td><textarea class="form-control" rows="3"></textarea></td>
+                                            <td><textarea name="description" id="description" class="form-control" rows="3"></textarea></td>
                                         </tr>                                                                   
                                     </tbody>
                                     <tfoot>
                                     	<tr>
                                     		<td colspan="2">
-                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="입력"></input>
-                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="취소"></input>
+                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){insertuser();}" onclick="javascript:insertuser();" value="입력"></input>
+                                    			<input type='button' class="btn btn-primary btn-block" onclick="javascript:cancle();" value="취소"></input>
                                     		</td>                                    		
                                     	</tr>
                                     </tfoot>                                    
                                 </table>
+                                </form> <!-- Form end -->
                             </div>
                             <!-- /.table-responsive -->
                         </div>
@@ -148,22 +150,51 @@
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
 	    
-		$.ajax({
-			url: "/webmon/AjaxMessageRequest.do?action=UserList",
-		    type: 'POST', dataType: 'json',
-		    success: function(obj){		    	
-		    	// UserList 요청 성공		    			    	
-		    	var userData = obj; 
-		    	// JSON 객체 -> String 변환 처리
-		    	//var userData = JSON.stringify(obj);
-				
-				// Array 형태 샘플 데이터
-				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];				
-		    
-		    error:function(){
-		    	document.write("<H3>사용자 정보 로딩에 실패하였습니다.</H3>");
-		    }
-		});	// ajax end	    
+		function insertuser() {
+			if(document.getElementById("user_id").value==""){
+				alert("ID를 입력하세요");
+				document.getElementById("user_id").focus();
+				return false;
+			}else if(document.getElementById("password").value==""){
+				alert("Password를 입력하세요");
+				document.getElementById("password").focus();
+				return false;
+			}else if(document.getElementById("user_name").value==""){
+				alert("Name를 입력하세요");
+				document.getElementById("user_name").focus();
+				return false;
+			}else{
+				insertuser_proc();
+			}
+			
+
+		}
+		
+		function insertuser_proc() {
+			var data = $("form[name=insertform]").serialize();
+			$.ajax({
+				url: "/webmon/AjaxMessageRequest.do?action=insertuser",
+			    type: 'POST', dataType: 'json',  data: data,
+			    success: function(obj){
+			    	
+			    	// 로그인 성공 여부
+			    	var loginSuccess = obj.LOGIN_SUCCESS;
+			    						    		    	
+			    	document.LoginForm.user_name.value = obj.USER_NAME;
+			    	document.LoginForm.group_name.value = obj.GROUP_NAME;
+			    	
+			    	//alert("로그인 정상 여부 : "+ loginSuccess +" , " + document.getElementById("user_name").value + " , " + obj.GROUP_NAME);
+	 		    	if(loginSuccess == "Y"){		    	
+			    		console.log("login Success : " + loginSuccess);
+			    		document.LoginForm.submit();
+			    	}else{
+			    		alert("ID, Password가 틀렸습니다.");
+			    		document.getElementById("password").value='';
+			    		document.LoginForm.password.focus();
+			    	}
+			    }	    
+			});	// ajax end
+		}
 	    
 	    </script>
 
