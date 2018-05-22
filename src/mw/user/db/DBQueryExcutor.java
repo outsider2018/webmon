@@ -466,7 +466,7 @@ public class DBQueryExcutor{
 					}
 					result_obj.append(columName, value);
 					result_line += "\t" + rs.getObject(i);
-					System.out.println("뭐지 : " + result_obj.toString());
+//					System.out.println("뭐지 : " + result_obj.toString());
 				}
 				if(logable){
 					logger.info("\t"+result_line);
@@ -489,6 +489,7 @@ public class DBQueryExcutor{
 		}finally{
 			DBConnector.releaseConnection(pstmt, rs);
 		}
+//		System.out.println("\n JSON to String : " + temp.getString("USER_ID").replaceAll("^\\[+|\\]+$", ""));
 		return response_value;
 	}	
 	
