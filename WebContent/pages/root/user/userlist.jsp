@@ -150,7 +150,7 @@
 			            	{
 			                	text: '신규',
 			                	action: function(e, dt, node, config){
-			                		alert("신규 생성");
+			                		location.href='./userintfrm.jsp';
 			                	},
 			            	},
 			            	{
