@@ -75,7 +75,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                               	<form name="insertform" role="form" id="insertform" method="post" action="#">
+                               	<form name="insertform" role="form" id="insertform" method="post" action="./userlist.jsp">
                                 <table class="table table-striped table-bordered table-hover" id="user_info">
                                     <thead>
                                         <tr>
@@ -99,10 +99,10 @@
                                         <tr>
                                             <td>GROUP</td>
                                             <td>
-                                            	<select class="form-control">
-	                                                <option>root</option>
-	                                                <option>admin</option>
-	                                                <option>monitor</option>
+                                            	<select class="form-control" name="group_name" id="group_name">
+	                                                <option value="root">root</option>
+	                                                <option value="admin">admin</option>
+	                                                <option value="monitor">monitor</option>
 	                                            </select>
                                             </td>
                                         </tr>
@@ -175,24 +175,19 @@
 			$.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=insertuser",
 			    type: 'POST', dataType: 'json',  data: data,
-			    success: function(obj){
-			    	
-			    	// 로그인 성공 여부
-			    	var loginSuccess = obj.LOGIN_SUCCESS;
-			    						    		    	
-			    	document.LoginForm.user_name.value = obj.USER_NAME;
-			    	document.LoginForm.group_name.value = obj.GROUP_NAME;
-			    	
-			    	//alert("로그인 정상 여부 : "+ loginSuccess +" , " + document.getElementById("user_name").value + " , " + obj.GROUP_NAME);
-	 		    	if(loginSuccess == "Y"){		    	
-			    		console.log("login Success : " + loginSuccess);
-			    		document.LoginForm.submit();
+			    success: function(obj){			    	
+			    	// 신규 유저 생성 성공 여부
+			    	var InsertSTATUS = obj.resultSet;
+			    	console.log("InsertSTATUS : " + obj.STATUS);
+	 		    	if(InsertSTATUS == "S"){		    	
+			    		document.insertform.submit();
 			    	}else{
-			    		alert("ID, Password가 틀렸습니다.");
-			    		document.getElementById("password").value='';
-			    		document.LoginForm.password.focus();
+			    		alert("신규 유저 생성을 실패하였습니다.");
 			    	}
-			    }	    
+			    },
+			    error:function(){
+			    	alert("요청 실패로 인하여 신규 유저 생성에 실패하였습니다.");
+			    }
 			});	// ajax end
 		}
 	    

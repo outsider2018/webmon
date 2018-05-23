@@ -105,19 +105,20 @@ public class UserDataDAO {
 
 			StringBuffer sql_str = new StringBuffer();
 			sql_str.append("INSERT INTO USER_INFO			\n");
+			sql_str.append("(USER_ID, USER_NAME, GROUP_NAME, PASSWORD, DESCRIPTION, CREATE_DATE) \n");
 			sql_str.append("	VALUES(:USER_ID,			\n"); // 유저 ID
 			sql_str.append("		   :USER_NAME,			\n"); // 유저 이름
-			sql_str.append("		   :PASSWORD,		\n"); // 유저 패스워드
 			sql_str.append("		   :GROUP_NAME,			\n"); // 그룹 이름
-			sql_str.append("		   CURRENT_DATE,		\n"); // 생성 일자
-			sql_str.append("		   :DESCRIPTION)		\n"); // 설명
+			sql_str.append("		   :PASSWORD,			\n"); // 유저 패스워드
+			sql_str.append("		   :DESCRIPTION,		\n"); // 설명
+			sql_str.append("		   CURRENT_DATE)		\n"); // 생성 일자
 			
 			Hashtable<String, String> param = new Hashtable<String, String>();
-			param.put("USER_ID", request_value.getString("USER_ID"));
-			param.put("USER_NAME", request_value.getString("USER_NAME"));
-			param.put("PASSWORD", request_value.getString("PASSWORD"));
-			param.put("GROUP_NAME", request_value.getString("GROUP_NAME"));
-			param.put("DESCRIPTION", request_value.getString("DESCRIPTION"));
+			param.put("USER_ID", request_value.getString("user_id"));
+			param.put("USER_NAME", request_value.getString("user_name"));
+			param.put("PASSWORD", request_value.getString("password"));
+			param.put("GROUP_NAME", request_value.getString("group_name"));
+			param.put("DESCRIPTION", request_value.getString("description"));
 			
 			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
 			

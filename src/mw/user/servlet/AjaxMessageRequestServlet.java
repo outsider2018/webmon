@@ -59,7 +59,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 		    java.util.Enumeration names = request.getParameterNames();
 		    while (names.hasMoreElements()) {
 		    	String rName = (String) names.nextElement();
-		    	//System.out.println("2/ names:"+rName);
+		    	System.out.println("2/ names:"+rName);
 		    	String[] rValue = request.getParameterValues(rName);
 		    	
 		    	if (rValue.length == 1)

@@ -668,13 +668,8 @@ public class DBQueryExcutor{
 		}
 
 		try{
-			JSONObject jo = new JSONObject();
-			JSONArray result_set = new JSONArray();
-			jo.put("REG_YN", status_value);
-			jo.put("STATUS", status_value);
-			result_set.put(jo);
+			response_value.put("STATUS", status_value);
 			response_value.put("size", "1");
-			response_value.put("resultSet", result_set);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
