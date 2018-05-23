@@ -53,7 +53,7 @@
 <body>
 	<div id="wrapper">
 
-		<jsp:include page='./userNavigation.jsp' flush='false' />
+		<jsp:include page='../rootNavigation.jsp' flush='false' />
 		<!-- Page Content -->
 		<div id="page-wrapper">		
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
