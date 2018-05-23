@@ -125,6 +125,14 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
+	    function usermodify(){
+	    	alert("수정 버튼 눌렀구나...아 그렇구나...여기다 수정 기능 구현하면 됨");
+	    }
+	    
+	    function userdelete(){
+	    	alert("삭제 버튼 눌렀구나...아 그렇구나...여기다 삭제 기능 구현하면 됨");	    	
+	    }
+	    
 	    
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=UserList",
@@ -152,8 +160,9 @@
 			            	},
 			            	{
 			                	text: '수정',
-			                	action: function(e, dt, node, config){
+			                	action: function(e, dt, node, config){			                		
 			                		alert("수정 : "+JSON.stringify(dt.row({selected:true}).data()));
+			                		usermodify();
 			                	},
 			                	enabled: false
 			            	},
@@ -161,6 +170,7 @@
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
 			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
+			                		userdelete();
 			                	},
 			                	enabled: false
 			            	}
