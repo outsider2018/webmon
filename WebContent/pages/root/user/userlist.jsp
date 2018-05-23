@@ -130,16 +130,13 @@
 			url: "/webmon/AjaxMessageRequest.do?action=UserList",
 		    type: 'POST', dataType: 'json',
 		    success: function(obj){		    	
-		    	// UserList 요청 성공		    			    	
-		    	var userData = obj; 
+		    	var userData = obj;
+		    	
 		    	// JSON 객체 -> String 변환 처리
 		    	//var userData = JSON.stringify(obj);
 				
-				// Array 형태 샘플 데이터
-				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
-				
 			    $(document).ready(function() {
-			        $('#user-list').DataTable({
+			        var table = $('#user-list').DataTable({
 			            responsive: true,
 			            serverSide: false,
 			            pageLength: 10,
@@ -178,13 +175,16 @@
 			            ]
 
 			        });
+			        
+				    table.on( 'select deselect', function () {
+				        var selectedRows = table.rows( { selected: true } ).count();			
+				        table.button( 1 ).enable( selectedRows === 1 );
+				        table.button( 2 ).enable( selectedRows > 0 );
+				    } ); // on() end
+			        
 			    }); //Datatable end
 			    
-			    $('#user-list').on( 'select deselect', function () {
-			        var selectedRows = table.rows( { selected: true } ).count();			
-			        table.button( 1 ).enable( selectedRows === 1 );
-			        table.button( 2 ).enable( selectedRows > 0 );
-			    } );
+
 			    
 		    }, // ajax success end
 		    
