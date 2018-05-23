@@ -1,9 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-
 <script>
-
-
 </script>
 
 <!-- Navigation -->
@@ -16,7 +14,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.jsp">KOS Middle Ware Monitoring & Management System</a>
+		<a class="navbar-brand" href="../../index.jsp">KOS System - Middle Ware Administrator v1.0</a>
 	</div>
 	<!-- /.navbar-header -->
 
@@ -43,35 +41,18 @@
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
 			<ul class="nav" id="side-menu">
-
-				<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
-						Status Monitoring<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="./PRD_URLCheck.jsp">Production Zone</a></li>
-						<!-- 
-						<li><a href="./PRD_URLCheck.jsp" onclick="javascript:getURLList('PRD');">Production Zone</a></li>
-						 -->
-						<li><a href="#">TEST Zone<span class="fa arrow"></span></a>
-							<ul class="nav nav-third-level">
-								<li><a href="#">SIT(SM)</a></li>
-								<li><a href="#">SIT(HotFix)</a></li>						
-							</ul> <!-- /.nav-third-level --></li>
-					</ul> <!-- /.nav-second-level --></li>
+				<!-- 사용자 관리 -->
+				<li><a href="../user/userlist.jsp"><i class="fa fa-dashboard fa-fw"></i>
+						USER 관리</a>
+				</li>
 					
-				<!-- WAS Admin 링크 페이지 (group_name이 root, admin, monitor에 따라 메뉴 활성화 여부가 달라짐) -->
-<%
-				if( session.getAttribute("group_name").equals("admin")){
-%>
-				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Management Link
-						<span class="fa arrow"></span></a>
+				<!-- WEB 체크 대상 URL 관리 -->
+				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> 
+						URL 관리<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="./KOS_OSB.jsp">WebLogic Admin Console</a></li>
-						<li><a href="./KOS_JEUS.jsp">Jeus Admin Console</a></li>
+						<li><a href="../url/urllist.jsp">PRD</a></li>
+						<li><a href="#">SIT</a></li>
 					</ul> <!-- /.nav-second-level --></li>
-<%					
-				}
-%>				
-
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->

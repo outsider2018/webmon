@@ -339,10 +339,6 @@
 			<!-- /.row -->
 			<div class="row">
 			    <div class="panel panel-default">
-			        <div class="panel-heading">
-                    Order AP
-                    </div>
-                    <div class="panel-body">
 				<div class="col-lg-3 col-md-6">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -558,8 +554,6 @@
 						</div>
 						<!-- /.panel-body -->
 					</div>
-				</div>
-				<!-- /.panel-body -->
 				</div>
 				</div>
 			</div>
