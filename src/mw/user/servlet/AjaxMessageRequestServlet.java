@@ -72,6 +72,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			conn = DBConnector.getConnection();
 
 			String action = request.getParameter("action");
+			String env = request.getParameter("env");
 			
 			System.out.println("[action] : "+action+"#"+request_value.toString());
 			
@@ -88,6 +89,8 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 				ret = UserDataDAO.UserList(conn);				
 			}else if("insertuser".equals(action)){
 				ret = UserDataDAO.insertuser(conn, request_value);				
+			}else if("UrlList".equals(action)) {
+				ret = URLDataDAO.getURLListArray(conn, env);
 			}
 			
 			else  throw new Exception("Invalid action request ["+action+"]");

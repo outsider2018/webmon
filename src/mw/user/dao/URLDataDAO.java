@@ -58,7 +58,7 @@ public class URLDataDAO {
 		try{
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("SELECT 	ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, MW_TYPE, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL 	\n");
+			sql_str.append("SELECT 	URL_NUMBER, ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, MW_TYPE, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL 	\n");
 			sql_str.append("	FROM URL_LIST											\n");								
 			sql_str.append(" WHERE ENV_NAME=:env_name									\n");				
 			
