@@ -57,7 +57,7 @@
 
 	<div id="wrapper">
 
-		<jsp:include page='../rootNavigation.jsp' flush='false' />
+		<jsp:include page='../../navigation.jsp' flush='false' />
 		<!-- Page Content -->
 		<div id="page-wrapper">		
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
@@ -138,14 +138,11 @@
 		    	// JSON 객체 -> String 변환 처리
 		    	//var userData = JSON.stringify(obj);
 				
-				// Array 형태 샘플 데이터
-				var sample1 = [["82022599","이환호", "root","New1234!", "관리자"], ["82022600","안휘진", "mw","New1234!", "MW담당자"]];
-				
 			    $(document).ready(function() {
-			        $('#url-list').DataTable({
+			        var table = $('#url-list').DataTable({
 			            responsive: true,
 			            serverSide: false,
-			            pageLength: 50,
+			            pageLength: 10,
 			            ordering: false,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
@@ -153,7 +150,7 @@
 			            	{
 			                	text: '신규',
 			                	action: function(e, dt, node, config){
-			                		location.href='./urllist.jsp#';
+			                		location.href='./urlintfrm.jsp';
 			                	},
 			            	},
 			            	{
@@ -166,9 +163,23 @@
 			            	{
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
+			                		
+		                		
+			                		var table = $('#url-list').DataTable();
+			                		
+			                		var rows = table.rows('.selected').data();
 			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
+			                		if (confirm("총"+rows.length+"건 삭제하시겠습니까??") == true){    //확인
+			                			urldelete();
+				                		var rows = table
+			                		    .rows( '.selected' )
+			                		    .remove()
+			                		    .draw();				            			
+			                		}else{   //취소
+			                		    return;
+			                		}
 			                	},
-			                	enabled: false
+			                	enabled: true
 			            	}
 			            ],
 			            data: urlData,
@@ -184,13 +195,14 @@
 			            ]
 
 			        });
+			        
+				    table.on( 'select deselect', function () {
+				    	var selectedRows = table.rows( { selected: true } ).count();			
+				        table.button( 1 ).enable( selectedRows === 1 );
+				        table.button( 2 ).enable( selectedRows > 0 );
+				    } );
 			    }); //Datatable end
 			    
-			    $('#url-list').on( 'select deselect', function () {
-			        var selectedRows = table.rows( { selected: true } ).count();			
-			        table.button( 1 ).enable( selectedRows === 1 );
-			        table.button( 2 ).enable( selectedRows > 0 );
-			    } );
 			    
 		    }, // ajax success end
 		    
@@ -199,6 +211,36 @@
 		    }
 		});	// ajax end	    
 	    
+		
+		function urldelete() {
+			//var table = $('#url-list').DataTable();
+			//var rows = table.rows('.selected').data();
+			//alert("삭제 : "+JSON.stringify(rows).data());
+			//var rows = JSON.stringify(temp);
+			//alert("수행여부" + rows.stringify());
+			//var remove = table.rows( '.selected' ).remove().draw();
+			var array_temp=[1,3,5,7,9];
+			var rows={"url_num":array_temp};
+			
+ 			 $.ajax({
+				url: "/webmon/AjaxMessageRequest.do?action=deleteurl",
+			    type: 'POST', dataType: 'json',  data: rows,
+			    success: function(obj){			    	
+			  	// 신규 유저 생성 성공 여부
+			  	var InsertSTATUS = obj.resultSet;
+			  	console.log("InsertSTATUS : " + obj.STATUS);
+	 		  	if(InsertSTATUS == "S"){		    	
+			  		
+			  	}else{
+			  		alert("신규 유저 생성을 실패하였습니다.");
+			  	}
+			  },
+			  error:function(){
+			  	alert("요청 실패로 인하여 신규 유저 생성에 실패하였습니다.");
+			  }
+			});	// ajax end 
+		}
+		
 	    </script>
 
 		<!-- Custom Theme JavaScript -->

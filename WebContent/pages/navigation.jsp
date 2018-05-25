@@ -66,7 +66,7 @@
 					
 				<!-- WAS Admin 링크 페이지 (group_name이 root, admin, monitor에 따라 메뉴 활성화 여부가 달라짐) -->
 <%
-				if( session.getAttribute("group_name").equals("admin")){
+				if( session.getAttribute("group_name").equals("root")||session.getAttribute("group_name").equals("admin")){
 %>
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Management Link
 						<span class="fa arrow"></span></a>
