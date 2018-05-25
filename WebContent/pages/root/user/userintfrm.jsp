@@ -206,4 +206,3 @@
 </body>
 
 </html>
->>>>>>> branch 'master' of https://github.com/outsider2018/webmon.git
