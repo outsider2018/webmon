@@ -96,13 +96,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}else{
 				throw new Exception("Invalid action request ["+action+"]");
 			}
-			 
-<<<<<<< HEAD
-=======
-			else  throw new Exception("Invalid action request ["+action+"]");
 			
->>>>>>> branch 'master' of https://github.com/outsider2018/webmon.git
-			//String request_value_str = request_value.toString();
 			String response_value_str = ret.toString();
 			System.out.println(" Response:"+response_value_str);
 
