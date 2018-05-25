@@ -125,8 +125,7 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
-	    function usermodify(){
-	    	alert("수정 버튼 눌렀구나...수정하러 가즈아~~!!");
+	    function usermodify(updateData){	    	
 	    	location.href='./userupdatefrm.jsp';
 	    }
 	    
@@ -161,9 +160,10 @@
 			            	},
 			            	{
 			                	text: '수정',
-			                	action: function(e, dt, node, config){			                		
-			                		alert("수정 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                		usermodify();
+			                	action: function(e, dt, node, config){
+			                		var updateData = JSON.stringify(dt.row({selected:true}).data()); 
+			                		alert("수정 : " + updateData);
+			                		usermodify(updateData);
 			                	},
 			                	enabled: false
 			            	},

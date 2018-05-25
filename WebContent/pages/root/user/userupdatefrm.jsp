@@ -51,6 +51,8 @@
 
 <% 
 	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("user_id");
+	
 %>
 
 <body>
@@ -87,7 +89,7 @@
                                     <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID"></td>
+                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID" value="<%=request.getParameter("user_id")%>"></td>
                                         </tr>
                                         <tr>
                                             <td>PASSWORD</td>
