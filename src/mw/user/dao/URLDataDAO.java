@@ -122,4 +122,21 @@ public class URLDataDAO {
 		}
 		return response_value;
 	}
+
+	public static Object deleteURLListArray(Connection conn, String[] request_value) {
+		System.out.println("DAO=================================");
+		for(String str:request_value) {
+			System.out.println("DAO값:"+str);
+		}
+		
+		StringBuffer sql_str = new StringBuffer();
+		sql_str.append("DELETE 														\n");
+		sql_str.append("	FROM URL_LIST											\n");								
+		sql_str.append(" WHERE ENV_NAME in (:url_numbers)							\n");				
+		
+		Hashtable param = new Hashtable();
+		param.put("url_numbers", request_value);
+		
+		return null;
+	}
 }
