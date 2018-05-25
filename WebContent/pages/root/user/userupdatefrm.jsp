@@ -16,6 +16,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="kr">
 
+<% 
+	request.setCharacterEncoding("UTF-8");
+	String user_id = request.getParameter("user_id");
+	String password = request.getParameter("password");
+	String user_name = request.getParameter("user_name");
+	String group_name = request.getParameter("group_name");
+	String description = request.getParameter("description");
+%>
+
 <head>
 
 <%@ include file="/pages/sessionCheck.jsp" %>
@@ -46,14 +55,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
-<% 
-	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("user_id");
-	
-%>
 
 <body>
 	<div id="wrapper">
@@ -89,15 +92,15 @@
                                     <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID" value="<%=request.getParameter("user_id")%>"></td>
+                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID" value="<%=user_id%>"></td>
                                         </tr>
                                         <tr>
                                             <td>PASSWORD</td>
-                                            <td><input class="form-control"  name="password" id="password" type="password" placeholder="Enter PASSWORD"></td>
+                                            <td><input class="form-control"  name="password" id="password" placeholder="Enter PASSWORD" value="<%=password%>"></td>
                                         </tr>
                                         <tr>
                                             <td>NAME</td>
-                                            <td><input class="form-control" name="user_name" id="user_name" placeholder="Enter PASSWORD"></td>
+                                            <td><input class="form-control" name="user_name" id="user_name" placeholder="Enter NAME" value="<%=user_name%>"></td>
                                         </tr>
                                         <tr>
                                             <td>GROUP</td>
@@ -111,7 +114,7 @@
                                         </tr>
                                         <tr>
                                             <td>설명</td>
-                                            <td><textarea name="description" id="description" class="form-control" rows="3" placeholder="Enter Description"></textarea></td>
+                                            <td><textarea name="description" id="description" class="form-control" rows="3" placeholder="Enter Description"><%=description%></textarea></td>
                                         </tr>                                                                   
                                     </tbody>
                                     <tfoot>
@@ -152,6 +155,16 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
+	    $(document).ready(function(){
+			var selectObj = $("#group_name option");
+			for(i=1;i<selectObj.length;i++){
+				if(selectObj.eq(i).value() == "monitor"){
+					$("#group_name option:eq("+i+")").prop("selected", true);
+					break;
+				}
+			}
+	    });
+
 
 		function cancle() {
 			document.getElementById("user_id").value="";
@@ -189,9 +202,7 @@
 			    success: function(obj){
 			    	
 			    	// 유저 정보 수정 성공 여부
-			    	var updateSTATUS = obj.resultSet;
-			    	console.log("updateSTATUS : " + obj.STATUS);
-	 		    	if(updateSTATUS == "S"){		    	
+	 		    	if(obj.STATUS == "S"){		    	
 			    		document.updateform.submit();
 			    	}else{
 			    		alert("유저 정보 수정에 실패하였습니다.");

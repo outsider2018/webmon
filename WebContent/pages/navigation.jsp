@@ -29,6 +29,7 @@
 <%
 				if( session.getAttribute("group_name").equals("root")){
 %>             
+				 <li><a href="./index.jsp"><i class="fa fa-dashboard fa-fw"></i> Monitoring</a>
                  <li><a href="./root/user/userlist.jsp"><i class="fa fa-user fa-fw"></i> User Management</a>
                  </li>
                  <li class="divider"></li>

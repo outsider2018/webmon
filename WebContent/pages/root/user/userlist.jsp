@@ -84,6 +84,7 @@
                                         <th>USER_NAME</th>
                                         <th>GROUP_NAME</th>
                                         <th>DESCRIPTION</th>
+                                        <th>PASSWORD</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,6 +99,13 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <form name="UserInfoForm" role="form" id="UserInfoForm" method="post" action="./userupdatefrm.jsp">
+            	<input type="hidden" name="user_id" id="user_id" value="">
+            	<input type="hidden" name="user_name" id="user_name" value="">
+            	<input type="hidden" name="password" id="password" value="">
+            	<input type="hidden" name="group_name" id="group_name" value="">
+            	<input type="hidden" name="description" id="description" value="">
+            </form>
 
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
@@ -125,8 +133,14 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
-	    function usermodify(){
-	    	alert("수정 버튼 눌렀구나...아 그렇구나...여기다 수정 기능 구현하면 됨");
+	    function userupdate(json){
+	    	var obj = JSON.parse(json);
+    		document.UserInfoForm.user_id.value = obj.USER_ID;
+    		document.UserInfoForm.user_name.value = obj.USER_NAME;
+    		document.UserInfoForm.password.value = obj.PASSWORD;
+    		document.UserInfoForm.group_name.value = obj.GROUP_NAME;
+    		document.UserInfoForm.description.value = obj.DESCRIPTION;
+    		document.UserInfoForm.submit();
 	    }
 	    
 	    function userdelete(){
@@ -160,9 +174,8 @@
 			            	},
 			            	{
 			                	text: '수정',
-			                	action: function(e, dt, node, config){			                		
-			                		alert("수정 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                		usermodify();
+			                	action: function(e, dt, node, config){
+			                		userupdate(JSON.stringify(dt.row({selected:true}).data()));
 			                	},
 			                	enabled: false
 			            	},
@@ -181,7 +194,8 @@
 			                { data: 'USER_ID' },
 			                { data: 'USER_NAME' },
 			                { data: 'GROUP_NAME' },
-			                { data: 'DESCRIPTION' }
+			                { data: 'DESCRIPTION' },
+			                { data: 'PASSWORD',"visible": false }
 			            ]
 
 			        });
