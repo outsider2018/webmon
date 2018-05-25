@@ -55,6 +55,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 </head>
 
 
@@ -107,7 +108,7 @@
                                             <td>
                                             	<select class="form-control" name="group_name" id="group_name">
 	                                                <option value="root">root</option>
-	                                                <option value="admin">admin</option>
+	                                                <option value="admin" selected="seleted">admin</option>
 	                                                <option value="monitor">monitor</option>
 	                                            </select>
                                             </td>
