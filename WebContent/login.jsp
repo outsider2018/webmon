@@ -81,6 +81,14 @@
 		    }	    
 		});	// ajax end
 	}
+	
+	function enterkey() {
+        if (window.event.keyCode == 13) {
+             login();
+        }
+	}
+
+
 
 	</script>
 </head>
@@ -98,10 +106,10 @@
                         <form name="LoginForm" role="form" id="LoginForm" method="post" action="./pages/sessionProc.jsp">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="ID" name="user_id" id="user_id" autofocus>
+                                    <input onkeyup="enterkey();" class="form-control" placeholder="ID" name="user_id" id="user_id" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
+                                    <input onkeyup="enterkey();" class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
                                     <input type="hidden" name="user_name" id="user_name" value="">
                                     <input type="hidden" name="group_name" id="group_name" value="">                                    
                                 </div>
@@ -115,7 +123,7 @@
                                 
                                 <!-- button 태크를 사용 시 class에서 기본적으로 submit() 옵션을 제거해야 함 -->
                                 <!-- <button class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" >Login</button>  -->                                
-                                <input type='button' class="btn btn-lg btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){login();}" onclick="javascript:login();" value="Login"> 
+                                <input type='button' class="btn btn-lg btn-primary btn-block" onclick="javascript:login();" value="Login"> 
                             </fieldset>
                         </form>
                     </div>

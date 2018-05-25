@@ -122,12 +122,43 @@ public class UserDataDAO {
 			
 			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
 			
-			System.out.println("USER Insert SQL : " + response_value.toString());
-           
 		}catch (Exception e) {
 			e.printStackTrace();		
 		}
 		return response_value;
 	}
+
+	public static JSONObject updateuser(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+
+		
+		JSONObject response_value = new JSONObject();
+
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("UPDATE USER_INFO SET			\n");
+			sql_str.append("	USER_ID=:USER_ID,			\n"); // 유저 ID
+			sql_str.append("	USER_NAME=:USER_NAME,		\n"); // 유저 이름
+			sql_str.append("	PASSWORD=:PASSWORD,			\n"); // 유저 패스워드			
+			sql_str.append("	GROUP_NAME=:GROUP_NAME,		\n"); // 그룹 이름
+			sql_str.append("	DESCRIPTION=:DESCRIPTION,	\n"); // 설명
+			sql_str.append("	CREATE_DATE=CURRENT_DATE	\n"); // 생성일자
+			sql_str.append("	WHERE USER_ID=:USER_ID		\n"); // 검색 조건
+			
+			Hashtable<String, String> param = new Hashtable<String, String>();
+			param.put("USER_ID", request_value.getString("user_id"));
+			param.put("USER_NAME", request_value.getString("user_name"));
+			param.put("PASSWORD", request_value.getString("password"));
+			param.put("GROUP_NAME", request_value.getString("group_name"));
+			param.put("DESCRIPTION", request_value.getString("description"));
+			param.put("USER_ID", request_value.getString("user_id"));			
+			
+			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return response_value;
+	}	
 
 }

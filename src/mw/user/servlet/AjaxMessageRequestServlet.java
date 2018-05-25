@@ -88,13 +88,15 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}else if("UserList".equals(action)){
 				ret = UserDataDAO.UserList(conn);				
 			}else if("insertuser".equals(action)){
-				ret = UserDataDAO.insertuser(conn, request_value);				
+				ret = UserDataDAO.insertuser(conn, request_value);
+			}else if("updateuser".equals(action)){
+				ret = UserDataDAO.updateuser(conn, request_value);			
 			}else if("UrlList".equals(action)) {
 				ret = URLDataDAO.getURLListArray(conn, env);
+			}else{
+				throw new Exception("Invalid action request ["+action+"]");
 			}
-			
-			else  throw new Exception("Invalid action request ["+action+"]");
-			
+			 
 			//String request_value_str = request_value.toString();
 			String response_value_str = ret.toString();
 			System.out.println(" Response:"+response_value_str);
