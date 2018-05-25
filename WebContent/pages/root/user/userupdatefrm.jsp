@@ -5,7 +5,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="mw.resource.ResourceInit"%>
 <%@ page import="mw.user.dao.UserDataDAO"%>
 <%@ page import="mw.user.db.DBConnector"%>
 <%@ page import="mw.util.ConvertJson"%>
@@ -50,6 +49,10 @@
 
 </head>
 
+<% 
+	request.setCharacterEncoding("UTF-8");
+%>
+
 <body>
 	<div id="wrapper">
 
@@ -69,11 +72,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">사용자 정보 입력</div>
+                        <div class="panel-heading">사용자 정보 수정</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                               	<form name="insertform" role="form" id="insertform" method="post" action="./userlist.jsp">
+                               	<form name="updateform" role="form" id="updateform" method="post" action="./userlist.jsp">
                                 <table class="table table-striped table-bordered table-hover" id="user_info">
                                     <thead>
                                         <tr>
@@ -112,7 +115,7 @@
                                     <tfoot>
                                     	<tr>
                                     		<td colspan="2" align="right">
-                                    			<input type='button' class="btn btn-primary" onkeydown="javascript:if(event.keyCode==13){insertuser();}" onclick="javascript:insertuser();" value="입력"></input>
+                                    			<input type='button' class="btn btn-primary" onkeydown="javascript:if(event.keyCode==13){updateuser();}" onclick="javascript:updateuser();" value="입력"></input>
                                     			<input type='button' class="btn btn-primary" onclick="javascript:cancle();" value="취소"></input>
                                     		</td>                                    		
                                     	</tr>
@@ -154,9 +157,9 @@
 			document.getElementById("user_name").value="";
 			document.getElementById("description").value="";
 			document.getElementById("user_id").focus();
-		} // insertuser() end	    
+		} // updateuser() end	    
 	    
-		function insertuser() {
+		function updateuser() {
 			if(document.getElementById("user_id").value==""){
 				alert("ID를 입력하세요");
 				document.getElementById("user_id").focus();
@@ -170,29 +173,30 @@
 				document.getElementById("user_name").focus();
 				return false;
 			}else{
-				insertuser_proc();
+				updateuser_proc();
 			}
 			
 
-		} // insertuser() end
+		} // updateuser() end
 		
-		function insertuser_proc() {
-			var data = $("form[name=insertform]").serialize();
+		function updateuser_proc() {
+			var data = $("form[name=updateform]").serialize();
 			$.ajax({
-				url: "/webmon/AjaxMessageRequest.do?action=insertuser",
+				url: "/webmon/AjaxMessageRequest.do?action=updateuser",
 			    type: 'POST', dataType: 'json',  data: data,
 			    success: function(obj){
-			    	// 신규 유저 생성 성공 여부
-			    	var insertSTATUS = obj.resultSet;
-			    	console.log("insertSTATUS : " + insertSTATUS);
-	 		    	if(insertSTATUS == "S"){		    	
-			    		document.insertform.submit();
+			    	
+			    	// 유저 정보 수정 성공 여부
+			    	var updateSTATUS = obj.resultSet;
+			    	console.log("updateSTATUS : " + obj.STATUS);
+	 		    	if(updateSTATUS == "S"){		    	
+			    		document.updateform.submit();
 			    	}else{
-			    		alert("신규 유저 생성을 실패하였습니다.");
+			    		alert("유저 정보 수정에 실패하였습니다.");
 			    	}
 			    },
 			    error:function(){
-			    	alert("요청 실패로 인하여 신규 유저 생성에 실패하였습니다.");
+			    	alert("요청 실패로 인하여 유저 정보 수정에 실패하였습니다.");
 			    }
 			});	// ajax end
 		}

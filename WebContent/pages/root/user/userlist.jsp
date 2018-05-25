@@ -126,7 +126,8 @@
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
 	    function usermodify(){
-	    	alert("수정 버튼 눌렀구나...아 그렇구나...여기다 수정 기능 구현하면 됨");
+	    	alert("수정 버튼 눌렀구나...수정하러 가즈아~~!!");
+	    	location.href='./userupdatefrm.jsp';
 	    }
 	    
 	    function userdelete(){
