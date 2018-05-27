@@ -90,7 +90,6 @@ public class UserDataDAO {
 			
 			Hashtable param = new Hashtable();
 			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param);
-			System.out.println("UserList : " + response_value.toString());
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}
@@ -174,7 +173,7 @@ public class UserDataDAO {
 			sql_str.append("	WHERE USER_ID=:USER_ID		\n"); // 검색 조건
 			
 			Hashtable<String, String> param = new Hashtable<String, String>();
-			param.put("USER_ID", request_value.getString("user_id"));		
+			param.put("USER_ID", request_value.getString("user_id"));
 			
 			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
 			

@@ -143,7 +143,7 @@
     		document.UserInfoForm.submit();
 	    }
 	    
-		function userdelete(userdata) {
+		function userdelete(arrayData) {
 			//var table = $('#url-list').DataTable();
 			//var rows = table.rows('.selected').data();
 			//alert("삭제 : "+JSON.stringify(rows).data());
@@ -151,11 +151,12 @@
 			//alert("수행여부" + rows.stringify());
 			//var remove = table.rows( '.selected' ).remove().draw();
 			//var obj = JSON.parse(jsonData);
-			console.log("삭제 ID : " + userdata);
+			console.log("삭제 ID : " + arrayData);
+			var obj = arrayData;
 			
  			 $.ajax({
-				url: "/webmon/AjaxMessageRequest.do?action=deleteurl",
-			    type: 'POST', dataType: 'json',  data: userdata,
+				url: "/webmon/AjaxMessageRequest.do?action=deleteuser",
+			    type: 'POST', dataType: 'json',  data: obj,
 			    success: function(obj){			    	
 			  	// 유저 삭제 성공 여부
 	 		  	if(obj.STATUS == "S"){		    	
@@ -175,9 +176,6 @@
 		    type: 'POST', dataType: 'json',
 		    success: function(obj){		    	
 		    	var userData = obj;
-		    	
-		    	// JSON 객체 -> String 변환 처리
-		    	//var userData = JSON.stringify(obj);
 				
 			    $(document).ready(function() {
 			        var table = $('#user-list').DataTable({
@@ -208,10 +206,13 @@
 			                		var userdata = [];
 			                		console.log("선택 개수 : " + count);			                		
 			                		for(i=0;i<count;i++){
-			                			userdata[i] = JSON.stringify(dt.rows({selected:true}).data()[i].USER_ID);
+			                			//userdata[i] = JSON.stringify(dt.rows({selected:true}).data()[i].USER_ID);
+			                			userdata[i] = dt.rows({selected:true}).data()[i].USER_ID;
 			                		}
 			                		console.log("선택 데이터"+userdata);
-			                		userdelete(userdata);
+			                		var jsonStr = {"user_id" : userdata[0]};
+			                		var obj = JSON.parse(jsonStr);	                		
+			                		userdelete(obj);
 			                	},
 			                	enabled: false
 			            	}
