@@ -79,7 +79,9 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			/*
 			 * Action 
 			 * login : 로그인
-			 * insertuser : 신규 유저 생성
+			 * insertuser : 신규 유저 등록
+			 * updateuser : 유저 정보 수정
+			 * deleteduser : 유저 삭제
 			 * UserList : 유저 리스트
 			 * 
 			 */
@@ -90,7 +92,9 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}else if("insertuser".equals(action)){
 				ret = UserDataDAO.insertuser(conn, request_value);
 			}else if("updateuser".equals(action)){
-				ret = UserDataDAO.updateuser(conn, request_value);			
+				ret = UserDataDAO.updateuser(conn, request_value);
+			}else if("deleteuser".equals(action)){
+				ret = UserDataDAO.deleteuser(conn, request_value);				
 			}else if("UrlList".equals(action)) {
 				ret = URLDataDAO.getURLListArray(conn, env);
 			}else if("deleteurl".equals(action)) {

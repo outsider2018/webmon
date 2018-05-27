@@ -160,6 +160,28 @@ public class UserDataDAO {
 			e.printStackTrace();		
 		}
 		return response_value;
+	}
+
+	public static JSONObject deleteuser(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+
+		
+		JSONObject response_value = new JSONObject();
+
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("DELETE FROM USER_INFO SET			\n");
+			sql_str.append("	WHERE USER_ID=:USER_ID		\n"); // 검색 조건
+			
+			Hashtable<String, String> param = new Hashtable<String, String>();
+			param.put("USER_ID", request_value.getString("user_id"));		
+			
+			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return response_value;
 	}	
 
 }

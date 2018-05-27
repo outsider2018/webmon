@@ -60,18 +60,16 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">User management</h1>
+						<h1 class="page-header">사용자 관리</h1>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- /.row -->
 			</div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            사용자 입력
-                        </div>
+                        <div class="panel-heading">신규 사용자 등록</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -113,9 +111,9 @@
                                     </tbody>
                                     <tfoot>
                                     	<tr>
-                                    		<td colspan="2">
-                                    			<input type='button' class="btn btn-primary btn-block" onkeydown="javascript:if(event.keyCode==13){insertuser();}" onclick="javascript:insertuser();" value="입력"></input>
-                                    			<input type='button' class="btn btn-primary btn-block" onclick="javascript:cancle();" value="취소"></input>
+                                    		<td colspan="2" align="right">
+                                    			<input type='button' class="btn btn-primary" onkeydown="javascript:if(event.keyCode==13){insertuser();}" onclick="javascript:insertuser();" value="입력"></input>
+                                    			<input type='button' class="btn btn-primary" onclick="javascript:cancle();" value="취소"></input>
                                     		</td>                                    		
                                     	</tr>
                                     </tfoot>                                    
@@ -177,9 +175,7 @@
 			    type: 'POST', dataType: 'json',  data: data,
 			    success: function(obj){			    	
 			    	// 신규 유저 생성 성공 여부
-			    	var InsertSTATUS = obj.resultSet;
-			    	console.log("InsertSTATUS : " + obj.STATUS);
-	 		    	if(InsertSTATUS == "S"){		    	
+	 		    	if(obj.STATUS == "S"){		    	
 			    		document.insertform.submit();
 			    	}else{
 			    		alert("신규 유저 생성을 실패하였습니다.");

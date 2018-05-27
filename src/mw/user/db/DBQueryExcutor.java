@@ -454,7 +454,6 @@ public class DBQueryExcutor{
 
 			
 			while(rs.next()){
-//				resultCount ++;
 				String result_line = "";
 				result_line = resultCount + ". \t";
 				JSONObject result_obj = new JSONObject();
@@ -466,19 +465,14 @@ public class DBQueryExcutor{
 					}
 					result_obj.append(columName, value);
 					result_line += "\t" + rs.getObject(i);
-//					System.out.println("뭐지 : " + result_obj.toString());
 				}
 				if(logable){
 					logger.info("\t"+result_line);
 				}
-//				response_value.put(result_obj);
 				response_value.put(resultCount,result_obj);
 				resultCount ++;
 				
 			}
-
-			//response_value.put("RESULT_COUNT", String.valueOf( resultCount ));
-
 			if(logable){
 				logger.info( "\t Execute Query Result Count : " + String.valueOf( resultCount ));
 				logger.info("\n");
@@ -489,7 +483,6 @@ public class DBQueryExcutor{
 		}finally{
 			DBConnector.releaseConnection(pstmt, rs);
 		}
-//		System.out.println("\n JSON to String : " + temp.getString("USER_ID").replaceAll("^\\[+|\\]+$", ""));
 		return response_value;
 	}	
 	

@@ -203,7 +203,7 @@
 			    success: function(obj){
 			    	
 			    	// 유저 정보 수정 성공 여부
-	 		    	if(obj.STATUS == "S"){		    	
+	 		    	if(obj.STATUS == "S"){
 			    		document.updateform.submit();
 			    	}else{
 			    		alert("유저 정보 수정에 실패하였습니다.");

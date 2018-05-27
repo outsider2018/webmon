@@ -64,7 +64,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">User management</h1>
+						<h1 class="page-header">사용자 관리</h1>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -133,8 +133,8 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
-	    function userupdate(json){
-	    	var obj = JSON.parse(json);
+	    function userupdate(jsonData){
+	    	var obj = JSON.parse(jsonData);
     		document.UserInfoForm.user_id.value = obj.USER_ID;
     		document.UserInfoForm.user_name.value = obj.USER_NAME;
     		document.UserInfoForm.password.value = obj.PASSWORD;
@@ -143,9 +143,31 @@
     		document.UserInfoForm.submit();
 	    }
 	    
-	    function userdelete(){
-	    	alert("삭제 버튼 눌렀구나...아 그렇구나...여기다 삭제 기능 구현하면 됨");	    	
-	    }
+		function userdelete(userdata) {
+			//var table = $('#url-list').DataTable();
+			//var rows = table.rows('.selected').data();
+			//alert("삭제 : "+JSON.stringify(rows).data());
+			//var rows = JSON.stringify(temp);
+			//alert("수행여부" + rows.stringify());
+			//var remove = table.rows( '.selected' ).remove().draw();
+			//var obj = JSON.parse(jsonData);
+			console.log("삭제 ID : " + userdata);
+			
+ 			 $.ajax({
+				url: "/webmon/AjaxMessageRequest.do?action=deleteurl",
+			    type: 'POST', dataType: 'json',  data: userdata,
+			    success: function(obj){			    	
+			  	// 유저 삭제 성공 여부
+	 		  	if(obj.STATUS == "S"){		    	
+			  	}else{
+			  		alert("유저 삭제를 실패하였습니다.");
+			  	}
+			  },
+			  error:function(){
+			  	alert("요청 실패로 인하여 유저 삭제에 실패하였습니다.");
+			  }
+			});	// ajax end 
+		}
 	    
 	    
 		$.ajax({
@@ -182,8 +204,14 @@
 			            	{
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
-			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                		userdelete();
+			                		var count = dt.rows({selected:true}).count();
+			                		var userdata = [];
+			                		console.log("선택 개수 : " + count);			                		
+			                		for(i=0;i<count;i++){
+			                			userdata[i] = JSON.stringify(dt.rows({selected:true}).data()[i].USER_ID);
+			                		}
+			                		console.log("선택 데이터"+userdata);
+			                		userdelete(userdata);
 			                	},
 			                	enabled: false
 			            	}
