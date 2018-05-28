@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import javax.naming.NamingException;
@@ -169,12 +170,14 @@ public class UserDataDAO {
 
 			StringBuffer sql_str = new StringBuffer();
 			sql_str.append("DELETE FROM USER_INFO			\n");
-			sql_str.append("	WHERE USER_ID IN (:USER_ID)		\n"); // 검색 조건
+			sql_str.append("	WHERE USER_ID IN (?)		\n"); // 검색 조건
 			
-			Hashtable<String, String> param = new Hashtable<String, String>();
-//			String paramValue = request_value.getString("user_id").replaceAll(",", "','");
-//			System.out.println("============> 삭제 변수 가공 후 : " + paramValue);
-			param.put("USER_ID", request_value.getString("user_id"));
+			ArrayList<String> param = new ArrayList<String>();
+//			param.put("USER_ID", request_value.getString("user_id"));
+			String[] temp = request_value.getString("user_id").split(",");
+			for(int i=0;i<temp.length;i++) {
+				param.add(temp[i]);
+			}
 			
 			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
 			

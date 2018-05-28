@@ -680,8 +680,8 @@ public class DBQueryExcutor{
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, Hashtable request_params)  throws Exception{
-		return updateQueryExcutor(conn, query_raw, request_params, true);
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList request_params)  throws Exception{
+		return deleteQueryExcutor(conn, query_raw, request_params, true);
 	}
 	
 	/**
@@ -693,7 +693,7 @@ public class DBQueryExcutor{
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, Hashtable request_params, boolean logable)  throws Exception{
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList request_params, boolean logable)  throws Exception{
 
 		JSONObject response_value = new JSONObject();
 		PreparedStatement pstmt = null;
@@ -706,24 +706,22 @@ public class DBQueryExcutor{
 				logger.info("\t============= Execute delete Query Information =============");
 				logger.info( "\t---------- <reqeust parameter list> -------------" );
 			}
-			ArrayList<String> params = query_parser.getPreparedStateParameters(query_raw, request_params);			
-			for(int i=0 ; i < params.size() ; i++){								
-				String key = params.get(i)+"";
-				String value = request_params.get(key)+"";
-				pstmt.setString(i+1, value);
+//			ArrayList<String> params = query_parser.getPreparedStateParameters(query_raw, request_params);			
+			for(int i=0 ; i < request_params.size() ; i++){								
+				pstmt.setString(i+1, request_params.get(i).toString());
 				if(logable){
-					logger.info( "\t"+key+"\t\t"+value );
+					logger.info( "\t ["+i+"] \t\t" + request_params.get(i).toString());
 				}
 			}
 
 			if(logable){
 				logger.info( "\t---------- <Query String> -------------" );
-				logger.info("\t" + query_parser.getLoggableQueryString(query_raw, request_params) );
+		//		logger.info("\t" + query_parser.getLoggableQueryString(query_raw, request_params) );
 				logger.info("");
 			}
 			
 			int result = pstmt.executeUpdate();
-			System.out.println("update result : "+result);
+			System.out.println("delete result : "+result);
 
 			if(logable){
 				logger.info("\t------------------<result>-------------------------");
