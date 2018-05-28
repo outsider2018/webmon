@@ -39,7 +39,6 @@ public class UserDataDAO {
 			pstmt = conn.prepareStatement(sql_str.toString());
 			pstmt.setString(1,user_id);
 			pstmt.setString(2,password);
-			System.out.println("SQL : " + pstmt.toString());
 			rs = pstmt.executeQuery();
             
 			int count = 0;
@@ -89,7 +88,7 @@ public class UserDataDAO {
 			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
-			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param);
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param, false);
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}
@@ -169,13 +168,15 @@ public class UserDataDAO {
 		try{					
 
 			StringBuffer sql_str = new StringBuffer();
-			sql_str.append("DELETE FROM USER_INFO SET			\n");
-			sql_str.append("	WHERE USER_ID=:USER_ID		\n"); // 검색 조건
+			sql_str.append("DELETE FROM USER_INFO			\n");
+			sql_str.append("	WHERE USER_ID IN (:USER_ID)		\n"); // 검색 조건
 			
 			Hashtable<String, String> param = new Hashtable<String, String>();
+//			String paramValue = request_value.getString("user_id").replaceAll(",", "','");
+//			System.out.println("============> 삭제 변수 가공 후 : " + paramValue);
 			param.put("USER_ID", request_value.getString("user_id"));
 			
-			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
+			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
 			
 		}catch (Exception e) {
 			e.printStackTrace();		

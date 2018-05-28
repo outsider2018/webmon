@@ -159,10 +159,6 @@
 	    $(document).ready(function(){
 			var selectObj = $("#group_name option");
 			for(i=1;i<selectObj.length;i++){
-				if(selectObj.eq(i).value() == "monitor"){
-					$("#group_name option:eq("+i+")").prop("selected", true);
-					break;
-				}
 			}
 	    });
 
@@ -197,6 +193,7 @@
 		
 		function updateuser_proc() {
 			var data = $("form[name=updateform]").serialize();
+			alert("수정 데이터 : " + data);
 			$.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=updateuser",
 			    type: 'POST', dataType: 'json',  data: data,

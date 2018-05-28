@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -422,7 +425,7 @@ public class DBQueryExcutor{
 			pstmt = conn.prepareStatement(prepared_query);
 
 			if(logable){
-				logger.info("\t============= Execute Update Query Information =============");
+				logger.info("\t============= Execute Select Query Information =============");
 				logger.info("\t---------- <reqeust parameter list> -------------" );
 			}
 
@@ -518,7 +521,7 @@ public class DBQueryExcutor{
 			pstmt = conn.prepareStatement(prepared_query);
 			
 			if(logable){
-				logger.info("\t============= Execute Update Query Information =============");
+				logger.info("\t============= Execute Select Query Information =============");
 				logger.info("\t---------- <reqeust parameter list> -------------" );
 			}
 			
@@ -641,7 +644,84 @@ public class DBQueryExcutor{
 				logger.info("\t" + query_parser.getLoggableQueryString(query_raw, request_params) );
 				logger.info("");
 			}
+			
+			int result = pstmt.executeUpdate();
+			System.out.println("update result : "+result);
 
+			if(logable){
+				logger.info("\t------------------<result>-------------------------");
+				logger.info( "\t Execute Query Result Status : " + result);
+				logger.info("\n");
+			}
+
+			if(result >= 0){
+				status_value = STATUS_SUCCESS;
+			}
+		}catch (Exception e) {
+			throw e;
+		}finally{
+			DBConnector.releaseConnection(pstmt);
+		}
+
+		try{
+			response_value.put("STATUS", status_value);
+			response_value.put("size", "1");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response_value;
+	}
+
+	/**
+	 * 
+	 * @param conn
+	 * @param query_raw
+	 * @param request_params
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, Hashtable request_params)  throws Exception{
+		return updateQueryExcutor(conn, query_raw, request_params, true);
+	}
+	
+	/**
+	 * 
+	 * @param conn
+	 * @param query_raw
+	 * @param request_params
+	 * @param logable
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, Hashtable request_params, boolean logable)  throws Exception{
+
+		JSONObject response_value = new JSONObject();
+		PreparedStatement pstmt = null;
+		String status_value = STATUS_FAILURE;
+		IQuerySyntaxParser query_parser = new NamedQuerySyntaxParser();
+		try{
+			pstmt = conn.prepareStatement(query_parser.parsePreparedStateQuery(query_raw , request_params));
+
+			if(logable){
+				logger.info("\t============= Execute delete Query Information =============");
+				logger.info( "\t---------- <reqeust parameter list> -------------" );
+			}
+			ArrayList<String> params = query_parser.getPreparedStateParameters(query_raw, request_params);			
+			for(int i=0 ; i < params.size() ; i++){								
+				String key = params.get(i)+"";
+				String value = request_params.get(key)+"";
+				pstmt.setString(i+1, value);
+				if(logable){
+					logger.info( "\t"+key+"\t\t"+value );
+				}
+			}
+
+			if(logable){
+				logger.info( "\t---------- <Query String> -------------" );
+				logger.info("\t" + query_parser.getLoggableQueryString(query_raw, request_params) );
+				logger.info("");
+			}
+			
 			int result = pstmt.executeUpdate();
 			System.out.println("update result : "+result);
 

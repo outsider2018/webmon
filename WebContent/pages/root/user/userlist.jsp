@@ -143,7 +143,7 @@
     		document.UserInfoForm.submit();
 	    }
 	    
-		function userdelete(arrayData) {
+		function userdelete(jsonData) {
 			//var table = $('#url-list').DataTable();
 			//var rows = table.rows('.selected').data();
 			//alert("삭제 : "+JSON.stringify(rows).data());
@@ -151,15 +151,15 @@
 			//alert("수행여부" + rows.stringify());
 			//var remove = table.rows( '.selected' ).remove().draw();
 			//var obj = JSON.parse(jsonData);
-			console.log("삭제 ID : " + arrayData);
-			var obj = arrayData;
-			
+			console.log(jsonData);
+		
  			 $.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=deleteuser",
-			    type: 'POST', dataType: 'json',  data: obj,
+			    type: 'POST', dataType: 'json',  data: "user_id="+jsonData,
 			    success: function(obj){			    	
 			  	// 유저 삭제 성공 여부
-	 		  	if(obj.STATUS == "S"){		    	
+	 		  	if(obj.STATUS == "S"){
+	 		  		location.reload();
 			  	}else{
 			  		alert("유저 삭제를 실패하였습니다.");
 			  	}
@@ -203,16 +203,21 @@
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
 			                		var count = dt.rows({selected:true}).count();
-			                		var userdata = [];
+			                		var userdata = "";
 			                		console.log("선택 개수 : " + count);			                		
 			                		for(i=0;i<count;i++){
 			                			//userdata[i] = JSON.stringify(dt.rows({selected:true}).data()[i].USER_ID);
-			                			userdata[i] = dt.rows({selected:true}).data()[i].USER_ID;
+			                			//userdata[i] = dt.rows({selected:true}).data();
+			                			if(i == 0){
+			                				userdata = dt.rows({selected:true}).data()[i].USER_ID;
+			                			}else if(i > 0 ){
+			                				userdata = userdata + "," + dt.rows({selected:true}).data()[i].USER_ID;
+			                			}			                			
 			                		}
-			                		console.log("선택 데이터"+userdata);
-			                		var jsonStr = {"user_id" : userdata[0]};
-			                		var obj = JSON.parse(jsonStr);	                		
-			                		userdelete(obj);
+			                		console.log("선택 데이터 : "+userdata);
+			                		//var temp = {"USER_ID":userdata};
+			                		//var user_id = JSON.stringify(temp);
+			                		userdelete(userdata);
 			                	},
 			                	enabled: false
 			            	}

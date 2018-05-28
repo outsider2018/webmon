@@ -12,7 +12,7 @@ public class DBConnector {
 	
 //	static String connectionURL = "jdbc:derby:../../derby/datafile/" + dbName;
 //	static String connectionURL = "jdbc:derby:D:/workspace-oxygen/webmon/WebContent/derby/datafile/" + dbName;
-	static String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=true";
+//	static String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=true";
 	
 	public static Connection getConnection(){
 		
