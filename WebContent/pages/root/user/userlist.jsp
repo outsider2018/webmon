@@ -202,7 +202,7 @@
 			            responsive: true,
 			            serverSide: false,
 			            pageLength: 10,
-			            ordering: false,
+			            ordering: true,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
 			            language:{
