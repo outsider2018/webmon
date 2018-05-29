@@ -106,7 +106,32 @@
             	<input type="hidden" name="group_name" id="group_name" value="">
             	<input type="hidden" name="description" id="description" value="">
             </form>
-
+            
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Launch Demo Modal
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">유저 삭제</h4>
+                        </div>
+                        <div class="modal-body">
+                            데이터를 삭제하시겠습니까?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            <button type="button" class="btn btn-primary">삭제</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->            
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
 			<!-- /#page-wrapper -->			
@@ -144,15 +169,6 @@
 	    }
 	    
 		function userdelete(jsonData) {
-			//var table = $('#url-list').DataTable();
-			//var rows = table.rows('.selected').data();
-			//alert("삭제 : "+JSON.stringify(rows).data());
-			//var rows = JSON.stringify(temp);
-			//alert("수행여부" + rows.stringify());
-			//var remove = table.rows( '.selected' ).remove().draw();
-			//var obj = JSON.parse(jsonData);
-			console.log(jsonData);
-		
  			 $.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=deleteuser",
 			    type: 'POST', dataType: 'json',  data: "user_id="+jsonData,
@@ -206,18 +222,18 @@
 			                		var userdata = "";
 			                		console.log("선택 개수 : " + count);			                		
 			                		for(i=0;i<count;i++){
-			                			//userdata[i] = JSON.stringify(dt.rows({selected:true}).data()[i].USER_ID);
-			                			//userdata[i] = dt.rows({selected:true}).data();
 			                			if(i == 0){
-			                				userdata = dt.rows({selected:true}).data()[i].USER_ID;
+			                				// 1개 선택시 
+			                				userdata = dt.rows({selected:true}).data()[i].USER_NUMBER;
 			                			}else if(i > 0 ){
-			                				userdata = userdata + "," + dt.rows({selected:true}).data()[i].USER_ID;
+			                				// 2개 이상 선택 시
+			                				userdata = userdata + "," + dt.rows({selected:true}).data()[i].USER_NUMBER;
 			                			}			                			
 			                		}
 			                		console.log("선택 데이터 : "+userdata);
-			                		//var temp = {"USER_ID":userdata};
-			                		//var user_id = JSON.stringify(temp);
-			                		userdelete(userdata);
+			                		if(confirm("데이터를 삭제하시겠습니까?")){
+			                			userdelete(userdata);
+			                		}			                			
 			                	},
 			                	enabled: false
 			            	}
@@ -241,8 +257,6 @@
 				    } ); // on() end
 			        
 			    }); //Datatable end
-			    
-
 			    
 		    }, // ajax success end
 		    

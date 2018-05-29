@@ -170,13 +170,12 @@ public class UserDataDAO {
 
 			StringBuffer sql_str = new StringBuffer();
 			sql_str.append("DELETE FROM USER_INFO			\n");
-			sql_str.append("	WHERE USER_ID IN (?)		\n"); // 검색 조건
+			sql_str.append("	WHERE USER_NUMBER IN (?)		\n"); // 검색 조건
 			
-			ArrayList<String> param = new ArrayList<String>();
-//			param.put("USER_ID", request_value.getString("user_id"));
+			ArrayList<Integer> param = new ArrayList<Integer>();
 			String[] temp = request_value.getString("user_id").split(",");
 			for(int i=0;i<temp.length;i++) {
-				param.add(temp[i]);
+				param.add(Integer.parseInt(temp[i]));
 			}
 			
 			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);

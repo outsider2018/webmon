@@ -680,7 +680,7 @@ public class DBQueryExcutor{
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList request_params)  throws Exception{
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList<Integer> request_params)  throws Exception{
 		return deleteQueryExcutor(conn, query_raw, request_params, true);
 	}
 	
@@ -693,7 +693,7 @@ public class DBQueryExcutor{
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList request_params, boolean logable)  throws Exception{
+	public static JSONObject deleteQueryExcutor(Connection conn, String query_raw, ArrayList<Integer> request_params, boolean logable)  throws Exception{
 
 		JSONObject response_value = new JSONObject();
 		PreparedStatement pstmt = null;
@@ -708,7 +708,8 @@ public class DBQueryExcutor{
 			}
 //			ArrayList<String> params = query_parser.getPreparedStateParameters(query_raw, request_params);			
 			for(int i=0 ; i < request_params.size() ; i++){								
-				pstmt.setString(i+1, request_params.get(i).toString());
+//				pstmt.setString(i+1, request_params.get(i).toString());
+				pstmt.setInt(i+1, request_params.get(i));
 				if(logable){
 					logger.info( "\t ["+i+"] \t\t" + request_params.get(i).toString());
 				}
