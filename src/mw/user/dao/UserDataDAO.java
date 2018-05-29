@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import javax.naming.NamingException;
@@ -39,7 +40,6 @@ public class UserDataDAO {
 			pstmt = conn.prepareStatement(sql_str.toString());
 			pstmt.setString(1,user_id);
 			pstmt.setString(2,password);
-			System.out.println("SQL : " + pstmt.toString());
 			rs = pstmt.executeQuery();
             
 			int count = 0;
@@ -89,8 +89,7 @@ public class UserDataDAO {
 			sql_str.append("	FROM USER_INFO		\n");								
 			
 			Hashtable param = new Hashtable();
-			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param);
-			System.out.println("UserList : " + response_value.toString());
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(), param, false);
 		}catch(Exception e){			
 			e.printStackTrace();		
 		}
@@ -155,6 +154,31 @@ public class UserDataDAO {
 			param.put("USER_ID", request_value.getString("user_id"));			
 			
 			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return response_value;
+	}
+
+	public static JSONObject deleteuser(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+
+		
+		JSONObject response_value = new JSONObject();
+
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("DELETE FROM USER_INFO			\n");
+			sql_str.append("	WHERE USER_NUMBER IN (?)		\n"); // 검색 조건
+			
+			ArrayList<Integer> param = new ArrayList<Integer>();
+			String[] temp = request_value.getString("user_id").split(",");
+			for(int i=0;i<temp.length;i++) {
+				param.add(Integer.parseInt(temp[i]));
+			}
+			
+			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
 			
 		}catch (Exception e) {
 			e.printStackTrace();		

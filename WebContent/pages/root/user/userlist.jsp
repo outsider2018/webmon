@@ -64,7 +64,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">User management</h1>
+						<h1 class="page-header">사용자 관리</h1>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -106,7 +106,32 @@
             	<input type="hidden" name="group_name" id="group_name" value="">
             	<input type="hidden" name="description" id="description" value="">
             </form>
-
+            
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Launch Demo Modal
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">유저 삭제</h4>
+                        </div>
+                        <div class="modal-body">
+                            데이터를 삭제하시겠습니까?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            <button type="button" class="btn btn-primary">삭제</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->            
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
 			<!-- /#page-wrapper -->			
@@ -133,8 +158,8 @@
 	     
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
-	    function userupdate(json){
-	    	var obj = JSON.parse(json);
+	    function userupdate(jsonData){
+	    	var obj = JSON.parse(jsonData);
     		document.UserInfoForm.user_id.value = obj.USER_ID;
     		document.UserInfoForm.user_name.value = obj.USER_NAME;
     		document.UserInfoForm.password.value = obj.PASSWORD;
@@ -143,9 +168,23 @@
     		document.UserInfoForm.submit();
 	    }
 	    
-	    function userdelete(){
-	    	alert("삭제 버튼 눌렀구나...아 그렇구나...여기다 삭제 기능 구현하면 됨");	    	
-	    }
+		function userdelete(jsonData) {
+ 			 $.ajax({
+				url: "/webmon/AjaxMessageRequest.do?action=deleteuser",
+			    type: 'POST', dataType: 'json',  data: "user_id="+jsonData,
+			    success: function(obj){			    	
+			  	// 유저 삭제 성공 여부
+	 		  	if(obj.STATUS == "S"){
+	 		  		location.reload();
+			  	}else{
+			  		alert("유저 삭제를 실패하였습니다.");
+			  	}
+			  },
+			  error:function(){
+			  	alert("요청 실패로 인하여 유저 삭제에 실패하였습니다.");
+			  }
+			});	// ajax end 
+		}
 	    
 	    
 		$.ajax({
@@ -153,9 +192,6 @@
 		    type: 'POST', dataType: 'json',
 		    success: function(obj){		    	
 		    	var userData = obj;
-		    	
-		    	// JSON 객체 -> String 변환 처리
-		    	//var userData = JSON.stringify(obj);
 				
 			    $(document).ready(function() {
 			        var table = $('#user-list').DataTable({
@@ -165,6 +201,12 @@
 			            ordering: false,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
+			            language:{
+			            	paginate:{
+			            		"previous":"&lt;",
+			            		"next":"&gt;"
+			            		}
+			            },
 			            buttons: [
 			            	{
 			                	text: '신규',
@@ -182,8 +224,22 @@
 			            	{
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
-			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
-			                		userdelete();
+			                		var count = dt.rows({selected:true}).count();
+			                		var userdata = "";
+			                		console.log("선택 개수 : " + count);			                		
+			                		for(i=0;i<count;i++){
+			                			if(i == 0){
+			                				// 1개 선택시 
+			                				userdata = dt.rows({selected:true}).data()[i].USER_NUMBER;
+			                			}else if(i > 0 ){
+			                				// 2개 이상 선택 시
+			                				userdata = userdata + "," + dt.rows({selected:true}).data()[i].USER_NUMBER;
+			                			}			                			
+			                		}
+			                		console.log("선택 데이터 : "+userdata);
+			                		if(confirm("데이터를 삭제하시겠습니까?")){
+			                			userdelete(userdata);
+			                		}			                			
 			                	},
 			                	enabled: false
 			            	}
@@ -207,8 +263,6 @@
 				    } ); // on() end
 			        
 			    }); //Datatable end
-			    
-
 			    
 		    }, // ajax success end
 		    

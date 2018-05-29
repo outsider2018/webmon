@@ -159,10 +159,6 @@
 	    $(document).ready(function(){
 			var selectObj = $("#group_name option");
 			for(i=1;i<selectObj.length;i++){
-				if(selectObj.eq(i).value() == "monitor"){
-					$("#group_name option:eq("+i+")").prop("selected", true);
-					break;
-				}
 			}
 	    });
 
@@ -197,13 +193,14 @@
 		
 		function updateuser_proc() {
 			var data = $("form[name=updateform]").serialize();
+			alert("수정 데이터 : " + data);
 			$.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=updateuser",
 			    type: 'POST', dataType: 'json',  data: data,
 			    success: function(obj){
 			    	
 			    	// 유저 정보 수정 성공 여부
-	 		    	if(obj.STATUS == "S"){		    	
+	 		    	if(obj.STATUS == "S"){
 			    		document.updateform.submit();
 			    	}else{
 			    		alert("유저 정보 수정에 실패하였습니다.");
