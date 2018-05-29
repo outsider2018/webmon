@@ -98,8 +98,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}else if("UrlList".equals(action)) {
 				ret = URLDataDAO.getURLListArray(conn, env);
 			}else if("deleteurl".equals(action)) {
-				String[] url_number=(String[]) request_value.get("url_num[]");	
-				ret = URLDataDAO.deleteURLListArray(conn, url_number);
+				ret = URLDataDAO.deleteurl(conn, request_value);
 			}else{
 				throw new Exception("Invalid action request ["+action+"]");
 			}

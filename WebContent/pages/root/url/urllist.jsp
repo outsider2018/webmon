@@ -142,10 +142,16 @@
 			        var table = $('#url-list').DataTable({
 			            responsive: true,
 			            serverSide: false,
-			            pageLength: 10,
-			            ordering: false,
+			            pageLength: 20,
+			            ordering: true,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
+			            language:{
+			            	paginate:{
+			            		"previous":"&lt;",
+			            		"next":"&gt;"
+			            		}
+			            },			            
 			            buttons: [
 			            	{
 			                	text: '신규',
@@ -170,11 +176,16 @@
 			                		var rows = table.rows('.selected').data();
 			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
 			                		if (confirm("총"+rows.length+"건 삭제하시겠습니까??") == true){    //확인
-			                			urldelete();
-				                		var rows = table
-			                		    .rows( '.selected' )
-			                		    .remove()
-			                		    .draw();				            			
+			                			for(i=0;i<rows.length;i++){
+				                			if(i == 0){
+				                				// 1개 선택시 
+				                				userdata = dt.rows({selected:true}).data()[i].URL_NUMBER;
+				                			}else if(i > 0 ){
+				                				// 2개 이상 선택 시
+				                				userdata = userdata + "," + dt.rows({selected:true}).data()[i].URL_NUMBER;
+				                			}			                			
+				                		}
+			                			urldelete(userdata);          			
 			                		}else{   //취소
 			                		    return;
 			                		}
@@ -212,31 +223,24 @@
 		});	// ajax end	    
 	    
 		
-		function urldelete() {
-			//var table = $('#url-list').DataTable();
-			//var rows = table.rows('.selected').data();
-			//alert("삭제 : "+JSON.stringify(rows).data());
-			//var rows = JSON.stringify(temp);
-			//alert("수행여부" + rows.stringify());
-			//var remove = table.rows( '.selected' ).remove().draw();
-			var array_temp=[2,4];
-			var rows={"url_num":array_temp};
-			
- 			 $.ajax({
+		function urldelete(str) {
+			$.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=deleteurl",
-			    type: 'POST', dataType: 'json',  data: rows,
+			    type: 'POST', dataType: 'json',  data: "url_number="+str,
 			    success: function(obj){			    	
-			  	// 신규 유저 생성 성공 여부
-			  	var InsertSTATUS = obj.resultSet;
-			  	console.log("InsertSTATUS : " + obj.STATUS);
-	 		  	if(InsertSTATUS == "S"){		    	
-			  		
+			  	// 유저 삭제 성공 여부
+	 		  	if(obj.STATUS == "S"){
+	 		  		var rows = $('#url-list').DataTable()
+        		    .rows( '.selected' )
+        		    .remove()
+        		    .draw();
+	 		  		//location.reload();
 			  	}else{
-			  		alert("신규 유저 생성을 실패하였습니다.");
+			  		alert("유저 삭제를 실패하였습니다.");
 			  	}
 			  },
 			  error:function(){
-			  	alert("요청 실패로 인하여 신규 유저 생성에 실패하였습니다.");
+			  	alert("요청 실패로 인하여 유저 삭제에 실패하였습니다.");
 			  }
 			});	// ajax end 
 		}

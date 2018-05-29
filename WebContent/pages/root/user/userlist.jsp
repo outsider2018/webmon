@@ -175,7 +175,11 @@
 			    success: function(obj){			    	
 			  	// 유저 삭제 성공 여부
 	 		  	if(obj.STATUS == "S"){
-	 		  		location.reload();
+	 		  		var rows = $('#user-list').DataTable()
+        		    .rows( '.selected' )
+        		    .remove()
+        		    .draw();
+	 		  		//location.reload();
 			  	}else{
 			  		alert("유저 삭제를 실패하였습니다.");
 			  	}
