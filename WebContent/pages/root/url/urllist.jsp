@@ -219,7 +219,7 @@
 			//var rows = JSON.stringify(temp);
 			//alert("수행여부" + rows.stringify());
 			//var remove = table.rows( '.selected' ).remove().draw();
-			var array_temp=[1,3,5,7,9];
+			var array_temp=[2,4];
 			var rows={"url_num":array_temp};
 			
  			 $.ajax({
