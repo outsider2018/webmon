@@ -76,7 +76,7 @@
                         <!--  <div class="panel-heading">사용자 관리</div>  -->	
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover display" id="user-list">
+                            <table width="100%" class="table table-striped table-bordered table-hover row-border display" id="user-list">
                                 <thead>
                                     <tr>
                                         <th>USER_NUMBER</th>
@@ -106,32 +106,7 @@
             	<input type="hidden" name="group_name" id="group_name" value="">
             	<input type="hidden" name="description" id="description" value="">
             </form>
-            
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                Launch Demo Modal
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">유저 삭제</h4>
-                        </div>
-                        <div class="modal-body">
-                            데이터를 삭제하시겠습니까?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                            <button type="button" class="btn btn-primary">삭제</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->            
+          
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
 			<!-- /#page-wrapper -->			
@@ -198,7 +173,7 @@
 			            responsive: true,
 			            serverSide: false,
 			            pageLength: 10,
-			            ordering: false,
+			            ordering: true,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
 			            language:{
