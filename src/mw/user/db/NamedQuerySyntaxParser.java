@@ -3,6 +3,7 @@ package mw.user.db;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +24,8 @@ public class NamedQuerySyntaxParser implements IQuerySyntaxParser {
 		return param_list;
 	}
 
+
+	
 	@Override
 	public String parsePreparedStateQuery(String query_str, Hashtable request_params) {
 		// TODO Auto-generated method stub
@@ -37,6 +40,21 @@ public class NamedQuerySyntaxParser implements IQuerySyntaxParser {
 	}
 
 	@Override
+	public String parsePreparedStateQuery(String query_str, ArrayList request_params) {
+		// TODO Auto-generated method stub
+		String query = query_str;
+//		Iterator<String> pair_list = request_params.iterator();
+		int count = request_params.size();
+		String paramlist = "?";
+		for(int i=1;i<count;i++) {
+			paramlist += ",?";
+		}
+		query = query.replaceAll("\\?", paramlist);
+		
+		return query;
+	}	
+
+	@Override
 	public String getLoggableQueryString(String query_str, Hashtable request_params) {
 		Enumeration<String> pair_list = request_params.keys();
 		while(pair_list.hasMoreElements()){
@@ -49,5 +67,6 @@ public class NamedQuerySyntaxParser implements IQuerySyntaxParser {
 		}
 		return query_str;
 	}
+
 
 }
