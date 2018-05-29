@@ -201,6 +201,12 @@
 			            ordering: false,
 			            select: true,
 			            dom: 'B<"wrapper"fr>t<"wrapper"ip>',
+			            language:{
+			            	paginate:{
+			            		"previous":"&lt;",
+			            		"next":"&gt;"
+			            		}
+			            },
 			            buttons: [
 			            	{
 			                	text: '신규',
