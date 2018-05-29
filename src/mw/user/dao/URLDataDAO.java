@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import javax.naming.NamingException;
@@ -123,20 +124,28 @@ public class URLDataDAO {
 		return response_value;
 	}
 
-	public static Object deleteURLListArray(Connection conn, String[] request_value) throws Exception {
-		System.out.println("DAO=================================");
-		for(String str:request_value) {
-			System.out.println("DAO값:"+str);
+	public static JSONObject deleteurl(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+
+		
+		JSONObject response_value = new JSONObject();
+
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("DELETE FROM URL_LIST			\n");
+			sql_str.append("	WHERE URL_NUMBER IN (?)		\n"); // 검색 조건
+			
+			ArrayList<Integer> param = new ArrayList<Integer>();
+			String[] temp = request_value.getString("url_number").split(",");
+			for(int i=0;i<temp.length;i++) {
+				param.add(Integer.parseInt(temp[i]));
+			}
+			
+			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
 		}
-		
-		StringBuffer sql_str = new StringBuffer();
-		sql_str.append("DELETE 														\n");
-		sql_str.append("	FROM URL_LIST											\n");								
-		sql_str.append(" WHERE URL_NUMBER in (:url_number)							\n");				
-		
-		Hashtable param = new Hashtable();
-		param.put("url_numbers", request_value);
-		
-		return null;
-	}
+		return response_value;
+	}	
 }
