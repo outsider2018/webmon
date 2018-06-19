@@ -147,5 +147,43 @@ public class URLDataDAO {
 			e.printStackTrace();		
 		}
 		return response_value;
-	}	
+	}
+
+	public static JSONObject inserturl(Connection conn, JSONObject request_value)throws SQLException, NamingException, JSONException {
+
+		
+		JSONObject response_value = new JSONObject();
+
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("INSERT INTO URL_LIST			\n");
+			sql_str.append("(ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, MW_TYPE, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL) \n");
+			sql_str.append("	VALUES(:ENV_NAME,			\n"); // 환경
+			sql_str.append("		   :DOMAIN_NAME,		\n"); // 도메인
+			sql_str.append("		   :BUSINESS_NAME,		\n"); // 업무명
+			sql_str.append("		   :MW_TYPE,			\n"); // WEB/WAS
+			sql_str.append("		   :SOLUCTION_NAME,		\n"); // 제품
+			sql_str.append("		   :USE_YN,		\n"); // 사용여부
+			sql_str.append("		   :DESCRIPTION,		\n"); // 설명
+			sql_str.append("		   :URL)					\n"); // URL
+			
+			
+			Hashtable<String, String> param = new Hashtable<String, String>();
+			param.put("ENV_NAME", request_value.getString("env_name"));
+			param.put("DOMAIN_NAME", request_value.getString("domain_name"));
+			param.put("BUSINESS_NAME", request_value.getString("business_name"));
+			param.put("MW_TYPE", request_value.getString("mw_type"));
+			param.put("SOLUCTION_NAME", request_value.getString("soluction_name"));
+			param.put("USE_YN", request_value.getString("use_yn"));
+			param.put("DESCRIPTION", request_value.getString("description"));
+			param.put("URL", request_value.getString("url"));
+			
+			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return response_value;
+	}
 }

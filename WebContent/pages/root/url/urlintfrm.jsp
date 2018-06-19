@@ -92,7 +92,7 @@
                                         <tr>
                                             <td>DOMAIN</td>
                                             <td><select class="form-control" name="domain_name" id="domain_name">
-	                                                <option value="NO">없음</option>
+	                                                <option value="">없음</option>
 	                                                <option value="DOM01">DOM01</option>
 	                                                <option value="DOM02">DOM02</option>
 	                                                <option value="DOM03">DOM03</option>
@@ -100,11 +100,18 @@
 	                                            </select></td>
                                         </tr>
                                         <tr>
-                                            <td>Business</td>
+                                            <td>BUSINESS</td>
                                             <td><input class="form-control"  name="business_name" id="business_name" placeholder="Enter Business Name"></td>
                                         </tr>
                                         <tr>
-                                            <td>Soluction</td>
+                                            <td>MW TYPE</td>
+                                            <td><select class="form-control" name="mw_type" id="mw_type">
+	                                                <option value="WEB">WEB</option>
+	                                                <option value="WAS">WAS</option>
+	                                            </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SOLUTION</td>
                                             <td><select class="form-control" name="soluction_name" id="soluction_name">
 	                                                <option value="APACHE">Apache</option>
 	                                                <option value="WEBTOB">WebtoB</option>
@@ -115,14 +122,14 @@
 	                                            </select></td>
                                         </tr>
                                         <tr>
-                                            <td>Use Flag</td>
-                                            <td><select class="form-control" name="use_flag" id="use_flag">
+                                            <td>USE FLAG</td>
+                                            <td><select class="form-control" name="use_yn" id="use_yn">
 	                                                <option value="Y">Yes</option>
 	                                                <option value="N">No</option>
 	                                            </select></td>
                                         </tr>
                                         <tr>
-                                            <td>Description</td>
+                                            <td>DESCRIPTION</td>
                                             <td><input class="form-control" name="description" id="description" placeholder="ex) ordap AP11"></td>
                                         </tr>
                                         <tr>
