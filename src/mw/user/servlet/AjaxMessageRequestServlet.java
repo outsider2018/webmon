@@ -97,6 +97,8 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 				ret = UserDataDAO.deleteuser(conn, request_value);				
 			}else if("UrlList".equals(action)) {
 				ret = URLDataDAO.getURLListArray(conn, env);
+			}else if("inserturl".equals(action)) {
+				ret = URLDataDAO.inserturl(conn, request_value);
 			}else if("deleteurl".equals(action)) {
 				ret = URLDataDAO.deleteurl(conn, request_value);
 			}else{
