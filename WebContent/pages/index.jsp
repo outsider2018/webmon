@@ -9,29 +9,28 @@
 
 <%@ include file="./sessionCheck.jsp" %>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 <title>KOS System - MW</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- MetisMenu CSS -->
-<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-<!-- Morris Charts CSS -->
-<link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
-<!-- Custom Fonts -->
-<link href="../vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,18 +50,73 @@
 		<div id="page-wrapper">				
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
 			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Middleware Administrator page</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
+			&nbsp;
+			</div>		
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="jumbotron">
-						<h2>Good job!!</h2>
-					</div>
-				</div>
-				<!-- /.col-lg-12 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        	<i class="fa fa-user"></i> Total URL List               
+                        </div>
+                        <!-- End panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">               
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End panel-body -->                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                        	<i class="fa fa-smile-o"></i> Good site
+                        </div>
+                        <!-- End panel-heading -->                        
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">25</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End panel-body --> 
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <i class="fa fa-frown-o"></i> Bad site
+                        </div>
+                        <!-- End panel-heading -->                        
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End panel-body --> 
+                    </div>
+                </div>                
+			</div>
+			<!-- /.row -->
+			
+			<div class="row">
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i class="fa fa-bar-chart-o"></i> 일자별 에러현황</div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
 			</div>
 			<!-- /.row -->
 
@@ -73,24 +127,39 @@
 	</div>
 	<!-- /#wrapper -->
 
-	<!-- jQuery -->
-	<script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-	<!-- Morris Charts JavaScript -->
-	<!-- 
-	<script src="../vendor/raphael/raphael.min.js"></script>
-	<script src="../vendor/morrisjs/morris.min.js"></script>
-	<script src="../data/morris-data.js"></script>
- 	-->
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+	    <script>
+	    
+		$.ajax({
+			url: "/webmon/AjaxMessageRequest.do?action=totalUrl",
+		    type: 'POST', dataType: 'json', data: "env=PRD",
+		    success: function(obj){		    	
+		    	var totalUrl = obj;						
+			    
+		    }, // ajax success end
+		    
+		    error:function(){
+		    	document.write("fail.");
+		    }
+		});	// ajax end	    
+	    
+	    </script>    
 
 </body>
 

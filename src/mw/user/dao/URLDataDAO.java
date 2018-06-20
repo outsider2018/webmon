@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 import javax.naming.NamingException;
@@ -186,4 +187,96 @@ public class URLDataDAO {
 		}
 		return response_value;
 	}
+	
+	public static JSONArray totalUrl(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
+		JSONArray response_value = new JSONArray();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("SELECT count(URL) AS totalUrl FROM URL_LIST  \n");								
+			sql_str.append(" WHERE ENV_NAME=:env_name					 \n");				
+			
+			Hashtable param = new Hashtable();
+			param.put("env_name", env_name);
+			
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
+			System.out.println("totalUrlList : " + response_value);
+			
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}catch(Exception e2){			
+			e2.printStackTrace();		
+		}finally{
+			if(rs != null){
+				rs.close();
+			}
+			if(pstmt != null){
+				pstmt.close();
+			}
+
+		}
+		return response_value;
+	}
+
+	public static JSONArray getChkURL(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
+		JSONArray response_value = new JSONArray();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("SELECT 	URL_NUMBER, ENV_NAME, DOMAIN_NAME, BUSINESS_NAME, MW_TYPE, SOLUCTION_NAME, USE_YN, DESCRIPTION, URL 	\n");
+			sql_str.append("	FROM URL_LIST											\n");								
+			sql_str.append(" WHERE ENV_NAME=:env_name									\n");				
+			sql_str.append(" 	   AND USE_YN='Y'									\n");				
+			
+			Hashtable param = new Hashtable();
+			param.put("env_name", env_name);
+			
+			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
+			System.out.println("getURLList : " + response_value);
+			
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}catch(Exception e2){			
+			e2.printStackTrace();		
+		}finally{
+			if(rs != null){
+				rs.close();
+			}
+			if(pstmt != null){
+				pstmt.close();
+			}
+
+		}
+		return response_value;
+	}	
+	
+	public static void insertChkHist(Connection conn, HashMap hashMap)throws SQLException, NamingException, JSONException {
+		JSONObject response_value = new JSONObject();
+		try{					
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("INSERT INTO URLCHK_HIST			\n");
+			sql_str.append("(URL, STATUS_CODE, CREATE_TIME) \n");
+			sql_str.append("	VALUES(:URL,				\n"); // URL
+			sql_str.append("		   :STATUS_CODE,		\n"); // 상태코드
+			sql_str.append("		   CURRENT_TIMESTAMP)	\n"); // 시간
+			
+			
+			Hashtable<String, String> param = new Hashtable<String, String>();
+			param.put("URL", (String) hashMap.get("Url"));
+			param.put("STATUS_CODE", (String) hashMap.get("StatusCode"));
+			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);			
+			
+		}catch (Exception e) {
+			e.printStackTrace();		
+		}
+	}
+	
 }

@@ -158,7 +158,7 @@
 	    <script>
 	    $(document).ready(function(){
 			var selectObj = <%=request.getParameter("group_name")%>;
-			alert(selectObj);
+			//alert(selectObj);
 			$('select option[value='+selectObj+']').attr("selected", true);
 			//fruit_val = $('select.fruit').attr('data-type');
 			//$('select.fruit option[value=' + fruit_val + ']').attr('selected', 'selected');
@@ -195,7 +195,7 @@
 		
 		function updateuser_proc() {
 			var data = $("form[name=updateform]").serialize();
-			alert("수정 데이터 : " + data);
+			//alert("수정 데이터 : " + data);
 			$.ajax({
 				url: "/webmon/AjaxMessageRequest.do?action=updateuser",
 			    type: 'POST', dataType: 'json',  data: data,
