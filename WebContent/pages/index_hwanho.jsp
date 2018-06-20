@@ -56,68 +56,58 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="row">
-                                <span class="count_top"><i class="fa fa-user"></i> Total URL List</span>               
+                        	<i class="fa fa-user"></i> Total URL List               
+                        </div>
+                        <!-- End panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">               
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">26</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <!-- End panel-body -->                        
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
+                        	<i class="fa fa-user"></i> Good site
+                        </div>
+                        <!-- End panel-heading -->                        
+                        <div class="panel-body">
                             <div class="row">
-                                <span class="count_top"><i class="fa fa-user"></i> Good site</span>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">25</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <!-- End panel-body --> 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
+                            <i class="fa fa-user"></i> Bad site
+                        </div>
+                        <!-- End panel-heading -->                        
+                        <div class="panel-body">
                             <div class="row">
-                                <span class="count_top"><i class="fa fa-user"></i> Bad site</span>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge">1</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <!-- End panel-body --> 
                     </div>
                 </div>                
 			</div>
 			<!-- /.row -->
 			
 			<div class="row">
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
+                <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading">일자별 에러현황</div>
+                        <div class="panel-heading"><i class="fa fa-bar-chart-o"></i> 일자별 에러현황</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div id="morris-bar-chart"></div>
@@ -150,7 +140,6 @@
     <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
-
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
