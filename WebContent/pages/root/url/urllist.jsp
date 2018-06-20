@@ -101,6 +101,16 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <form name="URLForm" role="form" id="URLForm" method="post" action="./urlupdatefrm.jsp">
+            	<input type="hidden" name="env_name" id="env_name" value="">
+            	<input type="hidden" name="domain_name" id="domain_name" value="">
+            	<input type="hidden" name="business_name" id="business_name" value="">
+            	<input type="hidden" name="mw_type" id="mw_type" value="">
+            	<input type="hidden" name="soluction_name" id="soluction_name" value="">
+            	<input type="hidden" name="use_yn" id="use_yn" value="">
+            	<input type="hidden" name="description" id="description" value="">
+            	<input type="hidden" name="url" id="url" value="">
+            </form>
 
 			<!-- -------------------------------------- Main Page End--------------------------------------------------------- -->
 			</div>
@@ -169,12 +179,9 @@
 			            	{
 			                	text: '삭제',
 			                	action: function(e, dt, node, config){
-			                		
-		                		
 			                		var table = $('#url-list').DataTable();
 			                		
 			                		var rows = table.rows('.selected').data();
-			                		alert("삭제 : "+JSON.stringify(dt.row({selected:true}).data()));
 			                		if (confirm("총"+rows.length+"건 삭제하시겠습니까??") == true){    //확인
 			                			for(i=0;i<rows.length;i++){
 				                			if(i == 0){
@@ -222,6 +229,19 @@
 		    }
 		});	// ajax end	    
 	    
+		
+	    function userupdate(jsonData){
+	    	var obj = JSON.parse(jsonData);
+    		document.URLForm.env_name.value = obj.ENV_NAME;
+    		document.URLForm.domain_name.value = obj.DOMAIN_NAME;
+    		document.URLForm.business_name.value = obj.BUSINESS_NAME;
+    		document.URLForm.mw_type.value = obj.MW_TYPE;
+    		document.URLForm.soluction_name.value = obj.SOLUCTION_NAME;
+    		document.URLForm.use_yn.value = obj.USE_YN;
+    		document.URLForm.description.value = obj.DESCRIPTION;
+    		document.URLForm.url.value = obj.URL;
+    		document.URLForm.submit();
+	    }
 		
 		function urldelete(str) {
 			$.ajax({

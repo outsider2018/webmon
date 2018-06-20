@@ -157,9 +157,11 @@
 	    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	    <script>
 	    $(document).ready(function(){
-			var selectObj = $("#group_name option");
-			for(i=1;i<selectObj.length;i++){
-			}
+			var selectObj = <%=request.getParameter("group_name")%>;
+			alert(selectObj);
+			$('select option[value='+selectObj+']').attr("selected", true);
+			//fruit_val = $('select.fruit').attr('data-type');
+			//$('select.fruit option[value=' + fruit_val + ']').attr('selected', 'selected');
 	    });
 
 

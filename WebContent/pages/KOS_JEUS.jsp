@@ -37,18 +37,18 @@
 <style>
 
 #col-1{
-	background-color: #d9edf7;
-	border-color: #bce8f1;
+	background-color: #eeeeee;
+	border-color: #eeeeee;
 	border: 0
 }
 #col-2 {
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
+	background-color: #eeeeee;
+	border-color: #eeeeee;
 	border: 0
 }
 #col-3 {
-	background-color: #f2dede;
-	border-color: #ebccd1;
+	background-color: #eeeeee;
+	border-color: #eeeeee;
 	border: 0
 }
 
@@ -101,12 +101,6 @@ function urlgo(){
                                 </li>
                                 <li><a href="#SIT" data-toggle="tab">SIT</a>
                                 </li>
-                                <li><a href="#TRN" data-toggle="tab">TRN</a>
-                                </li>
-                                <li><a href="#AIT" data-toggle="tab">AT</a>
-                                </li>
-                                <li><a href="#DEV" data-toggle="tab">DEV</a>
-                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -145,6 +139,8 @@ function urlgo(){
                                                         <div class="col-md-4">
                                                           <input type="radio" value="http://10.219.1.211:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">ordcorp03
                                                         </div>
+                                                        <div></div>
+                                                        <div></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-0" id="col-3">
@@ -194,6 +190,8 @@ function urlgo(){
                                                         <div class="col-md-4">
                                                           <input type="radio" value="http://10.219.6.58:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2cdmcorp03
                                                         </div>
+                                                        <div></div>
+                                                        <div></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-0" id="col-3">
@@ -243,6 +241,8 @@ function urlgo(){
                                                         <div class="col-md-4">
                                                           <input type="radio" value="http://10.219.6.23:9001/webadmin/j_spring_security_check,jeusadm,Prd@middle1" name="url">prd2billcorp03
                                                         </div>
+                                                        <div></div>
+                                                        <div></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-0" id="col-3">

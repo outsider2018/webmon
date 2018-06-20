@@ -72,7 +72,7 @@
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Management Link
 						<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="./KOS_OSB.jsp">WebLogic Admin Console</a></li>
+						<li><a href="./KOS_ESB.jsp">WebLogic Admin Console</a></li>
 						<li><a href="./KOS_JEUS.jsp">Jeus Admin Console</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 <%					
