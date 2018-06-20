@@ -37,7 +37,6 @@ public class URLChk implements Job{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		long ct = System.currentTimeMillis();
-		
 		System.out.println("쿼츠 주기적 실행 : " + sdf.format(ct));
 		
 		try {
@@ -57,10 +56,5 @@ public class URLChk implements Job{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		URLCheck urlCheck = new URLCheck();
-//		ArrayList<urlvo> errlist = urlCheck.urlcheck();
 		}
-	
-	
 	}
