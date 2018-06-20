@@ -63,6 +63,7 @@ public class CheckURL {
 				resultList.add(resultMap);
 			}else{
 				try{
+					System.out.println(servers[5]);
 					URL urlObj = new URL(servers[5]);		
 					conn = (HttpURLConnection) urlObj.openConnection();	// IOException		
 					conn.setRequestMethod("GET");
@@ -169,7 +170,7 @@ public class CheckURL {
 				resultMap.put("StatusCode", "R");
 				resultMap.put("ResponseTime", "-");
 				resultMap.put("Message", "�꽌鍮꾩뒪 以�鍮� 以�");
-				resultList.add(resultMap);			
+				resultList.add(resultMap);
 			}else if(flag.equals("N") || flag.equals("n")){
 				resultMap = new HashMap<String, String>();
 				resultMap.put("Group", group);
@@ -184,7 +185,7 @@ public class CheckURL {
 				resultList.add(resultMap);
 			}else{
 				try{
-					URL urlObj = new URL(imsi.getString("URL"));		
+					URL urlObj = new URL(url);
 					conn = (HttpURLConnection) urlObj.openConnection();	// IOException		
 					conn.setRequestMethod("GET");
 					conn.setConnectTimeout(ConnectionTimeout);

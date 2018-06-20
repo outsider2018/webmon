@@ -58,10 +58,10 @@
 		JSONArray ret = new JSONArray();
 		
 		ret = URLDataDAO.getURLListArray(conn, "PRD");
-		System.out.println(ret.toString());
+		//System.out.println(ret.toString());
 		for(int lll=0; lll<10; lll++){
 		 JSONObject jjj=ret.getJSONObject(lll);
-		 System.out.println(jjj);
+		// System.out.println(jjj);
 		}
 		
 		ArrayList <String> test = null;
@@ -76,12 +76,12 @@
 		ArrayList<HashMap> resultList = new ArrayList<HashMap>();
 		CheckURL chk = new CheckURL();
 		
-		resultList = chk.checkUrl(ResourceInit.urlListPRD_PA3_ALL);
-		System.out.println("resource========================");
-		System.out.println(resultList.toString());
+		//resultList = chk.checkUrl(ResourceInit.urlListPRD_PA3_ALL);
+		//System.out.println("resource========================");
+		//System.out.println(resultList.toString());
 		resultList = chk.checkUrl(ret);
 		System.out.println("db========================");
-		System.out.println(resultList.toString());
+		//System.out.println(resultList.toString());
 		//resultList = chk.checkUrl(jsonArr);
 		
 		HashMap<String,String> resultMap = new HashMap<String,String>();

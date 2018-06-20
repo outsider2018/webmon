@@ -68,7 +68,7 @@ public class URLDataDAO {
 			
 			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);
 			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
-			System.out.println("getURLList : " + response_value);
+			//System.out.println("getURLList : " + response_value);
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();
