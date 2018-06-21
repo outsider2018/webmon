@@ -294,7 +294,7 @@ public class URLDataDAO {
 			Hashtable param = new Hashtable();
 			param.put("status_code", status_code);
 			
-			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);		
+			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, true);		
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();
