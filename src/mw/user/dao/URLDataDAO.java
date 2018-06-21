@@ -276,7 +276,7 @@ public class URLDataDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();		
-		}
+		}		
 	}
 	
 	public static JSONObject countSite(Connection conn, String status_code)throws SQLException, NamingException, JSONException {		
