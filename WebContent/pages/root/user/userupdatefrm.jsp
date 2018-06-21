@@ -18,7 +18,7 @@
 
 <% 
 	request.setCharacterEncoding("UTF-8");
-	String user_id = request.getParameter("user_id");
+	String old_user_id = request.getParameter("user_id");
 	String password = request.getParameter("password");
 	String user_name = request.getParameter("user_name");
 	String group_name = request.getParameter("group_name");
@@ -93,7 +93,10 @@
                                     <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td><input class="form-control" name="user_id" id="user_id" placeholder="Enter ID" value="<%=user_id%>"></td>
+                                            <td>
+                                            	<input class="form-control" name="new_user_id" id="new_user_id" placeholder="Enter ID" value="<%=old_user_id%>">
+                                            	<input type="hidden" name="old_user_id" id="old_user_id" value="<%=old_user_id%>">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>PASSWORD</td>
@@ -174,9 +177,9 @@
 		} // updateuser() end	    
 	    
 		function updateuser() {
-			if(document.getElementById("user_id").value==""){
+			if(document.getElementById("new_user_id").value==""){
 				alert("ID를 입력하세요");
-				document.getElementById("user_id").focus();
+				document.getElementById("new_user_id").focus();
 				return false;
 			}else if(document.getElementById("password").value==""){
 				alert("Password를 입력하세요");
