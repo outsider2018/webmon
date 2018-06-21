@@ -289,7 +289,7 @@ public class URLDataDAO {
 			StringBuffer sql_str = new StringBuffer();
 			sql_str.append("SELECT count(URL) as countURL FROM URLCHK_HIST  \n");								
 			sql_str.append(" WHERE STATUS_CODE=:status_code					 \n");				
-			sql_str.append(" AND 5 > {fn TIMESTAMPDIFF(SQL_TSI_MINUTE,CREATE_TIME,CURRENT_TIMESTAMP)}	 \n");				
+			sql_str.append(" AND 6 > {fn TIMESTAMPDIFF(SQL_TSI_MINUTE,CREATE_TIME,CURRENT_TIMESTAMP)}	 \n");				
 			
 			Hashtable param = new Hashtable();
 			param.put("status_code", status_code);
