@@ -62,7 +62,7 @@
                         <div class="panel-body">
                             <div class="row">               
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge" id="totalUrl"></div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">25</div>
+                                    <div class="huge" id="goodsite">25</div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1</div>
+                                    <div class="huge"  id="badsite">1</div>
                                 </div>
                             </div>
                         </div>
@@ -149,15 +149,26 @@
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=totalUrl",
 		    type: 'POST', dataType: 'json', data: "env=PRD",
-		    success: function(obj){		    	
-		    	var totalUrl = obj;						
-			    
+		    success: function(obj){
+		    	var totalUrl = obj.TOTALURL;
+		    	$("#totalUrl").html(totalUrl);
 		    }, // ajax success end
-		    
 		    error:function(){
-		    	document.write("fail.");
+		    	$("#totalUrl").html("get Fail.");
 		    }
-		});	// ajax end	    
+		});	// ajax end
+		
+		$.ajax({
+			url: "/webmon/AjaxMessageRequest.do?action=totalUrl",
+		    type: 'POST', dataType: 'json', data: "env=PRD",
+		    success: function(obj){
+		    	var goodsite = obj.TOTALURL;
+		    	$("#goodsite").html(goodsite);
+		    }, // ajax success end
+		    error:function(){
+		    	$("#goodsite").html("get Fail.");
+		    }
+		});	// ajax end	  
 	    
 	    </script>    
 

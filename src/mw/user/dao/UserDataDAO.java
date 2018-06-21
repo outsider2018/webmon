@@ -153,7 +153,7 @@ public class UserDataDAO {
 			param.put("DESCRIPTION", request_value.getString("description"));
 			param.put("OLD_USER_ID", request_value.getString("old_user_id"));
 			
-			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, true);
+			response_value = DBQueryExcutor.updateQueryExcutor(conn, sql_str.toString(), param, false);
 			
 		}catch (Exception e) {
 			e.printStackTrace();		
@@ -178,7 +178,7 @@ public class UserDataDAO {
 				param.add(Integer.parseInt(temp[i]));
 			}
 			
-			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
+			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, false);
 			
 		}catch (Exception e) {
 			e.printStackTrace();		

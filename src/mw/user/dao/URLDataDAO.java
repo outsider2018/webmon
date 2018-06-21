@@ -142,7 +142,7 @@ public class URLDataDAO {
 				param.add(Integer.parseInt(temp[i]));
 			}
 			
-			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, true);
+			response_value = DBQueryExcutor.deleteQueryExcutor(conn, sql_str.toString(), param, false);
 			
 		}catch (Exception e) {
 			e.printStackTrace();		
@@ -188,8 +188,8 @@ public class URLDataDAO {
 		return response_value;
 	}
 	
-	public static JSONArray totalUrl(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
-		JSONArray response_value = new JSONArray();
+	public static JSONObject totalUrl(Connection conn, String env_name)throws SQLException, NamingException, JSONException {		
+		JSONObject response_value = new JSONObject();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -202,7 +202,7 @@ public class URLDataDAO {
 			Hashtable param = new Hashtable();
 			param.put("env_name", env_name);
 			
-			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
+			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);			
 			System.out.println("totalUrlList : " + response_value);
 			
 		}catch (SQLException e1) {
@@ -238,7 +238,7 @@ public class URLDataDAO {
 			param.put("env_name", env_name);
 			
 			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);
-			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param);			
+			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param, false);			
 			System.out.println("getURLList : " + response_value);
 			
 		}catch (SQLException e1) {
