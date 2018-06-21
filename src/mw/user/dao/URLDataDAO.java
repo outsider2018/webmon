@@ -279,4 +279,37 @@ public class URLDataDAO {
 		}
 	}
 	
+	public static JSONObject countSite(Connection conn, String status_code)throws SQLException, NamingException, JSONException {		
+		JSONObject response_value = new JSONObject();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+
+			StringBuffer sql_str = new StringBuffer();
+			sql_str.append("SELECT count(URL) as countURL FROM URLCHK_HIST  \n");								
+			sql_str.append(" WHERE STATUS_CODE=:status_code					 \n");				
+			sql_str.append(" AND 5 > {fn TIMESTAMPDIFF(SQL_TSI_MINUTE,CREATE_TIME,CURRENT_TIMESTAMP)}	 \n");				
+			
+			Hashtable param = new Hashtable();
+			param.put("status_code", status_code);
+			
+			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);		
+			
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}catch(Exception e2){			
+			e2.printStackTrace();		
+		}finally{
+			if(rs != null){
+				rs.close();
+			}
+			if(pstmt != null){
+				pstmt.close();
+			}
+
+		}
+		return response_value;
+	}	
+	
 }

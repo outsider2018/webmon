@@ -103,6 +103,8 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 				ret = URLDataDAO.deleteurl(conn, request_value);
 			}else if("totalUrl".equals(action)) {
 				ret = URLDataDAO.totalUrl(conn, env);				
+			}else if("countSite".equals(action)) {
+				ret = URLDataDAO.countSite(conn, env);				
 			}else{
 				throw new Exception("Invalid action request ["+action+"]");
 			}

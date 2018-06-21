@@ -159,16 +159,28 @@
 		});	// ajax end
 		
 		$.ajax({
-			url: "/webmon/AjaxMessageRequest.do?action=totalUrl",
-		    type: 'POST', dataType: 'json', data: "env=PRD",
+			url: "/webmon/AjaxMessageRequest.do?action=countSite",
+		    type: 'POST', dataType: 'json', data: "env=200",
 		    success: function(obj){
-		    	var goodsite = obj.TOTALURL;
+		    	var goodsite = obj.countURL;
 		    	$("#goodsite").html(goodsite);
 		    }, // ajax success end
 		    error:function(){
 		    	$("#goodsite").html("get Fail.");
 		    }
-		});	// ajax end	  
+		});	// ajax end
+		
+		$.ajax({
+			url: "/webmon/AjaxMessageRequest.do?action=countSite",
+		    type: 'POST', dataType: 'json', data: "env=-1",
+		    success: function(obj){
+		    	var badsite = obj.countURL;
+		    	$("#badsite").html(badsite);
+		    }, // ajax success end
+		    error:function(){
+		    	$("#badsite").html("get Fail.");
+		    }
+		});	// ajax end	  		
 	    
 	    </script>    
 
