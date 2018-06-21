@@ -162,8 +162,7 @@
 			url: "/webmon/AjaxMessageRequest.do?action=countSite",
 		    type: 'POST', dataType: 'json', data: "env=200",
 		    success: function(obj){
-		    	var goodsite = obj.countURL;
-		    	console.log(obj.countURL);
+		    	var goodsite = obj.COUNTURL;
 		    	$("#goodsite").html(goodsite);
 		    }, // ajax success end
 		    error:function(){
@@ -175,8 +174,7 @@
 			url: "/webmon/AjaxMessageRequest.do?action=countSite",
 		    type: 'POST', dataType: 'json', data: "env=-1",
 		    success: function(obj){
-		    	var badsite = obj.countURL;
-		    	console.log(obj.countURL);
+		    	var badsite = obj.COUNTURL;
 		    	$("#badsite").html(badsite);
 		    }, // ajax success end
 		    error:function(){
