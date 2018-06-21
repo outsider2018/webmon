@@ -78,7 +78,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge" id="goodsite">25</div>
+                                    <div class="huge" id="goodsite"></div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"  id="badsite">1</div>
+                                    <div class="huge"  id="badsite"></div>
                                 </div>
                             </div>
                         </div>
