@@ -34,7 +34,7 @@ public class URLDataDAO {
 			
 			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);			
 			response_value = DBQueryExcutor.selectMultiRow_web(conn, sql_str.toString(),param, false);			
-			System.out.println("getURLList : " + response_value);
+//			System.out.println("getURLList : " + response_value);
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();
@@ -107,7 +107,7 @@ public class URLDataDAO {
 			param.put("envName", envName);
 			
 			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);			
-			System.out.println("getURLList : " + response_value);
+//			System.out.println("getURLList : " + response_value);
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();
@@ -203,7 +203,7 @@ public class URLDataDAO {
 			param.put("env_name", env_name);
 			
 			response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);			
-			System.out.println("totalUrlList : " + response_value);
+//			System.out.println("totalUrlList : " + response_value);
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();
@@ -239,7 +239,7 @@ public class URLDataDAO {
 			
 			//response_value = DBQueryExcutor.selectMultiRow(conn, sql_str.toString(),param, false);
 			response_value = DBQueryExcutor.selectMultiRowArray(conn, sql_str.toString(),param, false);			
-			System.out.println("getURLList : " + response_value);
+//			System.out.println("getURLList : " + response_value);
 			
 		}catch (SQLException e1) {
 			e1.printStackTrace();

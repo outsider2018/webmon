@@ -52,7 +52,6 @@ public class CommonLib {
 	public String getCurrentDate(){
 		Date toDay = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("���� ��¥ : " + sdf.format(toDay));
 		return sdf.format(toDay);
 	}
 	

@@ -63,7 +63,7 @@ public class CheckURL {
 				resultList.add(resultMap);
 			}else{
 				try{
-					System.out.println(servers[5]);
+//					System.out.println(servers[5]);
 					URL urlObj = new URL(servers[5]);		
 					conn = (HttpURLConnection) urlObj.openConnection();	// IOException		
 					conn.setRequestMethod("GET");

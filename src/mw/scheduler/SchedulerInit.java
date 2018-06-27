@@ -37,8 +37,8 @@ public class SchedulerInit extends HttpServlet
 		this.schedFact = new StdSchedulerFactory();
 		this.sched = this.schedFact.getScheduler();
 
-		JobDetail job1 = JobBuilder.newJob(URLChk.class)
-        .withIdentity("URLChk", "group1")
+		JobDetail job1 = JobBuilder.newJob(SchChkURL.class)
+        .withIdentity("SchChkURL", "group1")
         .build();
 		
 		CronTrigger expireCert = (CronTrigger)TriggerBuilder.newTrigger()

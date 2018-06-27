@@ -21,7 +21,7 @@ import mw.user.dao.URLDataDAO;
 import mw.user.db.DBConnector;
 import mw.url.CheckURL;
 
-public class URLChk implements Job{
+public class SchChkURL implements Job{
 	public void execute(JobExecutionContext arg0)
     throws JobExecutionException{
 		runURLChk();
@@ -36,16 +36,18 @@ public class URLChk implements Job{
 		String insertResult ="true";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		long ct = System.currentTimeMillis();
-		System.out.println("쿼츠 주기적 실행 : " + sdf.format(ct));
+		long starttime = System.currentTimeMillis();
+		long endtime;
 		
 		try {
 			ret = URLDataDAO.getChkURL(conn, "PRD");
+
 			resultList = chk.checkUrl(ret);
 			for(int i=0; i < resultList.size(); i++) {
 				URLDataDAO.insertChkHist(conn, resultList.get(i));
 			}
-			
+			endtime = System.currentTimeMillis();
+			System.out.println("URL 체크 스케줄러 수행시간 : "+(endtime-starttime));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -646,7 +646,7 @@ public class DBQueryExcutor{
 			}
 			
 			int result = pstmt.executeUpdate();
-			System.out.println("update result : "+result);
+//			System.out.println("update result : "+result);
 
 			if(logable){
 				logger.info("\t------------------<result>-------------------------");
@@ -722,7 +722,7 @@ public class DBQueryExcutor{
 			}
 			
 			int result = pstmt.executeUpdate();
-			System.out.println("delete result : "+result);
+//			System.out.println("delete result : "+result);
 
 			if(logable){
 				logger.info("\t------------------<result>-------------------------");

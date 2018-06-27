@@ -89,7 +89,7 @@ public class DBConnector {
 					e.printStackTrace();
 				} 
 			}
-			System.out.println(" Release Complete");
+//			System.out.println(" Release Complete");
 			logger.info(" Release Complete");
 		}catch (Exception e) {
 			e.printStackTrace();
