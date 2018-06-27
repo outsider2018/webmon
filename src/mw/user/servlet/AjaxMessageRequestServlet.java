@@ -110,7 +110,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}
 			
 			String response_value_str = ret.toString();
-			System.out.println(" Response:"+response_value_str);
+//			System.out.println(" Response:"+response_value_str);
 
 			return response_value_str;
 		}catch (Exception e) {
