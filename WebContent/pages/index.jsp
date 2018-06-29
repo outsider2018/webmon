@@ -45,7 +45,7 @@
 
 	<div id="wrapper">
 
-		<jsp:include page='./navigation.jsp' flush='false' />
+		<%@ include file="./navigation.jsp" %>
 		<!-- Page Content -->		
 		<div id="page-wrapper">				
 		<!-- -------------------------------------- Main Page Start--------------------------------------------------------- -->
@@ -148,37 +148,37 @@
 	    
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=totalUrl",
-		    type: 'POST', dataType: 'json', data: "env=PRD",
+		    type: 'POST', dataType: 'json', data: "param1=PRD",
 		    success: function(obj){
 		    	var totalUrl = obj.TOTALURL;
 		    	$("#totalUrl").html(totalUrl);
 		    }, // ajax success end
 		    error:function(){
-		    	$("#totalUrl").html("get Fail.");
+		    	$("#totalUrl").html("<i class='fa fa-warning'></i>");
 		    }
 		});	// ajax end
 		
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=countSite",
-		    type: 'POST', dataType: 'json', data: "env=200",
+		    type: 'POST', dataType: 'json', data: "param1=200",
 		    success: function(obj){
 		    	var goodsite = obj.COUNTURL;
 		    	$("#goodsite").html(goodsite);
 		    }, // ajax success end
 		    error:function(){
-		    	$("#goodsite").html("get Fail.");
+		    	$("#goodsite").html("<i class='fa fa-warning'></i>");
 		    }
 		});	// ajax end
 		
 		$.ajax({
 			url: "/webmon/AjaxMessageRequest.do?action=countSite",
-		    type: 'POST', dataType: 'json', data: "env=-1",
+		    type: 'POST', dataType: 'json', data: "param1=-1",
 		    success: function(obj){
 		    	var badsite = obj.COUNTURL;
 		    	$("#badsite").html(badsite);
 		    }, // ajax success end
 		    error:function(){
-		    	$("#badsite").html("get Fail.");
+		    	$("#badsite").html("<i class='fa fa-warning'></i>");
 		    }
 		});	// ajax end	  		
 	    

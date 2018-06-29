@@ -72,7 +72,7 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			conn = DBConnector.getConnection();
 
 			String action = request.getParameter("action");
-			String env = request.getParameter("env");
+			String param1 = request.getParameter("param1");
 			
 			System.out.println("[action] : "+action+"#"+request_value.toString());
 			
@@ -96,15 +96,15 @@ public class AjaxMessageRequestServlet extends HttpServlet {
 			}else if("deleteuser".equals(action)){
 				ret = UserDataDAO.deleteuser(conn, request_value);				
 			}else if("UrlList".equals(action)) {
-				ret = URLDataDAO.getURLListArray(conn, env);
+				ret = URLDataDAO.getURLListArray(conn, param1);
 			}else if("inserturl".equals(action)) {
 				ret = URLDataDAO.inserturl(conn, request_value);
 			}else if("deleteurl".equals(action)) {
 				ret = URLDataDAO.deleteurl(conn, request_value);
 			}else if("totalUrl".equals(action)) {
-				ret = URLDataDAO.totalUrl(conn, env);				
+				ret = URLDataDAO.totalUrl(conn, param1);				
 			}else if("countSite".equals(action)) {
-				ret = URLDataDAO.countSite(conn, env);				
+				ret = URLDataDAO.countSite(conn, param1);				
 			}else{
 				throw new Exception("Invalid action request ["+action+"]");
 			}

@@ -140,7 +140,7 @@
 	    <script>
 	    
 		$.ajax({
-			url: "/webmon/AjaxMessageRequest.do?action=UrlList&env=PRD",
+			url: "/webmon/AjaxMessageRequest.do?action=UrlList&param1=PRD",
 		    type: 'POST', dataType: 'json',
 		    success: function(obj){		    	
 		    	// UserList 요청 성공		    			    	
